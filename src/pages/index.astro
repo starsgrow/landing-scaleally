@@ -61,8 +61,8 @@
 				z-index: 2;
 			}
 			.hero-logo {
-				width: 90px;
-				height: 90px;
+				width: 150px;
+				height: 150px;
 				margin-bottom: 1.5rem;
 				border-radius: 16px;
 				background: #fff2;
@@ -81,6 +81,7 @@
 			.hero-desc {
 				font-size: 1.3rem;
 				font-weight: 400;
+				margin-top: 2.2rem;
 				margin-bottom: 2.5rem;
 				max-width: 500px;
 				margin-left: auto;
@@ -238,9 +239,8 @@
 		<div class="bg-hero-overlay"></div>
 		<section class="hero">
 			<img src="/logo.png" alt="Logo Scaleally" class="hero-logo" />
-			<div class="hero-title">Scaleally</div>
 			<div class="hero-desc">Tu <b>Growth Partner</b> estratégico. Ayudamos a startups y negocios digitales a escalar con tecnología, datos y creatividad.</div>
-			<a href="#contacto"><button class="cta-btn">Quiero escalar mi negocio</button></a>
+			<a href="/contacto"><button class="cta-btn">Quiero escalar mi negocio</button></a>
 		</section>
 
 		<section class="services">
@@ -263,12 +263,16 @@
 
 		<section id="contacto" style="text-align:center; margin-bottom:3rem;">
 			<h2 style="color:var(--violet); font-size:1.6rem; font-weight:700; margin-bottom:1rem;">¿Listo para escalar estratégicamente?</h2>
-			<a href="mailto:hola@scaleally.com"><button class="cta-btn">Agenda una consultoría</button></a>
+			<a href="/contacto"><button class="cta-btn">Agenda una consultoría</button></a>
 		</section>
 
 		<footer class="footer">
 			&copy; {new Date().getFullYear()} Scaleally. Todos los derechos reservados.<br/>
 			<span style="font-size:0.95em; opacity:0.7;">Hecho con Astro ⚡</span>
+			<div style="margin-top:1.2em; font-size:1.05em;">
+				<b>Contacto:</b> <a href="https://wa.me/573154360996" target="_blank" rel="noopener" style="color:#a5b4fc; text-decoration:none;">+57 315-436-0996</a><br/>
+				<b>Dirección:</b> Medellín, Colombia, La América
+			</div>
 		</footer>
 	</body>
 </html>
