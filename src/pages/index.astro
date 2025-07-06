@@ -1,0 +1,274 @@
+---
+
+---
+
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href="/logo.png" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Scaleally | Growth Partner</title>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+		<style>
+			:root {
+				--violet: #7c3aed;
+				--blue: #2563eb;
+				--bg: #f8fafc;
+				--text: #18181b;
+				--footer: #1e1b4b;
+				--gradient-hero: linear-gradient(120deg, #7c3aed 0%, #2563eb 100%);
+				--gradient-overlay: radial-gradient(circle at 60% 40%, #a78bfa55 0%, #2563eb11 70%, transparent 100%);
+				--gradient-card: linear-gradient(120deg, #ede9fe 0%, #dbeafe 100%);
+				--btn-gradient: linear-gradient(90deg, #7c3aed 0%, #2563eb 100%);
+				--btn-shadow: 0 2px 16px #7c3aed33;
+				--btn-border: linear-gradient(90deg, #a78bfa 0%, #60a5fa 100%);
+			}
+			html, body {
+				margin: 0; padding: 0; box-sizing: border-box;
+				font-family: 'Inter', Arial, sans-serif;
+				background: var(--bg);
+				color: var(--text);
+			}
+			body {
+				position: relative;
+				min-height: 100vh;
+				overflow-x: hidden;
+			}
+			.bg-hero-gradient {
+				position: absolute;
+				top: 0; left: 0; width: 100vw; height: 90vh;
+				z-index: 0;
+				background: var(--gradient-hero);
+			}
+			.bg-hero-overlay {
+				position: absolute;
+				top: 0; left: 0; width: 100vw; height: 90vh;
+				z-index: 1;
+				background: var(--gradient-overlay);
+				pointer-events: none;
+			}
+			.hero {
+				min-height: 80vh;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				color: #fff;
+				text-align: center;
+				padding: 3rem 1rem 2rem 1rem;
+				position: relative;
+				z-index: 2;
+			}
+			.hero-logo {
+				width: 90px;
+				height: 90px;
+				margin-bottom: 1.5rem;
+				border-radius: 16px;
+				background: #fff2;
+				box-shadow: 0 4px 24px #0002;
+				object-fit: contain;
+				border: 2.5px solid #fff6;
+				backdrop-filter: blur(2px);
+			}
+			.hero-title {
+				font-size: 2.8rem;
+				font-weight: 800;
+				margin-bottom: 1rem;
+				letter-spacing: -1px;
+				text-shadow: 0 2px 16px #0003;
+			}
+			.hero-desc {
+				font-size: 1.3rem;
+				font-weight: 400;
+				margin-bottom: 2.5rem;
+				max-width: 500px;
+				margin-left: auto;
+				margin-right: auto;
+				text-shadow: 0 1px 8px #0002;
+			}
+			.cta-btn {
+				background: linear-gradient(90deg, #fff 60%, #a5b4fc 100%);
+				color: var(--violet);
+				font-weight: 600;
+				font-size: 1.1rem;
+				border: none;
+				border-radius: 8px;
+				padding: 0.9rem 2.2rem;
+				cursor: pointer;
+				box-shadow: 0 2px 12px #0001;
+				transition: background 0.2s, color 0.2s, transform 0.15s;
+			}
+			.cta-btn:hover {
+				background: linear-gradient(90deg, var(--blue) 0%, var(--violet) 100%);
+				color: #fff;
+				transform: translateY(-2px) scale(1.04);
+			}
+			.services {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 2rem;
+				margin: 0 auto 4rem auto;
+				max-width: 900px;
+				padding: 2rem 1rem 0 1rem;
+				position: relative;
+				z-index: 2;
+			}
+			.service-card {
+				background: var(--gradient-card);
+				border-radius: 20px;
+				box-shadow: 0 2px 24px #7c3aed11, 0 1.5px 0 #fff8;
+				padding: 2.2rem 1.7rem 2.8rem 1.7rem;
+				flex: 1 1 260px;
+				min-width: 240px;
+				max-width: 300px;
+				text-align: left;
+				transition: transform 0.18s, box-shadow 0.18s;
+				border: 1.5px solid #ede9fe;
+				position: relative;
+				overflow: hidden;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+			}
+			.service-card::before {
+				content: '';
+				position: absolute;
+				top: -40px; right: -40px;
+				width: 90px; height: 90px;
+				background: radial-gradient(circle, #a5b4fc55 0%, transparent 80%);
+				z-index: 0;
+			}
+			.service-title {
+				font-size: 1.2rem;
+				font-weight: 700;
+				color: var(--violet);
+				margin-bottom: 0.7rem;
+				position: relative;
+				z-index: 1;
+			}
+			.service-desc {
+				font-size: 1rem;
+				color: #444;
+				position: relative;
+				z-index: 1;
+				margin-bottom: 1.5rem;
+			}
+			.service-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5em;
+				background: var(--btn-gradient);
+				color: #fff;
+				font-weight: 600;
+				font-size: 1rem;
+				border-radius: 10px;
+				border: 2px solid transparent;
+				border-image: var(--btn-border) 1;
+				padding: 0.7rem 1.7rem;
+				cursor: pointer;
+				box-shadow: var(--btn-shadow);
+				transition: background 0.18s, transform 0.15s, box-shadow 0.18s, border 0.18s;
+				position: relative;
+				z-index: 2;
+				outline: none;
+				letter-spacing: 0.01em;
+				overflow: hidden;
+				backdrop-filter: blur(6px);
+				background-clip: padding-box;
+			}
+			.service-btn::before {
+				content: '';
+				position: absolute;
+				left: -60%;
+				top: 0;
+				width: 60%;
+				height: 100%;
+				background: linear-gradient(120deg, #fff8 0%, #a5b4fc44 100%);
+				opacity: 0.0;
+				transform: skewX(-24deg) translateX(-40%);
+				transition: opacity 0.3s, transform 0.3s;
+				pointer-events: none;
+				z-index: 1;
+			}
+			.service-btn:hover::before {
+				opacity: 0.7;
+				transform: skewX(-24deg) translateX(120%);
+			}
+			.service-btn:hover {
+				background: linear-gradient(90deg, #2563eb 0%, #7c3aed 100%);
+				transform: translateY(-2px) scale(1.06);
+				box-shadow: 0 4px 24px #2563eb33;
+				border: 2px solid #a5b4fc;
+			}
+			.service-btn svg {
+				width: 1.2em;
+				height: 1.2em;
+				fill: #fff;
+				margin-left: 0.2em;
+				transition: transform 0.18s;
+				z-index: 2;
+			}
+			.service-btn:hover svg {
+				transform: translateX(3px) scale(1.1);
+			}
+			.footer {
+				background: var(--footer);
+				color: #fff;
+				text-align: center;
+				padding: 2rem 1rem 1rem 1rem;
+				font-size: 1rem;
+				border-radius: 24px 24px 0 0;
+				margin-top: 3rem;
+				position: relative;
+				z-index: 2;
+				box-shadow: 0 -2px 24px #7c3aed22;
+			}
+			@media (max-width: 700px) {
+				.hero-title { font-size: 2rem; }
+				.services { flex-direction: column; gap: 1.5rem; }
+				.service-card { max-width: 100%; }
+				.bg-hero-gradient, .bg-hero-overlay { height: 60vh; }
+			}
+		</style>
+	</head>
+	<body>
+		<div class="bg-hero-gradient"></div>
+		<div class="bg-hero-overlay"></div>
+		<section class="hero">
+			<img src="/logo.png" alt="Logo Scaleally" class="hero-logo" />
+			<div class="hero-title">Scaleally</div>
+			<div class="hero-desc">Tu <b>Growth Partner</b> estratégico. Ayudamos a startups y negocios digitales a escalar con tecnología, datos y creatividad.</div>
+			<a href="#contacto"><button class="cta-btn">Quiero escalar mi negocio</button></a>
+		</section>
+
+		<section class="services">
+			<div class="service-card">
+				<div class="service-title">Estrategia de Crecimiento</div>
+				<div class="service-desc">Diseñamos y ejecutamos planes personalizados para escalar tu startup o negocio digital de forma sostenible.</div>
+				<a href="/estrategia"><button class="service-btn">Saber más <svg viewBox="0 0 20 20"><path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/></svg></button></a>
+			</div>
+			<div class="service-card">
+				<div class="service-title">Automatización & Tecnología</div>
+				<div class="service-desc">Implementamos herramientas, automatizaciones y procesos digitales para maximizar tu eficiencia y resultados.</div>
+				<a href="/automatizacion"><button class="service-btn">Saber más <svg viewBox="0 0 20 20"><path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/></svg></button></a>
+			</div>
+			<div class="service-card">
+				<div class="service-title">Data & Performance</div>
+				<div class="service-desc">Analizamos datos clave y optimizamos cada etapa del funnel para lograr un crecimiento medible y real.</div>
+				<a href="/data"><button class="service-btn">Saber más <svg viewBox="0 0 20 20"><path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/></svg></button></a>
+			</div>
+		</section>
+
+		<section id="contacto" style="text-align:center; margin-bottom:3rem;">
+			<h2 style="color:var(--violet); font-size:1.6rem; font-weight:700; margin-bottom:1rem;">¿Listo para escalar estratégicamente?</h2>
+			<a href="mailto:hola@scaleally.com"><button class="cta-btn">Agenda una consultoría</button></a>
+		</section>
+
+		<footer class="footer">
+			&copy; {new Date().getFullYear()} Scaleally. Todos los derechos reservados.<br/>
+			<span style="font-size:0.95em; opacity:0.7;">Hecho con Astro ⚡</span>
+		</footer>
+	</body>
+</html>
