@@ -1,0 +1,426 @@
+---
+// ChatWidgetDemo.astro - Versión de demostración sin webhook
+---
+
+<div id="chat-widget" class="chat-widget">
+  <div id="chat-toggle" class="chat-toggle">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H6L4 18V4H20V16Z" fill="currentColor"/>
+      <path d="M7 9H17V11H7V9ZM7 12H14V14H7V12Z" fill="currentColor"/>
+    </svg>
+  </div>
+  
+  <div id="chat-container" class="chat-container">
+    <div class="chat-header">
+      <div class="chat-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2Z" fill="currentColor"/>
+        </svg>
+        Chat Demo - Scaleally
+      </div>
+      <button id="chat-close" class="chat-close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="currentColor"/>
+        </svg>
+      </button>
+    </div>
+    
+    <div id="chat-messages" class="chat-messages">
+      <div class="message bot-message">
+        <div class="message-content">
+          ¡Hola! Soy el asistente virtual de Scaleally. Este es un demo del chat. ¿En qué puedo ayudarte hoy?
+        </div>
+        <div class="message-time">Ahora</div>
+      </div>
+    </div>
+    
+    <div class="chat-input-container">
+      <input 
+        type="text" 
+        id="chat-input" 
+        class="chat-input" 
+        placeholder="Escribe tu mensaje..."
+        maxlength="500"
+      />
+      <button id="chat-send" class="chat-send">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z" fill="currentColor"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .chat-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    font-family: 'Inter', Arial, sans-serif;
+  }
+
+  .chat-toggle {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+    transition: all 0.3s ease;
+    color: white;
+  }
+
+  .chat-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(124, 58, 237, 0.4);
+  }
+
+  .chat-container {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 350px;
+    height: 500px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+  }
+
+  .chat-container.active {
+    display: flex;
+  }
+
+  .chat-header {
+    background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+    color: white;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+  }
+
+  .chat-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+  }
+
+  .chat-close {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+
+  .chat-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .chat-messages {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .message {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+  }
+
+  .user-message {
+    align-self: flex-end;
+  }
+
+  .bot-message {
+    align-self: flex-start;
+  }
+
+  .message-content {
+    padding: 12px 16px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .user-message .message-content {
+    background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+    color: white;
+    border-bottom-right-radius: 6px;
+  }
+
+  .bot-message .message-content {
+    background: #f3f4f6;
+    color: #374151;
+    border-bottom-left-radius: 6px;
+  }
+
+  .message-time {
+    font-size: 11px;
+    color: #9ca3af;
+    margin-top: 4px;
+    align-self: flex-end;
+  }
+
+  .user-message .message-time {
+    align-self: flex-end;
+  }
+
+  .bot-message .message-time {
+    align-self: flex-start;
+  }
+
+  .chat-input-container {
+    padding: 16px;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    gap: 8px;
+  }
+
+  .chat-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 24px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .chat-input:focus {
+    border-color: #7c3aed;
+  }
+
+  .chat-send {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+  }
+
+  .chat-send:hover {
+    transform: scale(1.05);
+  }
+
+  .chat-send:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 16px;
+    background: #f3f4f6;
+    border-radius: 18px;
+    border-bottom-left-radius: 6px;
+    align-self: flex-start;
+    max-width: 80%;
+  }
+
+  .typing-dot {
+    width: 8px;
+    height: 8px;
+    background: #9ca3af;
+    border-radius: 50%;
+    animation: typing 1.4s infinite ease-in-out;
+  }
+
+  .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+  .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+  @keyframes typing {
+    0%, 80%, 100% {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+    40% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .chat-container {
+      width: calc(100vw - 40px);
+      height: 60vh;
+      bottom: 80px;
+      right: 0;
+    }
+    
+    .chat-widget {
+      bottom: 10px;
+      right: 10px;
+    }
+  }
+</style>
+
+<script>
+  class ChatWidgetDemo {
+    constructor() {
+      this.isOpen = false;
+      this.isTyping = false;
+      this.init();
+    }
+
+    init() {
+      this.toggle = document.getElementById('chat-toggle');
+      this.container = document.getElementById('chat-container');
+      this.close = document.getElementById('chat-close');
+      this.input = document.getElementById('chat-input');
+      this.send = document.getElementById('chat-send');
+      this.messages = document.getElementById('chat-messages');
+
+      this.bindEvents();
+    }
+
+    bindEvents() {
+      this.toggle.addEventListener('click', () => this.toggleChat());
+      this.close.addEventListener('click', () => this.closeChat());
+      this.send.addEventListener('click', () => this.sendMessage());
+      this.input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') this.sendMessage();
+      });
+    }
+
+    toggleChat() {
+      this.isOpen = !this.isOpen;
+      if (this.isOpen) {
+        this.container.classList.add('active');
+        this.input.focus();
+      } else {
+        this.container.classList.remove('active');
+      }
+    }
+
+    closeChat() {
+      this.isOpen = false;
+      this.container.classList.remove('active');
+    }
+
+    addMessage(content, isUser = false) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+      
+      const time = new Date().toLocaleTimeString('es-ES', { 
+        hour: '2-digit', 
+        minute: '2-digit' 
+      });
+
+      messageDiv.innerHTML = `
+        <div class="message-content">${content}</div>
+        <div class="message-time">${time}</div>
+      `;
+
+      this.messages.appendChild(messageDiv);
+      this.scrollToBottom();
+    }
+
+    showTyping() {
+      if (this.isTyping) return;
+      
+      this.isTyping = true;
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'typing-indicator';
+      typingDiv.id = 'typing-indicator';
+      typingDiv.innerHTML = `
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+      `;
+      
+      this.messages.appendChild(typingDiv);
+      this.scrollToBottom();
+    }
+
+    hideTyping() {
+      this.isTyping = false;
+      const typingIndicator = document.getElementById('typing-indicator');
+      if (typingIndicator) {
+        typingIndicator.remove();
+      }
+    }
+
+    getDemoResponse(message) {
+      const lowerMessage = message.toLowerCase();
+      
+      if (lowerMessage.includes('servicio') || lowerMessage.includes('que hacen') || lowerMessage.includes('ayudan')) {
+        return 'En Scaleally ofrecemos servicios de estrategia de crecimiento, automatización tecnológica y análisis de datos. ¿Te gustaría saber más sobre alguno en particular?';
+      }
+      
+      if (lowerMessage.includes('precio') || lowerMessage.includes('costo') || lowerMessage.includes('cuanto')) {
+        return 'Nuestros precios varían según el proyecto y las necesidades específicas. Te recomiendo agendar una consultoría gratuita para discutir tu caso particular.';
+      }
+      
+      if (lowerMessage.includes('contacto') || lowerMessage.includes('hablar') || lowerMessage.includes('whatsapp')) {
+        return 'Puedes contactarnos directamente por WhatsApp al +57 315-436-0996 o visitar nuestra página de contacto para más información.';
+      }
+      
+      if (lowerMessage.includes('hola') || lowerMessage.includes('buenos dias') || lowerMessage.includes('buenas')) {
+        return '¡Hola! Gracias por contactarnos. ¿En qué puedo ayudarte hoy?';
+      }
+      
+      return 'Gracias por tu mensaje. Este es un demo del chat. En la versión final, tu mensaje se enviará a nuestro equipo y te responderemos pronto.';
+    }
+
+    async sendMessage() {
+      const message = this.input.value.trim();
+      if (!message || this.isTyping) return;
+
+      // Limpiar input
+      this.input.value = '';
+      this.send.disabled = true;
+
+      // Mostrar mensaje del usuario
+      this.addMessage(message, true);
+
+      // Mostrar indicador de escritura
+      this.showTyping();
+
+      // Simular respuesta del bot
+      setTimeout(() => {
+        this.hideTyping();
+        const response = this.getDemoResponse(message);
+        this.addMessage(response, false);
+        this.send.disabled = false;
+        this.input.focus();
+      }, 1500);
+    }
+
+    scrollToBottom() {
+      setTimeout(() => {
+        this.messages.scrollTop = this.messages.scrollHeight;
+      }, 100);
+    }
+  }
+
+  // Inicializar el chat cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', () => {
+    new ChatWidgetDemo();
+  });
+</script> 
