@@ -23,6 +23,16 @@ const url = `https://scaleally.co/eliminar-datos`;
         border-radius: 5px;
         display: inline-block;
       }
+      .info-box {
+        background: #f8fafc;
+        border-left: 4px solid #7c3aed;
+        padding: 1.2em 1em;
+        margin: 2em 0 1.5em 0;
+        border-radius: 10px;
+        text-align: left;
+        color: #222;
+        font-size: 1.08em;
+      }
     </style>
   </head>
   <body>
@@ -32,12 +42,17 @@ const url = `https://scaleally.co/eliminar-datos`;
     <p><code id="confirmation-code">cargando...</code></p>
 
     <p>✉️ Guarda este código de confirmación para futuras consultas.</p>
-    <p>
-      Vamos a enviarte un correo electrónico cuando hayamos eliminado tus datos.<br>
-      También puedes consultar el estado de tu solicitud enviándonos tu código de confirmación a <a href="mailto:contacto@scaleally.co">contacto@scaleally.co</a> o <a href="mailto:scaleally@gmail.com">scaleally@gmail.com</a>.
-    </p>
 
-    <p>Si tienes preguntas, escríbenos a <a href="mailto:scaleally@gmail.com">scaleally@gmail.com</a></p>
+    <div class="info-box">
+      🛠️ <b>Estamos trabajando en tu solicitud de eliminación de datos.</b><br>
+      Te enviaremos un correo electrónico una vez hayamos finalizado con el proceso.<br><br>
+      📨 <b>También puedes consultar el estado de tu solicitud escribiéndonos a:</b><br>
+      <a href="mailto:contacto@scaleally.co">contacto@scaleally.co</a> o <a href="mailto:scaleally@gmail.com">scaleally@gmail.com</a><br><br>
+      🔖 <b>En el asunto del correo, por favor indica:</b><br>
+      <span style="color:#7c3aed;">Estado de solicitud de eliminación – [Tu código de confirmación]</span>
+    </div>
+
+    <p style="margin-top:2em; color:#7c3aed; font-weight:600;">🙏 Gracias por confiar en Scaleally. Estamos aquí para apoyarte siempre.</p>
 
     <script>
       const params = new URLSearchParams(window.location.search);
