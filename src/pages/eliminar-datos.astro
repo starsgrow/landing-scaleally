@@ -1,6 +1,6 @@
 ---
-const confirmationCode = Astro.request.url.searchParams.get("id") ?? "desconocido";
-const url = `https://scaleally.co/eliminar-datos?id=${confirmationCode}`;
+// El código de confirmación se mostrará con JS
+const url = `https://scaleally.co/eliminar-datos`;
 ---
 
 <html lang="es">
@@ -29,12 +29,20 @@ const url = `https://scaleally.co/eliminar-datos?id=${confirmationCode}`;
     <h1>🗑️ Solicitud de Eliminación Recibida</h1>
     <p>Tu solicitud fue registrada correctamente.</p>
     <p><strong>Código de confirmación:</strong></p>
-    <p><code>{confirmationCode}</code></p>
+    <p><code id="confirmation-code">cargando...</code></p>
 
     <p>✉️ Guarda este código de confirmación para futuras consultas.</p>
     <p>📎 Puedes volver a consultar tu solicitud en cualquier momento en:</p>
-    <p><a href={url}>{url}</a></p>
+    <p><a id="confirmation-link" href="#">Cargando...</a></p>
 
     <p>Si tienes preguntas, escríbenos a <a href="mailto:scaleally@gmail.com">scaleally@gmail.com</a></p>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const code = params.get('id') || 'desconocido';
+      document.getElementById('confirmation-code').textContent = code;
+      document.getElementById('confirmation-link').textContent = `${window.location.origin}/eliminar-datos?id=${code}`;
+      document.getElementById('confirmation-link').href = `/eliminar-datos?id=${code}`;
+    </script>
   </body>
 </html> 
