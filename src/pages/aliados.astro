@@ -1,0 +1,145 @@
+---
+import ChatWidget from '../components/ChatWidget.astro';
+---
+
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href="/logo.png" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Aliados Comerciales | Scaleally</title>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+		<style>
+			:root {
+				--violet: #7c3aed;
+				--blue: #2563eb;
+				--bg: #f8fafc;
+				--text: #18181b;
+				--footer: #1e1b4b;
+			}
+			html, body {
+				margin: 0; padding: 0; box-sizing: border-box;
+				font-family: 'Inter', Arial, sans-serif;
+				background: var(--bg);
+				color: var(--text);
+			}
+			.container {
+				max-width: 800px;
+				margin: 0 auto;
+				padding: 2rem 1rem;
+			}
+			.header {
+				text-align: center;
+				margin-bottom: 3rem;
+			}
+			.title {
+				font-size: 2.5rem;
+				font-weight: 800;
+				color: var(--violet);
+				margin-bottom: 1rem;
+			}
+			.subtitle {
+				font-size: 1.2rem;
+				color: #666;
+			}
+			.allies-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 2rem;
+			}
+			.ally-card {
+				background: white;
+				border-radius: 12px;
+				padding: 2rem;
+				text-align: center;
+				box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+				border: 1px solid #eee;
+			}
+			.ally-logo {
+				width: 80px;
+				height: 80px;
+				margin: 0 auto 1rem auto;
+				border-radius: 8px;
+				object-fit: contain;
+			}
+			.ally-name {
+				font-size: 1.3rem;
+				font-weight: 600;
+				color: var(--violet);
+				margin-bottom: 0.5rem;
+			}
+			.ally-contact {
+				margin-top: 1rem;
+			}
+			.contact-link {
+				display: block;
+				color: var(--blue);
+				text-decoration: none;
+				margin: 0.5rem 0;
+				font-weight: 500;
+			}
+			.contact-link:hover {
+				text-decoration: underline;
+			}
+			.back-link {
+				display: inline-block;
+				margin-bottom: 2rem;
+				color: var(--violet);
+				text-decoration: none;
+				font-weight: 600;
+			}
+			.back-link:hover {
+				text-decoration: underline;
+			}
+			.footer {
+				background: var(--footer);
+				color: #fff;
+				text-align: center;
+				padding: 2rem 1rem 1rem 1rem;
+				margin-top: 3rem;
+				border-radius: 12px 12px 0 0;
+			}
+			@media (max-width: 768px) {
+				.title { font-size: 2rem; }
+				.allies-grid { grid-template-columns: 1fr; }
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<a href="/" class="back-link">← Volver</a>
+			
+			<div class="header">
+				<h1 class="title">🤝 Aliados Comerciales</h1>
+				<p class="subtitle">Colaboramos con marcas que confían en nosotros</p>
+			</div>
+
+			<div class="allies-grid">
+				<div class="ally-card">
+					<img src="/aliados/pimpos-gym.png" alt="Pimpos Gym" class="ally-logo" />
+					<h2 class="ally-name">🏋️ Pimpos Gym</h2>
+					<div class="ally-contact">
+						<a href="https://instagram.com/pimposgym" target="_blank" class="contact-link">Instagram: @pimposgym</a>
+						<a href="https://wa.me/573166146101" target="_blank" class="contact-link">WhatsApp: +57 316 614 6101</a>
+					</div>
+				</div>
+
+				<div class="ally-card">
+					<img src="/aliados/finar.png" alt="Finar" class="ally-logo" />
+					<h2 class="ally-name">💳 Finar - Crédito Fácil Nariño</h2>
+					<div class="ally-contact">
+						<a href="https://facebook.com/CREDIFACILNARINO1" target="_blank" class="contact-link">Facebook: CREDIFACILNARINO1</a>
+						<a href="https://wa.me/573012091184" target="_blank" class="contact-link">WhatsApp: +57 301 2091184</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer class="footer">
+			&copy; {new Date().getFullYear()} Scaleally. Todos los derechos reservados.
+		</footer>
+
+		<ChatWidget />
+	</body>
+</html> 
