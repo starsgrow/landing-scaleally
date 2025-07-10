@@ -1,145 +1,40 @@
 ---
-const { searchParams } = Astro.url;
-const confirmationCode = searchParams.get("id") ?? "desconocido";
+const confirmationCode = Astro.request.url.searchParams.get("id") ?? "desconocido";
 const url = `https://scaleally.co/eliminar-datos?id=${confirmationCode}`;
 ---
 
 <html lang="es">
   <head>
-    <meta charset="utf-8" />
-    <title>Eliminación de Datos Personales | Scaleally</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <title>Solicitud de eliminación de datos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-      body { 
-        font-family: 'Inter', Arial, sans-serif; 
-        background: #f8fafc; 
-        color: #18181b; 
-        margin: 0; 
-        line-height: 1.6;
-      }
-      .main { 
-        max-width: 700px; 
-        margin: 0 auto; 
-        padding: 3rem 1rem 2rem 1rem; 
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 2px 24px #7c3aed11;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
+      body {
+        font-family: sans-serif;
+        max-width: 600px;
+        margin: 80px auto;
+        padding: 0 20px;
+        color: #333;
         text-align: center;
       }
-      .title { 
-        color: #7c3aed; 
-        font-size: 2.2rem; 
-        font-weight: 800; 
-        margin-bottom: 1.5rem; 
-      }
-      .back { 
-        display: inline-block; 
-        margin-bottom: 2rem; 
-        color: #2563eb; 
-        text-decoration: none; 
-        font-weight: 600; 
-      }
-      .back:hover {
-        text-decoration: underline;
-      }
-      .icon {
-        font-size: 4rem;
-        margin-bottom: 1rem;
-      }
-      .status {
-        background: #dcfce7;
-        color: #166534;
-        padding: 1rem;
-        border-radius: 8px;
-        margin: 1.5rem 0;
-        border-left: 4px solid #22c55e;
-      }
-      .code {
-        background: #f1f5f9;
-        padding: 0.8rem 1.2rem;
-        border-radius: 6px;
-        font-family: 'Courier New', monospace;
-        font-weight: 600;
-        color: #7c3aed;
-        margin: 1rem 0;
+      code {
+        background: #f2f2f2;
+        padding: 4px 8px;
+        border-radius: 5px;
         display: inline-block;
-      }
-      .info {
-        background: #fef3c7;
-        color: #92400e;
-        padding: 1rem;
-        border-radius: 8px;
-        margin: 1.5rem 0;
-        border-left: 4px solid #f59e0b;
-        text-align: left;
-      }
-      .contact-info {
-        background: #f8fafc;
-        padding: 1.5rem;
-        border-radius: 8px;
-        margin-top: 2rem;
-        border-left: 4px solid #7c3aed;
-      }
-      .contact-info strong {
-        color: #7c3aed;
-      }
-      .contact-info a {
-        color: #7c3aed;
-        text-decoration: none;
-      }
-      .contact-info a:hover {
-        text-decoration: underline;
-      }
-      @media (max-width: 700px) { 
-        .main { 
-          padding: 1.5rem 1rem; 
-          margin: 1rem;
-        } 
-        .title {
-          font-size: 1.8rem;
-        }
       }
     </style>
   </head>
   <body>
-    <div class="main">
-      <a href="/" class="back">← Volver al inicio</a>
-      
-      <div class="icon">🗑️</div>
-      <div class="title">Solicitud de Eliminación Recibida</div>
-      
-      <p>Tu solicitud fue registrada correctamente.</p>
-      
-      <p><strong>Código de confirmación:</strong></p>
-      <div class="code">{confirmationCode}</div>
+    <h1>🗑️ Solicitud de Eliminación Recibida</h1>
+    <p>Tu solicitud fue registrada correctamente.</p>
+    <p><strong>Código de confirmación:</strong></p>
+    <p><code>{confirmationCode}</code></p>
 
-      <p>✉️ Guarda este código de confirmación para futuras consultas.</p>
-      <p>📎 Puedes volver a consultar tu solicitud en cualquier momento en:</p>
-      <p><a href={url} style="color: #7c3aed; text-decoration: none;">{url}</a></p>
+    <p>✉️ Guarda este código de confirmación para futuras consultas.</p>
+    <p>📎 Puedes volver a consultar tu solicitud en cualquier momento en:</p>
+    <p><a href={url}>{url}</a></p>
 
-      <div class="info">
-        <strong>¿Qué sucede ahora?</strong>
-        <ul style="text-align: left; margin: 0.5rem 0;">
-          <li>Revisaremos tu solicitud en un plazo máximo de 30 días</li>
-          <li>Eliminaremos tus datos de todos nuestros sistemas</li>
-          <li>Te notificaremos cuando el proceso esté completo</li>
-          <li>Algunos datos pueden conservarse por obligaciones legales</li>
-        </ul>
-      </div>
-      
-      <div class="contact-info">
-        <strong>¿Tienes preguntas?</strong><br/>
-        Contáctanos para cualquier consulta sobre este proceso:<br/><br/>
-        <strong>Email:</strong> <a href="mailto:scaleally@gmail.com">scaleally@gmail.com</a><br/>
-        <strong>WhatsApp:</strong> <a href="https://wa.me/573154360996" target="_blank" rel="noopener">+57 315-436-0996</a><br/>
-        <strong>Operado por:</strong> Miguel Rodríguez González
-      </div>
-      
-      <div style="margin-top: 2rem; font-size: 0.9rem; color: #666;">
-        <a href="/politica-de-privacidad" style="color: #7c3aed; text-decoration: none;">← Ver Política de Privacidad</a>
-      </div>
-    </div>
+    <p>Si tienes preguntas, escríbenos a <a href="mailto:scaleally@gmail.com">scaleally@gmail.com</a></p>
   </body>
 </html> 
