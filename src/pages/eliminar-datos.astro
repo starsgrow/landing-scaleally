@@ -32,8 +32,10 @@ const url = `https://scaleally.co/eliminar-datos`;
     <p><code id="confirmation-code">cargando...</code></p>
 
     <p>✉️ Guarda este código de confirmación para futuras consultas.</p>
-    <p>📎 Puedes volver a consultar tu solicitud en cualquier momento en:</p>
-    <p><a id="confirmation-link" href="#">Cargando...</a></p>
+    <p>
+      Vamos a enviarte un correo electrónico cuando hayamos eliminado tus datos.<br>
+      También puedes consultar el estado de tu solicitud enviándonos tu código de confirmación a <a href="mailto:contacto@scaleally.co">contacto@scaleally.co</a> o <a href="mailto:scaleally@gmail.com">scaleally@gmail.com</a>.
+    </p>
 
     <p>Si tienes preguntas, escríbenos a <a href="mailto:scaleally@gmail.com">scaleally@gmail.com</a></p>
 
@@ -41,8 +43,6 @@ const url = `https://scaleally.co/eliminar-datos`;
       const params = new URLSearchParams(window.location.search);
       const code = params.get('id') || 'desconocido';
       document.getElementById('confirmation-code').textContent = code;
-      document.getElementById('confirmation-link').textContent = `${window.location.origin}/eliminar-datos?id=${code}`;
-      document.getElementById('confirmation-link').href = `/eliminar-datos?id=${code}`;
     </script>
   </body>
 </html> 
