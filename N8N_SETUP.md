@@ -42,7 +42,7 @@ if (message.toLowerCase().includes('servicio')) {
 } else if (message.toLowerCase().includes('precio')) {
   response = 'Nuestros precios varían según el proyecto. Te recomiendo agendar una consultoría gratuita.';
 } else if (message.toLowerCase().includes('contacto')) {
-  response = 'Puedes contactarnos por WhatsApp al +57 315-436-0996';
+  response = 'Puedes contactarnos por WhatsApp al +57 301-569-9864';
 } else {
   response = 'Gracias por tu mensaje. Te responderemos pronto.';
 }
@@ -103,7 +103,7 @@ Mientras tanto, puedes probar el **chat de demostración** que está funcionando
 ## 📞 Soporte
 
 Si necesitas ayuda con la configuración de n8n:
-- **WhatsApp**: +57 315-436-0996
+- **WhatsApp**: +57 301-569-9864
 - **Documentación**: [n8n.io/docs](https://docs.n8n.io/)
 
 ---

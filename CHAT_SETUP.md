@@ -130,7 +130,7 @@ npm run preview      # Vista previa de producción
 ## 📞 Soporte
 
 Para ayuda adicional:
-- WhatsApp: +57 315-436-0996
+- WhatsApp: +57 301-569-9864
 - Email: [tu-email@scaleally.com]
 
 ---
