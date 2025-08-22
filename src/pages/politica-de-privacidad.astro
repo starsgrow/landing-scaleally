@@ -1,220 +1,553 @@
 ---
+import ChatWidget from '../components/ChatWidget.astro';
 ---
+
 <html lang="es">
   <head>
     <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
     <title>Política de Privacidad | Scaleally</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+      :root {
+        --primary: #1a1a2e;
+        --secondary: #16213e;
+        --accent: #6366f1;
+        --accent-hover: #4f46e5;
+        --accent-light: #818cf8;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --error: #ef4444;
+        --bg: #ffffff;
+        --bg-secondary: #f8fafc;
+        --bg-dark: #0f0f23;
+        --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --text: #1a1a2e;
+        --text-light: #64748b;
+        --text-white: #ffffff;
+        --border: #e2e8f0;
+        --border-light: #f1f5f9;
+        --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+        --gradient-primary: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+        --gradient-secondary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --gradient-hero: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        --gradient-card: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --gradient-accent: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
+        --gradient-glow: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      }
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      html {
+        scroll-behavior: smooth;
+      }
+      
       body { 
-        font-family: 'Inter', Arial, sans-serif; 
-        background: #f8fafc; 
-        color: #18181b; 
-        margin: 0; 
-        line-height: 1.6;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.7;
+        font-weight: 400;
       }
-      .main { 
-        max-width: 800px; 
-        margin: 0 auto; 
-        padding: 3rem 1rem 2rem 1rem; 
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 2px 24px #7c3aed11;
-        margin-top: 2rem;
+      
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+      
+      .header {
+        background: var(--gradient);
+        color: white;
+        padding: 4rem 0 3rem 0;
+        margin-bottom: 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        opacity: 0.3;
+      }
+      
+      .header-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+      }
+      
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
         margin-bottom: 2rem;
+        padding: 0.75rem 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
       }
-      .title { 
-        color: #7c3aed; 
-        font-size: 2.2rem; 
-        font-weight: 800; 
-        margin-bottom: 1.5rem; 
-        text-align: center; 
+      
+      .back-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
       }
-      .back { 
-        display: inline-block; 
-        margin-bottom: 2rem; 
-        color: #2563eb; 
-        text-decoration: none; 
-        font-weight: 600; 
+      
+      .title {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+        background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
-      .back:hover {
-        text-decoration: underline;
+      
+      .subtitle {
+        font-size: 1.25rem;
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 400;
+        max-width: 600px;
+        margin: 0 auto;
       }
+      
+      .main-content {
+        background: var(--bg-secondary);
+        border-radius: 20px;
+        box-shadow: var(--shadow-lg);
+        padding: 3rem;
+        margin-bottom: 3rem;
+        border: 1px solid var(--border);
+      }
+      
+      .update-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--gradient-accent);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+      }
+      
       .section {
-        margin-bottom: 2rem;
+        margin-bottom: 3rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--border);
       }
+      
+      .section:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+      
       .section-title {
-        color: #7c3aed;
-        font-size: 1.4rem;
+        color: var(--primary);
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      
+      .section-title::before {
+        content: '';
+        width: 4px;
+        height: 24px;
+        background: var(--gradient-accent);
+        border-radius: 2px;
+      }
+      
+      .section-content {
+        color: var(--text-secondary);
+        font-size: 1.05rem;
+        line-height: 1.8;
+      }
+      
+      .section-content ul {
+        margin: 1.5rem 0;
+        padding-left: 1.5rem;
+      }
+      
+      .section-content li {
+        margin-bottom: 0.75rem;
+        position: relative;
+      }
+      
+      .section-content li::marker {
+        color: var(--highlight);
+        font-weight: 600;
+      }
+      
+      .section-content strong {
+        color: var(--text-primary);
+        font-weight: 600;
+      }
+      
+      .section-content a {
+        color: var(--highlight);
+        text-decoration: none;
+        font-weight: 500;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.3s ease;
+      }
+      
+      .section-content a:hover {
+        border-bottom-color: var(--highlight);
+      }
+      
+      .contact-info {
+        background: var(--bg-accent);
+        padding: 2rem;
+        border-radius: 16px;
+        margin-top: 2rem;
+        border: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .contact-info::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: var(--gradient-accent);
+      }
+      
+      .contact-info strong {
+        color: var(--primary);
+        font-weight: 600;
+      }
+      
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+      }
+      
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1rem;
+        background: white;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        transition: all 0.3s ease;
+      }
+      
+      .contact-item:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+        border-color: var(--highlight);
+      }
+      
+      .contact-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--gradient-accent);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2rem;
+      }
+      
+      .footer {
+        background: var(--primary);
+        color: white;
+        text-align: center;
+        padding: 3rem 1.5rem;
+        border-radius: 20px 20px 0 0;
+        margin-top: 3rem;
+      }
+      
+      .footer-content {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      
+      .footer-title {
+        font-size: 1.5rem;
         font-weight: 700;
         margin-bottom: 1rem;
-        margin-top: 2rem;
       }
-      .section-content {
-        color: #444;
-        font-size: 1rem;
-        margin-bottom: 1rem;
+      
+      .footer-text {
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
       }
-      .contact-info {
-        background: #f8fafc;
-        padding: 1.5rem;
-        border-radius: 8px;
-        margin-top: 2rem;
-        border-left: 4px solid #7c3aed;
-      }
-      .contact-info strong {
-        color: #7c3aed;
-      }
-      @media (max-width: 700px) { 
-        .main { 
-          padding: 1.5rem 1rem; 
-          margin: 1rem;
-        } 
+      
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 1rem;
+        }
+        
+        .header {
+          padding: 3rem 0 2rem 0;
+        }
+        
         .title {
-          font-size: 1.8rem;
+          font-size: 2.25rem;
+        }
+        
+        .subtitle {
+          font-size: 1.1rem;
+        }
+        
+        .main-content {
+          padding: 2rem 1.5rem;
+          margin: 0 1rem 2rem 1rem;
+        }
+        
+        .section-title {
+          font-size: 1.3rem;
+        }
+        
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .title {
+          font-size: 2rem;
+        }
+        
+        .main-content {
+          padding: 1.5rem 1rem;
+        }
+        
+        .section-title {
+          font-size: 1.2rem;
         }
       }
     </style>
   </head>
   <body>
-    <div class="main">
-      <a href="/" class="back">← Volver al inicio</a>
-      <div class="title">Política de Privacidad</div>
-      
-      <div class="section">
-        <div class="section-content">
-          <strong>Última actualización:</strong> Agosto 2025
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-title">1. Información que recopilamos</div>
-        <div class="section-content">
-          Podemos recopilar y tratar los siguientes datos personales y datos técnicos:
-          <ul>
-            <li>Nombre completo</li>
-            <li>Número de teléfono</li>
-            <li>Dirección de correo electrónico</li>
-            <li>Contenido de tus mensajes o consultas</li>
-            <li>Información compartida a través de WhatsApp, Facebook, Instagram u otros formularios de contacto</li>
-            <li>Datos y métricas publicitarias de campañas en Facebook Ads e Instagram Ads (por ejemplo: alcance, impresiones, clics, costo por resultado)</li>
-            <li>Datos relacionados con la administración de páginas o perfiles en Facebook e Instagram (nombre, descripción, imagen de perfil, estadísticas de publicaciones)</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-title">2. Finalidad del uso de datos</div>
-        <div class="section-content">
-          Usamos la información recopilada para:
-          <ul>
-            <li>Brindarte información sobre nuestros servicios</li>
-            <li>Procesar tus solicitudes o consultas</li>
-            <li>Mantener comunicación contigo vía WhatsApp, correo u otros canales</li>
-            <li>Mejorar nuestros procesos de atención y soporte</li>
-            <li>Analizar, reportar y optimizar campañas publicitarias en Facebook Ads e Instagram Ads</li>
-            <li>Gestionar y programar publicaciones automáticas en Facebook e Instagram</li>
-            <li>Administrar comentarios y mensajes recibidos en redes sociales</li>
-            <li>Descargar y procesar listas de leads generados en campañas publicitarias</li>
-            <li>Generar reportes automáticos y enviarlos por correo o integraciones</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-title">3. Uso de las APIs de Meta (WhatsApp, Facebook, Instagram)</div>
-        <div class="section-content">
-          Nuestra plataforma utiliza las APIs oficiales de Meta, incluyendo:
-          <ul>
-            <li>WhatsApp Business Cloud API</li>
-            <li>Facebook Graph API</li>
-            <li>Instagram Graph API</li>
-          </ul>
-          Estas APIs se emplean exclusivamente para los fines autorizados y declarados en esta política: automatización y facilitación de la atención a usuarios, obtención de datos estadísticos y publicitarios, publicación y programación de contenidos, y gestión de interacciones (comentarios y mensajes). En ningún caso utilizamos estos datos para fines no autorizados ni los vendemos o cedemos a terceros sin consentimiento.
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-title">5. Protección de la información y medidas de seguridad</div>
-        <div class="section-content">
-          Adoptamos medidas técnicas y organizativas razonables para proteger tus datos personales contra pérdida, uso indebido y acceso no autorizado, entre ellas:
-          <ul>
-            <li>Cifrado en tránsito (HTTPS/TLS)</li>
-            <li>Gestión segura de credenciales y tokens (rotación periódica, uso de variables de entorno)</li>
-            <li>Acceso restringido basado en roles y autenticación multifactor para cuentas administrativas</li>
-            <li>Copias de seguridad y procesos de recuperación ante incidentes</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-title">4. Herramientas de terceros</div>
-        <div class="section-content">
-          Para mejorar la gestión y procesamiento de datos, es posible que utilicemos herramientas de terceros como:
-          <ul>
-            <li><strong>Google Sheets</strong></li>
-            <li><strong>Airtable</strong></li>
-          </ul>
-          Al utilizar estos servicios, cumplimos con sus respectivas políticas de privacidad y, cuando proceda, firmamos los acuerdos de tratamiento de datos correspondientes para garantizar el uso responsable y seguro de la información.
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-title">6. Derechos del usuario</div>
-        <div class="section-content">
-          Puedes ejercer tus derechos de:
-          <ul>
-            <li>Acceso a tus datos</li>
-            <li>Rectificación de información inexacta</li>
-            <li>Cancelación de tus datos (cuando aplique)</li>
-            <li>Oposición al tratamiento</li>
-          </ul>
-          Para ejercer cualquiera de estos derechos, contáctanos usando los datos de la sección de contacto.
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-title">7. Cambios en esta política</div>
-        <div class="section-content">
-          Podemos actualizar esta política en cualquier momento. Los cambios serán publicados en esta misma página con fecha visible.
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-title">8. Solicitar eliminación de datos personales</div>
-        <div class="section-content">
-          Si deseas solicitar la eliminación de tus datos personales, puedes hacerlo fácilmente desde nuestra página:
-          <a href="/solicitar-eliminacion" style="color:#7c3aed; text-decoration:underline; font-weight:600;">Solicitar eliminación de datos</a>.
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-title">9. Referencias a las Condiciones de Meta</div>
-        <div class="section-content">
-          Esta política cumple con:
-          <ul>
-            <li>Condiciones del servicio de Meta for Developers</li>
-            <li>Condiciones de uso de Instagram</li>
-            <li>Condiciones comerciales de Meta</li>
-            <li>Condiciones de las herramientas empresariales de Meta</li>
-            <li>Condiciones de los productos de Meta</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-title">10. Contacto</div>
-        <div class="section-content">
-          Para ejercer tus derechos o realizar consultas sobre esta política de privacidad, contáctanos:
-        </div>
-        <div class="contact-info">
-          <strong>Scaleally</strong><br>
-          <strong>Operado por:</strong> Miguel Rodríguez González<br>
-          <strong>Email:</strong> <a href="mailto:scaleally@gmail.com" style="color: #7c3aed;">scaleally@gmail.com</a><br>
-          <strong>Teléfono:</strong> <a href="https://wa.me/573015699864" target="_blank" rel="noopener" style="color: #7c3aed;">+57 301-569-9864</a><br>
-          <strong>Dirección:</strong> Medellin, Colombia, La Castellana
+    <div class="header">
+      <div class="container">
+        <div class="header-content">
+          <a href="/" class="back-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Volver al inicio
+          </a>
+          <h1 class="title">Política de Privacidad</h1>
+          <p class="subtitle">Protección y transparencia en el manejo de tus datos</p>
         </div>
       </div>
     </div>
+
+    <div class="container">
+      <div class="main-content">
+        <div class="update-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12,6 12,12 16,14"/>
+          </svg>
+          Última actualización: Agosto 2025
+        </div>
+
+        <div class="section">
+          <div class="section-title">1. Información que recopilamos</div>
+          <div class="section-content">
+            Podemos recopilar y tratar los siguientes datos personales y datos técnicos:
+            <ul>
+              <li>Nombre completo</li>
+              <li>Número de teléfono</li>
+              <li>Dirección de correo electrónico</li>
+              <li>Contenido de tus mensajes o consultas</li>
+              <li>Información compartida a través de WhatsApp, Facebook, Instagram u otros formularios de contacto</li>
+              <li>Datos y métricas publicitarias de campañas en Facebook Ads e Instagram Ads (por ejemplo: alcance, impresiones, clics, costo por resultado)</li>
+              <li>Datos relacionados con la administración de páginas o perfiles en Facebook e Instagram (nombre, descripción, imagen de perfil, estadísticas de publicaciones)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">2. Finalidad del uso de datos</div>
+          <div class="section-content">
+            Usamos la información recopilada para:
+            <ul>
+              <li>Brindarte información sobre nuestros servicios</li>
+              <li>Procesar tus solicitudes o consultas</li>
+              <li>Mantener comunicación contigo vía WhatsApp, correo u otros canales</li>
+              <li>Mejorar nuestros procesos de atención y soporte</li>
+              <li>Analizar, reportar y optimizar campañas publicitarias en Facebook Ads e Instagram Ads</li>
+              <li>Gestionar y programar publicaciones automáticas en Facebook e Instagram</li>
+              <li>Administrar comentarios y mensajes recibidos en redes sociales</li>
+              <li>Descargar y procesar listas de leads generados en campañas publicitarias</li>
+              <li>Generar reportes automáticos y enviarlos por correo o integraciones</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">3. Uso de las APIs de Meta (WhatsApp, Facebook, Instagram)</div>
+          <div class="section-content">
+            Nuestra plataforma utiliza las APIs oficiales de Meta, incluyendo:
+            <ul>
+              <li>WhatsApp Business Cloud API</li>
+              <li>Facebook Graph API</li>
+              <li>Instagram Graph API</li>
+            </ul>
+            Estas APIs se emplean exclusivamente para los fines autorizados y declarados en esta política: automatización y facilitación de la atención a usuarios, obtención de datos estadísticos y publicitarios, publicación y programación de contenidos, y gestión de interacciones (comentarios y mensajes). En ningún caso utilizamos estos datos para fines no autorizados ni los vendemos o cedemos a terceros sin consentimiento.
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">4. Herramientas de terceros</div>
+          <div class="section-content">
+            Para mejorar la gestión y procesamiento de datos, es posible que utilicemos herramientas de terceros como:
+            <ul>
+              <li><strong>Google Sheets</strong></li>
+              <li><strong>Airtable</strong></li>
+            </ul>
+            Al utilizar estos servicios, cumplimos con sus respectivas políticas de privacidad y, cuando proceda, firmamos los acuerdos de tratamiento de datos correspondientes para garantizar el uso responsable y seguro de la información.
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">5. Protección de la información y medidas de seguridad</div>
+          <div class="section-content">
+            Adoptamos medidas técnicas y organizativas razonables para proteger tus datos personales contra pérdida, uso indebido y acceso no autorizado, entre ellas:
+            <ul>
+              <li>Cifrado en tránsito (HTTPS/TLS)</li>
+              <li>Gestión segura de credenciales y tokens (rotación periódica, uso de variables de entorno)</li>
+              <li>Acceso restringido basado en roles y autenticación multifactor para cuentas administrativas</li>
+              <li>Copias de seguridad y procesos de recuperación ante incidentes</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">6. Derechos del usuario</div>
+          <div class="section-content">
+            Puedes ejercer tus derechos de:
+            <ul>
+              <li>Acceso a tus datos</li>
+              <li>Rectificación de información inexacta</li>
+              <li>Cancelación de tus datos (cuando aplique)</li>
+              <li>Oposición al tratamiento</li>
+            </ul>
+            Para ejercer cualquiera de estos derechos, contáctanos usando los datos de la sección de contacto.
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">7. Cambios en esta política</div>
+          <div class="section-content">
+            Podemos actualizar esta política en cualquier momento. Los cambios serán publicados en esta misma página con fecha visible.
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">8. Solicitar eliminación de datos personales</div>
+          <div class="section-content">
+            Si deseas solicitar la eliminación de tus datos personales, puedes hacerlo fácilmente desde nuestra página:
+            <a href="/solicitar-eliminacion">Solicitar eliminación de datos</a>.
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">9. Referencias a las Condiciones de Meta</div>
+          <div class="section-content">
+            Esta política cumple con:
+            <ul>
+              <li>Condiciones del servicio de Meta for Developers</li>
+              <li>Condiciones de uso de Instagram</li>
+              <li>Condiciones comerciales de Meta</li>
+              <li>Condiciones de las herramientas empresariales de Meta</li>
+              <li>Condiciones de los productos de Meta</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">10. Contacto</div>
+          <div class="section-content">
+            Para ejercer tus derechos o realizar consultas sobre esta política de privacidad, contáctanos:
+          </div>
+          <div class="contact-info">
+            <div class="contact-grid">
+              <div class="contact-item">
+                <div class="contact-icon">🏢</div>
+                <div>
+                  <strong>Scaleally</strong><br>
+                  <span style="color: var(--text-light); font-size: 0.9rem;">Operado por Miguel Rodríguez González</span>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">📧</div>
+                <div>
+                  <strong>Email</strong><br>
+                  <a href="mailto:scaleally@gmail.com">scaleally@gmail.com</a>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">📱</div>
+                <div>
+                  <strong>WhatsApp</strong><br>
+                  <a href="https://wa.me/573015699864" target="_blank" rel="noopener">+57 301-569-9864</a>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">📍</div>
+                <div>
+                  <strong>Dirección</strong><br>
+                  <span style="color: var(--text-light);">Medellin, Colombia, La Castellana</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-title">¿Necesitas ayuda con tu negocio?</div>
+        <div class="footer-text">
+          En Scaleally ayudamos a fundadores de marcas y empresas de ecommerce a escalar sus operaciones 
+          y generar más de $100k mensuales. Agenda una consultoría gratuita para descubrir cómo podemos ayudarte.
+        </div>
+      </div>
+    </footer>
+
+    <ChatWidget />
   </body>
 </html> 

@@ -8,313 +8,901 @@ import ChatWidget from '../components/ChatWidget.astro';
 		<link rel="icon" type="image/png" href="/logo.png" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Scaleally | Growth Partner</title>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+		<title>Scaleally | Growth Partner - Escala tu Negocio Digital</title>
+		<meta name="description" content="Agencia de crecimiento digital especializada en escalar startups y marcas. Estrategia, automatización y análisis de datos para resultados medibles." />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 		<style>
 			:root {
-				--violet: #7c3aed;
-				--blue: #2563eb;
-				--bg: #f8fafc;
-				--text: #18181b;
-				--footer: #1e1b4b;
-				--gradient-hero: linear-gradient(120deg, #7c3aed 0%, #2563eb 100%);
-				--gradient-overlay: radial-gradient(circle at 60% 40%, #a78bfa55 0%, #2563eb11 70%, transparent 100%);
-				--gradient-card: linear-gradient(120deg, #ede9fe 0%, #dbeafe 100%);
-				--btn-gradient: linear-gradient(90deg, #7c3aed 0%, #2563eb 100%);
-				--btn-shadow: 0 2px 16px #7c3aed33;
-				--btn-border: linear-gradient(90deg, #a78bfa 0%, #60a5fa 100%);
+				--primary: #0f172a;
+				--secondary: #1e293b;
+				--accent: #6366f1;
+				--accent-hover: #4f46e5;
+				--accent-light: #818cf8;
+				--success: #10b981;
+				--warning: #f59e0b;
+				--error: #ef4444;
+				--bg: #ffffff;
+				--bg-secondary: #f8fafc;
+				--bg-dark: #0f172a;
+				--text: #1e293b;
+				--text-light: #64748b;
+				--text-white: #ffffff;
+				--border: #e2e8f0;
+				--border-light: #f1f5f9;
+				--shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+				--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+				--shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+				--shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+				--shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+				--gradient-primary: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+				--gradient-secondary: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+				--gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+				--gradient-accent: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
+				--gradient-card: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				--gradient-button: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+				--gradient-glow: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
 			}
-			html, body {
-				margin: 0; padding: 0; box-sizing: border-box;
-				font-family: 'Inter', Arial, sans-serif;
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			html {
+				scroll-behavior: smooth;
+			}
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 				background: var(--bg);
 				color: var(--text);
+				line-height: 1.6;
+				font-weight: 400;
 			}
-			body {
-				position: relative;
-				min-height: 100vh;
-				overflow-x: hidden;
+
+			/* Header */
+			.header {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				background: rgba(255, 255, 255, 0.95);
+				backdrop-filter: blur(20px);
+				border-bottom: 1px solid var(--border-light);
+				z-index: 1000;
+				transition: all 0.3s ease;
 			}
-			.bg-hero-gradient {
-				position: absolute;
-				top: 0; left: 0; width: 100vw; height: 90vh;
-				z-index: 0;
-				background: var(--gradient-hero);
+
+			.header.scrolled {
+				background: rgba(255, 255, 255, 0.98);
+				box-shadow: var(--shadow-lg);
 			}
-			.bg-hero-overlay {
-				position: absolute;
-				top: 0; left: 0; width: 100vw; height: 90vh;
-				z-index: 1;
-				background: var(--gradient-overlay);
-				pointer-events: none;
-			}
-			.hero {
-				min-height: 80vh;
+
+			.nav-container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 2rem;
 				display: flex;
-				flex-direction: column;
 				align-items: center;
-				justify-content: center;
-				color: #fff;
-				text-align: center;
-				padding: 3rem 1rem 2rem 1rem;
+				justify-content: space-between;
+				height: 80px;
+			}
+
+			.logo {
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+				text-decoration: none;
+				color: var(--text);
+				font-weight: 800;
+				font-size: 1.5rem;
+				transition: transform 0.3s ease;
+			}
+
+			.logo:hover {
+				transform: scale(1.05);
+			}
+
+			.logo img {
+				width: 40px;
+				height: 40px;
+				border-radius: 12px;
+				box-shadow: var(--shadow-md);
+			}
+
+			.nav-menu {
+				display: flex;
+				align-items: center;
+				gap: 2rem;
+				list-style: none;
+			}
+
+			.nav-link {
+				text-decoration: none;
+				color: var(--text);
+				font-weight: 500;
+				transition: all 0.3s ease;
+				position: relative;
+				padding: 0.5rem 1rem;
+				border-radius: 8px;
+			}
+
+			.nav-link:hover {
+				color: var(--accent);
+				background: rgba(99, 102, 241, 0.1);
+			}
+
+			.nav-link::after {
+				content: '';
+				position: absolute;
+				bottom: -2px;
+				left: 50%;
+				width: 0;
+				height: 2px;
+				background: var(--gradient-primary);
+				transition: all 0.3s ease;
+				transform: translateX(-50%);
+			}
+
+			.nav-link:hover::after {
+				width: 80%;
+			}
+
+			.cta-button {
+				background: var(--gradient-primary);
+				color: var(--text-white);
+				padding: 0.75rem 1.5rem;
+				border-radius: 12px;
+				text-decoration: none;
+				font-weight: 600;
+				transition: all 0.3s ease;
+				box-shadow: var(--shadow-md);
+				position: relative;
+				overflow: hidden;
+			}
+
+			.cta-button::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: -100%;
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+				transition: left 0.5s;
+			}
+
+			.cta-button:hover {
+				transform: translateY(-2px);
+				box-shadow: var(--shadow-glow);
+			}
+
+			.cta-button:hover::before {
+				left: 100%;
+			}
+
+			/* Hero Section */
+			.hero {
+				min-height: 100vh;
+				background: var(--gradient-hero);
+				display: flex;
+				align-items: center;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.hero::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+				opacity: 0.3;
+			}
+
+			.hero::after {
+				content: '';
+				position: absolute;
+				top: 50%;
+				right: -10%;
+				width: 60%;
+				height: 60%;
+				background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+				border-radius: 50%;
+				transform: translateY(-50%);
+			}
+
+			.hero-container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 2rem;
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 4rem;
+				align-items: center;
 				position: relative;
 				z-index: 2;
 			}
-			.hero-logo {
-				width: 200px;
-				height: 200px;
-				margin-bottom: 2rem;
-				border-radius: 20px;
-				background: #fff;
-				box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-				object-fit: contain;
-				border: 3px solid #fff;
-				backdrop-filter: blur(4px);
-				transition: transform 0.3s ease, box-shadow 0.3s ease;
-			}
-			.hero-logo:hover {
-				transform: scale(1.05);
-				box-shadow: 0 12px 40px rgba(0,0,0,0.2);
-			}
-			.hero-title {
-				font-size: 3.2rem;
-				font-weight: 800;
+
+			.hero-content h1 {
+				font-size: 3.5rem;
+				font-weight: 900;
+				color: var(--text-white);
 				margin-bottom: 1.5rem;
-				letter-spacing: -1.5px;
-				text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+				line-height: 1.1;
+				text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 			}
-			.hero-desc {
-				font-size: 1.4rem;
-				font-weight: 400;
-				margin-top: 1.5rem;
-				margin-bottom: 3rem;
-				max-width: 600px;
-				margin-left: auto;
-				margin-right: auto;
-				text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+
+			.hero-content h1 span {
+				background: var(--gradient-primary);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				position: relative;
+			}
+
+			.hero-content h1 span::after {
+				content: '';
+				position: absolute;
+				bottom: -5px;
+				left: 0;
+				width: 100%;
+				height: 3px;
+				background: var(--gradient-primary);
+				border-radius: 2px;
+			}
+
+			.hero-content p {
+				font-size: 1.25rem;
+				color: rgba(255, 255, 255, 0.9);
+				margin-bottom: 2rem;
 				line-height: 1.6;
 			}
-			.cta-btn {
-				background: linear-gradient(135deg, #fff 0%, #f8fafc 100%);
-				color: var(--violet);
-				font-weight: 700;
-				font-size: 1.2rem;
-				border: 2px solid rgba(255,255,255,0.3);
+
+			.hero-buttons {
+				display: flex;
+				gap: 1rem;
+				flex-wrap: wrap;
+			}
+
+			.btn-primary {
+				background: var(--gradient-primary);
+				color: var(--text-white);
+				padding: 1rem 2rem;
 				border-radius: 12px;
-				padding: 1rem 2.5rem;
-				cursor: pointer;
-				box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+				text-decoration: none;
+				font-weight: 600;
+				transition: all 0.3s ease;
+				box-shadow: var(--shadow-lg);
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.btn-primary::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: -100%;
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+				transition: left 0.5s;
+			}
+
+			.btn-primary:hover {
+				transform: translateY(-3px);
+				box-shadow: var(--shadow-glow);
+			}
+
+			.btn-primary:hover::before {
+				left: 100%;
+			}
+
+			.btn-secondary {
+				background: transparent;
+				color: var(--text-white);
+				padding: 1rem 2rem;
+				border: 2px solid rgba(255, 255, 255, 0.3);
+				border-radius: 12px;
+				text-decoration: none;
+				font-weight: 600;
 				transition: all 0.3s ease;
 				backdrop-filter: blur(10px);
 			}
-			.cta-btn:hover {
-				background: linear-gradient(135deg, var(--violet) 0%, var(--blue) 100%);
-				color: #fff;
-				transform: translateY(-3px) scale(1.05);
-				box-shadow: 0 8px 30px rgba(124,58,237,0.3);
-				border-color: rgba(255,255,255,0.5);
+
+			.btn-secondary:hover {
+				background: rgba(255, 255, 255, 0.1);
+				border-color: var(--accent);
+				transform: translateY(-2px);
 			}
-			.services {
+
+			.hero-image {
 				display: flex;
-				flex-wrap: wrap;
 				justify-content: center;
-				gap: 2rem;
-				margin: 0 auto 4rem auto;
-				max-width: 900px;
-				padding: 2rem 1rem 0 1rem;
+				align-items: center;
 				position: relative;
-				z-index: 2;
 			}
-			.service-card {
-				background: var(--gradient-card);
+
+			.hero-image img {
+				width: 100%;
+				max-width: 500px;
+				height: auto;
+				border-radius: 24px;
+				box-shadow: var(--shadow-xl);
+				animation: float 6s ease-in-out infinite;
+			}
+
+			@keyframes float {
+				0%, 100% { transform: translateY(0px); }
+				50% { transform: translateY(-20px); }
+			}
+
+			/* Stats Section */
+			.stats {
+				padding: 6rem 0;
+				background: var(--bg-secondary);
+				position: relative;
+			}
+
+			.stats::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 1px;
+				background: var(--gradient-primary);
+			}
+
+			.stats-container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 2rem;
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+				gap: 2rem;
+			}
+
+			.stat-card {
+				background: var(--bg);
+				padding: 2.5rem;
 				border-radius: 20px;
-				box-shadow: 0 2px 24px #7c3aed11, 0 1.5px 0 #fff8;
-				padding: 2.2rem 1.7rem 2.8rem 1.7rem;
-				flex: 1 1 260px;
-				min-width: 240px;
-				max-width: 300px;
-				text-align: left;
-				transition: transform 0.18s, box-shadow 0.18s;
-				border: 1.5px solid #ede9fe;
+				text-align: center;
+				box-shadow: var(--shadow-md);
+				transition: all 0.3s ease;
+				border: 1px solid var(--border-light);
 				position: relative;
 				overflow: hidden;
-				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
 			}
+
+			.stat-card::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 4px;
+				background: var(--gradient-primary);
+			}
+
+			.stat-card:hover {
+				transform: translateY(-8px);
+				box-shadow: var(--shadow-xl);
+			}
+
+			.stat-number {
+				font-size: 3rem;
+				font-weight: 900;
+				background: var(--gradient-primary);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				margin-bottom: 0.5rem;
+			}
+
+			.stat-label {
+				font-size: 1.1rem;
+				color: var(--text-light);
+				font-weight: 500;
+			}
+
+			/* Services Section */
+			.services {
+				padding: 8rem 0;
+				background: var(--bg);
+				position: relative;
+			}
+
+			.section-header {
+				text-align: center;
+				margin-bottom: 5rem;
+			}
+
+			.section-title {
+				font-size: 3rem;
+				font-weight: 800;
+				color: var(--text);
+				margin-bottom: 1rem;
+				background: var(--gradient-secondary);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+			}
+
+			.section-subtitle {
+				font-size: 1.25rem;
+				color: var(--text-light);
+				max-width: 600px;
+				margin: 0 auto;
+			}
+
+			.services-container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 2rem;
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+				gap: 2rem;
+			}
+
+			.service-card {
+				background: var(--bg);
+				padding: 3rem;
+				border-radius: 24px;
+				border: 1px solid var(--border-light);
+				transition: all 0.3s ease;
+				position: relative;
+				overflow: hidden;
+				box-shadow: var(--shadow-md);
+			}
+
 			.service-card::before {
 				content: '';
 				position: absolute;
-				top: -40px; right: -40px;
-				width: 90px; height: 90px;
-				background: radial-gradient(circle, #a5b4fc55 0%, transparent 80%);
-				z-index: 0;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 4px;
+				background: var(--gradient-primary);
+				transform: scaleX(0);
+				transition: transform 0.3s ease;
 			}
+
+			.service-card:hover {
+				transform: translateY(-12px);
+				box-shadow: var(--shadow-xl);
+			}
+
+			.service-card:hover::before {
+				transform: scaleX(1);
+			}
+
+			.service-icon {
+				width: 80px;
+				height: 80px;
+				background: var(--gradient-primary);
+				border-radius: 20px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-bottom: 2rem;
+				box-shadow: var(--shadow-lg);
+				transition: transform 0.3s ease;
+			}
+
+			.service-card:hover .service-icon {
+				transform: scale(1.1) rotate(5deg);
+			}
+
+			.service-icon svg {
+				width: 40px;
+				height: 40px;
+				color: var(--text-white);
+			}
+
 			.service-title {
-				font-size: 1.2rem;
+				font-size: 1.75rem;
 				font-weight: 700;
-				color: var(--violet);
-				margin-bottom: 0.7rem;
-				position: relative;
-				z-index: 1;
+				color: var(--text);
+				margin-bottom: 1rem;
 			}
-			.service-desc {
-				font-size: 1rem;
-				color: #444;
-				position: relative;
-				z-index: 1;
-				margin-bottom: 1.5rem;
+
+			.service-description {
+				color: var(--text-light);
+				margin-bottom: 2rem;
+				line-height: 1.6;
 			}
-			.service-btn {
+
+			.service-features {
+				list-style: none;
+				margin-bottom: 2rem;
+			}
+
+			.service-features li {
+				padding: 0.75rem 0;
+				color: var(--text-light);
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+				transition: color 0.3s ease;
+			}
+
+			.service-features li::before {
+				content: '✓';
+				color: var(--success);
+				font-weight: bold;
+				font-size: 1.2rem;
+			}
+
+			.service-features li:hover {
+				color: var(--text);
+			}
+
+			.service-link {
+				color: var(--accent);
+				text-decoration: none;
+				font-weight: 600;
 				display: inline-flex;
 				align-items: center;
-				gap: 0.5em;
-				background: var(--btn-gradient);
-				color: #fff;
-				font-weight: 600;
-				font-size: 1rem;
-				border-radius: 10px;
-				border: 2px solid transparent;
-				border-image: var(--btn-border) 1;
-				padding: 0.7rem 1.7rem;
-				cursor: pointer;
-				box-shadow: var(--btn-shadow);
-				transition: background 0.18s, transform 0.15s, box-shadow 0.18s, border 0.18s;
-				position: relative;
-				z-index: 2;
-				outline: none;
-				letter-spacing: 0.01em;
-				overflow: hidden;
-				backdrop-filter: blur(6px);
-				background-clip: padding-box;
+				gap: 0.5rem;
+				transition: all 0.3s ease;
+				padding: 0.5rem 1rem;
+				border-radius: 8px;
 			}
-			.service-btn::before {
+
+			.service-link:hover {
+				gap: 0.75rem;
+				background: rgba(99, 102, 241, 0.1);
+			}
+
+			/* CTA Section */
+			.cta-section {
+				padding: 8rem 0;
+				background: var(--gradient-secondary);
+				color: var(--text-white);
+				position: relative;
+				overflow: hidden;
+			}
+
+			.cta-section::before {
 				content: '';
 				position: absolute;
-				left: -60%;
 				top: 0;
-				width: 60%;
-				height: 100%;
-				background: linear-gradient(120deg, #fff8 0%, #a5b4fc44 100%);
-				opacity: 0.0;
-				transform: skewX(-24deg) translateX(-40%);
-				transition: opacity 0.3s, transform 0.3s;
-				pointer-events: none;
-				z-index: 1;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
 			}
-			.service-btn:hover::before {
-				opacity: 0.7;
-				transform: skewX(-24deg) translateX(120%);
-			}
-			.service-btn:hover {
-				background: linear-gradient(90deg, #2563eb 0%, #7c3aed 100%);
-				transform: translateY(-2px) scale(1.06);
-				box-shadow: 0 4px 24px #2563eb33;
-				border: 2px solid #a5b4fc;
-			}
-			.service-btn svg {
-				width: 1.2em;
-				height: 1.2em;
-				fill: #fff;
-				margin-left: 0.2em;
-				transition: transform 0.18s;
-				z-index: 2;
-			}
-			.service-btn:hover svg {
-				transform: translateX(3px) scale(1.1);
-			}
-			.footer {
-				background: var(--footer);
-				color: #fff;
+
+			.cta-container {
+				max-width: 800px;
+				margin: 0 auto;
+				padding: 0 2rem;
 				text-align: center;
-				padding: 2rem 1rem 1rem 1rem;
-				font-size: 1rem;
-				border-radius: 24px 24px 0 0;
-				margin-top: 3rem;
 				position: relative;
 				z-index: 2;
-				box-shadow: 0 -2px 24px #7c3aed22;
 			}
-			@media (max-width: 700px) {
-				.hero-title { font-size: 2rem; }
-				.services { flex-direction: column; gap: 1.5rem; }
-				.service-card { max-width: 100%; }
-				.bg-hero-gradient, .bg-hero-overlay { height: 60vh; }
+
+			.cta-title {
+				font-size: 3rem;
+				font-weight: 800;
+				margin-bottom: 1.5rem;
+			}
+
+			.cta-description {
+				font-size: 1.25rem;
+				margin-bottom: 2rem;
+				opacity: 0.9;
+			}
+
+			/* Footer */
+			.footer {
+				background: var(--bg-dark);
+				color: var(--text-white);
+				padding: 4rem 0 2rem;
+			}
+
+			.footer-container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 2rem;
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+				gap: 3rem;
+			}
+
+			.footer-section h3 {
+				font-size: 1.25rem;
+				font-weight: 600;
+				margin-bottom: 1rem;
+				color: var(--accent);
+			}
+
+			.footer-section p,
+			.footer-section a {
+				color: rgba(255, 255, 255, 0.7);
+				text-decoration: none;
+				line-height: 1.6;
+				transition: color 0.3s ease;
+			}
+
+			.footer-section a:hover {
+				color: var(--accent);
+			}
+
+			.footer-bottom {
+				border-top: 1px solid rgba(255, 255, 255, 0.1);
+				margin-top: 3rem;
+				padding-top: 2rem;
+				text-align: center;
+				color: rgba(255, 255, 255, 0.6);
+			}
+
+			/* Responsive */
+			@media (max-width: 768px) {
+				.nav-menu {
+					display: none;
+				}
+
+				.hero-container {
+					grid-template-columns: 1fr;
+					text-align: center;
+					gap: 2rem;
+				}
+
+				.hero-content h1 {
+					font-size: 2.5rem;
+				}
+
+				.hero-buttons {
+					justify-content: center;
+				}
+
+				.services-container {
+					grid-template-columns: 1fr;
+				}
+
+				.stats-container {
+					grid-template-columns: repeat(2, 1fr);
+				}
+
+				.section-title {
+					font-size: 2.5rem;
+				}
+			}
+
+			@media (max-width: 480px) {
+				.stats-container {
+					grid-template-columns: 1fr;
+				}
+
+				.hero-content h1 {
+					font-size: 2rem;
+				}
+
+				.hero-buttons {
+					flex-direction: column;
+				}
+
+				.service-card {
+					padding: 2rem;
+				}
 			}
 		</style>
 	</head>
 	<body>
-		<div class="bg-hero-gradient"></div>
-		<div class="bg-hero-overlay"></div>
+		<!-- Header -->
+		<header class="header" id="header">
+			<nav class="nav-container">
+				<a href="/" class="logo">
+					<img src="/logo.png" alt="Scaleally Logo" />
+					Scaleally
+				</a>
+				<ul class="nav-menu">
+					<li><a href="#servicios" class="nav-link">Servicios</a></li>
+					<li><a href="#estadisticas" class="nav-link">Resultados</a></li>
+					<li><a href="/contacto" class="nav-link">Contacto</a></li>
+					<li><a href="/aliados" class="nav-link">Aliados</a></li>
+				</ul>
+				<a href="/contacto" class="cta-button">Agendar Consulta</a>
+			</nav>
+		</header>
+
+		<!-- Hero Section -->
 		<section class="hero">
-			<img src="/logo.png" alt="Logo Scaleally" class="hero-logo" />
-			<div class="hero-desc">Tu <b>Growth Partner</b> estratégico. Ayudamos a startups y negocios digitales a escalar con tecnología, datos y creatividad.</div>
-			<a href="/contacto"><button class="cta-btn">Quiero escalar mi negocio</button></a>
-		</section>
-
-		<section class="services">
-			<div class="service-card">
-				<div class="service-title">Estrategia de Crecimiento</div>
-				<div class="service-desc">Diseñamos y ejecutamos planes personalizados para escalar tu startup o negocio digital de forma sostenible.</div>
-				<a href="/estrategia"><button class="service-btn">Saber más <svg viewBox="0 0 20 20"><path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/></svg></button></a>
-			</div>
-			<div class="service-card">
-				<div class="service-title">Automatización & Tecnología</div>
-				<div class="service-desc">Implementamos herramientas, automatizaciones y procesos digitales para maximizar tu eficiencia y resultados.</div>
-				<a href="/automatizacion"><button class="service-btn">Saber más <svg viewBox="0 0 20 20"><path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/></svg></button></a>
-			</div>
-			<div class="service-card">
-				<div class="service-title">Data & Performance</div>
-				<div class="service-desc">Analizamos datos clave y optimizamos cada etapa del funnel para lograr un crecimiento medible y real.</div>
-				<a href="/data"><button class="service-btn">Saber más <svg viewBox="0 0 20 20"><path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/></svg></button></a>
+			<div class="hero-container">
+				<div class="hero-content">
+					<h1>Escala tu Negocio con <span>Estrategia Digital</span></h1>
+					<p>Somos tu partner de crecimiento digital. Especialistas en escalar startups y marcas con estrategias personalizadas, automatización inteligente y análisis de datos que generan resultados medibles.</p>
+					<div class="hero-buttons">
+						<a href="/contacto" class="btn-primary">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="currentColor"/>
+							</svg>
+							Agendar Consultoría Gratuita
+						</a>
+						<a href="#servicios" class="btn-secondary">Ver Servicios</a>
+					</div>
+				</div>
+				<div class="hero-image">
+					<img src="/logo.png" alt="Scaleally Growth Partner" />
+				</div>
 			</div>
 		</section>
 
-		<section id="contacto" style="text-align:center; margin-bottom:3rem;">
-			<h2 style="color:var(--violet); font-size:1.6rem; font-weight:700; margin-bottom:1rem;">¿Listo para escalar estratégicamente?</h2>
-			<a href="/contacto"><button class="cta-btn">Agenda una consultoría</button></a>
+		<!-- Stats Section -->
+		<section class="stats" id="estadisticas">
+			<div class="stats-container">
+				<div class="stat-card">
+					<div class="stat-number">+150%</div>
+					<div class="stat-label">Crecimiento Promedio</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-number">+50</div>
+					<div class="stat-label">Clientes Satisfechos</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-number">+$2M</div>
+					<div class="stat-label">Ingresos Generados</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-number">24/7</div>
+					<div class="stat-label">Soporte Continuo</div>
+				</div>
+			</div>
 		</section>
 
+		<!-- Services Section -->
+		<section class="services" id="servicios">
+			<div class="section-header">
+				<h2 class="section-title">Nuestros Servicios</h2>
+				<p class="section-subtitle">Soluciones integrales para escalar tu negocio digital de manera sostenible y medible</p>
+			</div>
+			<div class="services-container">
+				<div class="service-card">
+					<div class="service-icon">
+						<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="currentColor"/>
+						</svg>
+					</div>
+					<h3 class="service-title">Estrategia de Crecimiento</h3>
+					<p class="service-description">Diseñamos planes personalizados para escalar tu startup o negocio digital de forma sostenible.</p>
+					<ul class="service-features">
+						<li>Planes a medida según tu etapa</li>
+						<li>Metodologías ágiles y data-driven</li>
+						<li>Optimización de recursos</li>
+						<li>Soporte continuo</li>
+					</ul>
+					<a href="/estrategia" class="service-link">
+						Conocer más
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z" fill="currentColor"/>
+						</svg>
+					</a>
+				</div>
 
+				<div class="service-card">
+					<div class="service-icon">
+						<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M9 3V5H7C5.9 5 5 5.9 5 7V19C5 20.1 5.9 21 7 21H17C18.1 21 19 20.1 19 19V7C19 5.9 18.1 5 17 5H15V3H13V5H11V3H9ZM7 7H17V19H7V7Z" fill="currentColor"/>
+						</svg>
+					</div>
+					<h3 class="service-title">Data & Performance</h3>
+					<p class="service-description">Analizamos datos clave y optimizamos cada etapa del funnel para lograr un crecimiento medible.</p>
+					<ul class="service-features">
+						<li>Dashboards personalizados</li>
+						<li>Optimización de conversiones</li>
+						<li>Auditoría de datos</li>
+						<li>Recomendaciones accionables</li>
+					</ul>
+					<a href="/data" class="service-link">
+						Conocer más
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z" fill="currentColor"/>
+						</svg>
+					</a>
+				</div>
 
+				<div class="service-card">
+					<div class="service-icon">
+						<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H5C3.89 1 3 1.89 3 3V21C3 22.11 3.89 23 5 23H19C20.11 23 21 22.11 21 21V7C21 5.9 20.11 5 19 5ZM19 9H14V4H5V21H19V9Z" fill="currentColor"/>
+						</svg>
+					</div>
+					<h3 class="service-title">Automatización & Tecnología</h3>
+					<p class="service-description">Implementamos herramientas y procesos digitales para maximizar tu eficiencia y resultados.</p>
+					<ul class="service-features">
+						<li>Automatización de procesos</li>
+						<li>Integración de plataformas</li>
+						<li>Optimización de flujos</li>
+						<li>Soporte técnico</li>
+					</ul>
+					<a href="/automatizacion" class="service-link">
+						Conocer más
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z" fill="currentColor"/>
+						</svg>
+					</a>
+				</div>
+			</div>
+		</section>
 
+		<!-- CTA Section -->
+		<section class="cta-section">
+			<div class="cta-container">
+				<h2 class="cta-title">¿Listo para Escalar tu Negocio?</h2>
+				<p class="cta-description">Agenda una consultoría gratuita de 30 minutos y descubre cómo podemos ayudarte a alcanzar tus objetivos de crecimiento.</p>
+				<a href="/contacto" class="btn-primary">
+					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="currentColor"/>
+					</svg>
+					Agendar Consultoría Gratuita
+				</a>
+			</div>
+		</section>
 
+		<!-- Footer -->
 		<footer class="footer">
-			&copy; {new Date().getFullYear()} Scaleally. Todos los derechos reservados.<br/>
-			<span style="font-size:0.95em; opacity:0.7;">Hecho con Astro ⚡</span>
-			<div style="margin-top:1.2em; font-size:1.05em;">
-				<b>Contacto:</b> <a href="https://wa.me/573015699864" target="_blank" rel="noopener" style="color:#a5b4fc; text-decoration:none;">+57 301-569-9864</a><br/>
-				<b>Dirección:</b> Medellin, Colombia, La castellana
+			<div class="footer-container">
+				<div class="footer-section">
+					<h3>Scaleally</h3>
+					<p>Tu partner de crecimiento digital. Especialistas en escalar startups y marcas con estrategias personalizadas y resultados medibles.</p>
+				</div>
+				<div class="footer-section">
+					<h3>Servicios</h3>
+					<p><a href="/estrategia">Estrategia de Crecimiento</a></p>
+					<p><a href="/data">Data & Performance</a></p>
+					<p><a href="/automatizacion">Automatización & Tecnología</a></p>
+				</div>
+				<div class="footer-section">
+					<h3>Contacto</h3>
+					<p><a href="https://wa.me/573015699864">WhatsApp: +57 301-569-9864</a></p>
+					<p><a href="mailto:scaleally@gmail.com">Email: scaleally@gmail.com</a></p>
+					<p>Medellin, Colombia, La castellana</p>
+				</div>
+				<div class="footer-section">
+					<h3>Legal</h3>
+					<p><a href="/politica-de-privacidad">Política de Privacidad</a></p>
+					<p><a href="/solicitar-eliminacion">Solicitar Eliminación</a></p>
+				</div>
 			</div>
-			<div style="margin-top:1.5em; display:flex; justify-content:center; gap:1.5rem; flex-wrap:wrap;">
-				<a href="https://www.facebook.com/profile.php?id=61577852222814" target="_blank" rel="noopener" style="color:#a5b4fc; text-decoration:none; display:flex; align-items:center; gap:0.5rem; transition:all 0.3s; padding:0.5rem; border-radius:8px; background:rgba(165,180,252,0.1);" onmouseover="this.style.background='rgba(165,180,252,0.2)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(165,180,252,0.1)'; this.style.transform='translateY(0)'">
-					<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-						<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-					</svg>
-					Facebook
-				</a>
-				<a href="https://instagram.com/scaleally" target="_blank" rel="noopener" style="color:#a5b4fc; text-decoration:none; display:flex; align-items:center; gap:0.5rem; transition:all 0.3s; padding:0.5rem; border-radius:8px; background:rgba(165,180,252,0.1);" onmouseover="this.style.background='rgba(165,180,252,0.2)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(165,180,252,0.1)'; this.style.transform='translateY(0)'">
-					<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-						<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-					</svg>
-					Instagram
-				</a>
-				<a href="/aliados" style="color:#a5b4fc; text-decoration:none; display:flex; align-items:center; gap:0.5rem; transition:all 0.3s; padding:0.5rem; border-radius:8px; background:rgba(165,180,252,0.1);" onmouseover="this.style.background='rgba(165,180,252,0.2)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(165,180,252,0.1)'; this.style.transform='translateY(0)'">
-					<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-						<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-					</svg>
-					Aliados Comerciales
-				</a>
-				<a href="/politica-de-privacidad" style="color:#a5b4fc; text-decoration:none; display:flex; align-items:center; gap:0.5rem; transition:all 0.3s; padding:0.5rem; border-radius:8px; background:rgba(165,180,252,0.1);" onmouseover="this.style.background='rgba(165,180,252,0.2)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(165,180,252,0.1)'; this.style.transform='translateY(0)'">
-					<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-						<path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
-					</svg>
-					Política de Privacidad
-				</a>
+			<div class="footer-bottom">
+				<p>&copy; {new Date().getFullYear()} Scaleally. Todos los derechos reservados.</p>
 			</div>
 		</footer>
 
-		<!-- Chat Widget -->
 		<ChatWidget />
+
+		<script>
+			// Header scroll effect
+			window.addEventListener('scroll', () => {
+				const header = document.getElementById('header');
+				if (window.scrollY > 100) {
+					header.classList.add('scrolled');
+				} else {
+					header.classList.remove('scrolled');
+				}
+			});
+
+			// Smooth scrolling for anchor links
+			document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+				anchor.addEventListener('click', function (e) {
+					e.preventDefault();
+					const target = document.querySelector(this.getAttribute('href'));
+					if (target) {
+						target.scrollIntoView({
+							behavior: 'smooth',
+							block: 'start'
+						});
+					}
+				});
+			});
+		</script>
 	</body>
 </html>
