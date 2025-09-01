@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-accent-600 to-accent-700 hover:from-accent-700 hover:to-accent-800 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-glow focus:outline-none focus:ring-4 focus:ring-accent-500/30;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-primary-700 border-2 border-primary-300 hover:bg-primary-50 hover:border-primary-500 font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-medium;
+  }
+  
+  .btn-success {
+    @apply bg-gradient-to-r from-success-600 to-success-700 hover:from-success-700 hover:to-success-800 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-glow-success focus:outline-none focus:ring-4 focus:ring-success-500/30;
+  }
+  
+  .card {
+    @apply bg-white rounded-2xl shadow-soft hover:shadow-medium transition-all duration-500 transform hover:-translate-y-2 border border-gray-100;
+  }
+  
+  .card-elevated {
+    @apply bg-white rounded-2xl shadow-medium hover:shadow-strong transition-all duration-500 transform hover:-translate-y-3 border border-gray-100;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-800 via-primary-700 to-primary-600 bg-clip-text text-transparent;
+  }
+  
+  .accent-text {
+    @apply bg-gradient-to-r from-accent-600 to-accent-700 bg-clip-text text-transparent;
+  }
+  
+  .success-text {
+    @apply bg-gradient-to-r from-success-600 to-success-700 bg-clip-text text-transparent;
+  }
+  
+  .section-padding {
+    @apply py-24 lg:py-32;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .heading-xl {
+    @apply text-4xl md:text-5xl lg:text-6xl font-black leading-tight;
+  }
+  
+  .heading-lg {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold leading-tight;
+  }
+  
+  .heading-md {
+    @apply text-2xl md:text-3xl font-bold leading-tight;
+  }
+  
+  .text-body {
+    @apply text-lg md:text-xl leading-relaxed;
+  }
+  
+  .text-caption {
+    @apply text-base md:text-lg leading-relaxed;
+  }
+  
+  .stat-card {
+    @apply bg-white rounded-2xl p-8 text-center shadow-soft hover:shadow-medium transition-all duration-500 transform hover:-translate-y-2 border border-gray-100;
+  }
+  
+  .feature-card {
+    @apply bg-white rounded-2xl p-8 shadow-soft hover:shadow-medium transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 border-l-4;
+  }
+  
+  .feature-card.problem {
+    @apply border-l-accent-500;
+  }
+  
+  .feature-card.solution {
+    @apply border-l-success-500;
+  }
+  
+  .feature-card.warning {
+    @apply border-l-warning-500;
+  }
+  
+  .hero-gradient {
+    @apply bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700;
+  }
+  
+  .cta-gradient {
+    @apply bg-gradient-to-br from-accent-700 via-accent-600 to-accent-500;
+  }
+  
+  .success-gradient {
+    @apply bg-gradient-to-br from-success-700 via-success-600 to-success-500;
+  }
+}
