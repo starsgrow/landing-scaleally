@@ -34,3 +34,4 @@ document.addEventListener('DOMContentLoaded', function() {
     
     console.log('Event listeners asignados correctamente');
 });
+
