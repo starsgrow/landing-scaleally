@@ -7,8 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scaleally - El Método Wellness que Lleva a 7 Cifras</title>
-    <meta name="description" content="Descubre el método exclusivo que ha transformado empresas de salud y bienestar. Resultados probados y garantizados.">
+    <title>Zero To MultiMillionaire - The Ultimate Business Success Formula</title>
+    <meta name="description" content="Descubre la fórmula definitiva para el éxito empresarial. De cero a multimillonario con el método probado.">
     
     <!-- Calendly -->
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
@@ -22,49 +22,75 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            /* Color de fondo base y posicionamiento para el efecto de luz */
-            background-color: #020617; /* Azul muy oscuro */
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ff6b35 100%);
+            background-attachment: fixed;
             position: relative;
+            min-height: 100vh;
         }
 
-        /* Pseudo-elemento para crear el haz de luz */
-        body::after {
+        /* Fondo de montañas */
+        body::before {
             content: '';
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100vh;
-            /* Gradiente lineal que forma el haz de luz */
-            background: linear-gradient(
-                110deg,
-                transparent 40%,
-                rgba(22, 163, 175, 0.15), /* Color cian muy sutil para el reflejo */
-                transparent 60%
-            );
-            /* Animación para mover el haz de luz */
-            animation: light-sweep 8s ease-in-out infinite;
-            z-index: 0; /* Asegura que esté detrás del contenido */
-            pointer-events: none; /* Permite que el contenido sea interactivo */
+            background: 
+                linear-gradient(135deg, rgba(255, 107, 53, 0.8) 0%, rgba(247, 147, 30, 0.6) 50%, rgba(255, 107, 53, 0.8) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="sky" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23ff6b35;stop-opacity:1" /><stop offset="50%" style="stop-color:%23f7931e;stop-opacity:1" /><stop offset="100%" style="stop-color:%23ff6b35;stop-opacity:1" /></linearGradient></defs><rect width="1200" height="800" fill="url(%23sky)"/><path d="M0,600 Q200,400 400,500 T800,450 T1200,500 L1200,800 L0,800 Z" fill="%23333" opacity="0.8"/><path d="M0,650 Q300,450 600,550 T1200,500 L1200,800 L0,800 Z" fill="%23444" opacity="0.6"/></svg>');
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
         }
 
-        /* Keyframes para la animación del barrido de luz */
-        @keyframes light-sweep {
-            0% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(100%);
-            }
+        /* Tira superior */
+        .top-strip {
+            background-color: rgba(26, 26, 26, 0.8);
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #ffd700;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-text {
+            color: #ffd700;
+            font-family: 'Brush Script MT', cursive;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .strip-text {
+            color: #ffd700;
+            font-size: 0.9rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* Contenido principal */
+        .main-content {
+            margin-top: 60px;
+            position: relative;
+            z-index: 10;
         }
 
         /* Keyframes para la animación de pulso del botón */
         @keyframes pulse {
             0%, 100% {
-                box-shadow: 0 0 0 0 rgba(22, 163, 175, 0.7);
+                box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.7);
             }
             70% {
-                box-shadow: 0 0 0 15px rgba(22, 163, 175, 0);
+                box-shadow: 0 0 0 15px rgba(147, 51, 234, 0);
             }
         }
 
@@ -72,36 +98,59 @@
         .cta-pulse {
             animation: pulse 2s infinite;
         }
+
+        /* Estilo del botón principal */
+        .main-cta-button {
+            background: linear-gradient(135deg, #9333ea 0%, #7c3aed 100%);
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3);
+        }
+
+        .main-cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.4);
+        }
     </style>
 </head>
 <body class="text-white antialiased">
-    <!-- VSL Hero Section -->
-    <section class="min-h-screen flex flex-col items-center justify-center px-4 py-20 relative z-10">
+    <!-- Tira Superior -->
+    <div class="top-strip">
+        <div class="logo-text">Miguel Rodriguez</div>
+        <div class="strip-text">GROWTH PARTNER</div>
+    </div>
+
+    <!-- Contenido Principal -->
+    <div class="main-content">
+        <!-- VSL Hero Section -->
+        <section class="min-h-screen flex flex-col items-center justify-center px-4 py-20 relative z-10">
         <!-- Text Content Container (Wider) -->
         <div class="max-w-6xl mx-auto text-center mb-12">
             
             <!-- Main Headline -->
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-8">
-                El "método oculto" que Usan los Negocios de Salud y Bienestar para Escalar sus Ingresos a 
-                <span class="text-cyan-400">7 Cifras en 3 Simples Pasos</span>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-8 text-white">
+                Zero To MultiMillionaire: "The Ultimate Business Success Formula"
             </h1>
-            
-            <!-- Sub-headline -->
-            <p class="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto">
-                Incluso si piensas que ya lo has intentado todo y nada te ha funcionado.
-            </p>
         </div>
         
-        <!-- Video Player Container (Full Width) -->
-        <div class="w-full max-w-7xl mx-auto mb-12">
-            <div class="bg-black rounded-2xl p-8 shadow-2xl shadow-cyan-500/20 border-4 border-gray-700">
+        <!-- Video Player Container (Compact Size) -->
+        <div class="w-full max-w-4xl mx-auto mb-12">
+            <div class="bg-white rounded-xl p-4 shadow-2xl">
                 <div class="relative">
                     <!-- Video de YouTube -->
-                    <div class="relative w-full h-[500px] md:h-[600px] lg:h-[800px] rounded-xl overflow-hidden">
+                    <div class="relative w-full h-[400px] md:h-[450px] rounded-lg overflow-hidden">
                         <iframe 
                             src="https://www.youtube.com/embed/Hedsn3D2LU4?rel=0&modestbranding=1&showinfo=0"
-                            title="Presentación de Scaleally - Método Wellness"
-                            class="w-full h-full rounded-xl"
+                            title="Zero To MultiMillionaire - The Ultimate Business Success Formula"
+                            class="w-full h-full rounded-lg"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -116,142 +165,20 @@
             
             <!-- Primary CTA Button -->
             <div class="mb-8">
-                <button id="primary-cta" class="w-full md:w-auto bg-cyan-500 hover:bg-cyan-600 text-gray-900 font-bold text-xl md:text-2xl py-4 px-10 rounded-full shadow-lg shadow-cyan-500/30 transition-all duration-300 transform hover:scale-105 cta-pulse">
-                    Agenda Llamada de Demo
-                </button>
-            </div>
-            
-            <!-- Final CTA -->
-            <div class="mt-16">
-                <button id="final-cta" class="w-full md:w-auto bg-cyan-500 hover:bg-cyan-600 text-gray-900 font-bold text-2xl md:text-3xl py-6 px-12 rounded-full shadow-lg shadow-cyan-500/30 transition-all duration-300 transform hover:scale-105 cta-pulse">
-                    🚀 TRANSFORMA TU EMPRESA AHORA
+                <button id="primary-cta" class="main-cta-button cta-pulse">
+                    AGENDA TU LLAMADA
                 </button>
             </div>
             
         </div>
     </section>
-    
-    <!-- Sobre Mí Section -->
-    <section class="w-full py-20 bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <!-- Left: Logo Scaleally -->
-                <div class="flex justify-center">
-                    <div class="w-80 h-80 flex items-center justify-center">
-                        <img src="/logo.png" alt="Scaleally Logo" class="w-full h-auto max-w-64 object-contain">
-                    </div>
-                </div>
-                
-                <!-- Right: Text Content -->
-                <div class="text-left">
-                    <h2 class="text-3xl font-bold text-white mb-6">SOBRE MÍ</h2>
-                    <p class="text-lg text-gray-300 mb-4">
-                        Soy <strong>Miguel Ángel Rodríguez</strong>, profesional en mercadeo con amplia experiencia en el sector de la salud y el bienestar.
-                    </p>
-                    <p class="text-base text-gray-400 mb-4">
-                        Mi propósito es impulsar proyectos que brinden soluciones de servicios de crecimiento personal, autocuidado, estética, salud y bienestar en general creando estrategias de alto impacto que generan conexiones reales con las personas.
-                    </p>
-                    <p class="text-base text-gray-400 mb-6">
-                        Combino visión estratégica, creatividad y experiencia para que marcas y negocios no solo crezcan, sino que se conviertan en referentes, inspirando a su comunidad y dejando huella de manera sostenible y consciente.
-                    </p>
-                    <div class="mt-8">
-                        <button id="sobre-mi-cta" class="bg-cyan-500 hover:bg-cyan-600 text-gray-900 font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
-                            Agenda tu Demo
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Los 3 Pilares Section -->
-    <section class="w-full py-24 bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4">
-            <!-- Header Section -->
-            <div class="text-center mb-20">
-                <h2 class="text-5xl md:text-6xl font-black text-white mb-8 leading-tight">
-                    ¿CÓMO LO HACEMOS?
-                </h2>
-            </div>
-            
-            <!-- 3 Tarjetas de Pilares -->
-            <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
-                <!-- Tarjeta 1: Atención Orgánica -->
-                <div class="bg-gray-900 rounded-xl shadow-lg p-8 text-center border border-gray-700">
-                    <!-- Icono -->
-                    <div class="w-16 h-16 bg-cyan-500 rounded-lg flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/>
-                        </svg>
-                    </div>
-                    
-                    <!-- Título -->
-                    <h3 class="text-xl font-bold text-white mb-4">1. Atención orgánica</h3>
-                    
-                    <!-- Descripción -->
-                    <p class="text-gray-300 leading-relaxed">
-                        Captar atención orgánica o con tráfico pagado, y mandar toda esta audiencia a un embudo de ventas apoyado en una oferta de contenido de alto valor.
-                    </p>
-                </div>
-                
-                <!-- Tarjeta 2: Oferta Ganadora -->
-                <div class="bg-gray-900 rounded-xl shadow-lg p-8 text-center border border-gray-700">
-                    <!-- Icono -->
-                    <div class="w-16 h-16 bg-cyan-500 rounded-lg flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                    </div>
-                    
-                    <!-- Título -->
-                    <h3 class="text-xl font-bold text-white mb-4">2. Oferta Ganadora</h3>
-                    
-                    <!-- Descripción -->
-                    <p class="text-gray-300 leading-relaxed">
-                        Liquidar esa atención y hacer que se convierta en venta apoyándonos en una oferta de adquisición ganadora.
-                    </p>
-                </div>
-                
-                <!-- Tarjeta 3: Proceso Post-Venta -->
-                <div class="bg-gray-900 rounded-xl shadow-lg p-8 text-center border border-gray-700">
-                    <!-- Icono -->
-                    <div class="w-16 h-16 bg-cyan-500 rounded-lg flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-                        </svg>
-                    </div>
-                    
-                    <!-- Título -->
-                    <h3 class="text-xl font-bold text-white mb-4">3. Proceso Post-Venta</h3>
-                    
-                    <!-- Descripción -->
-                    <p class="text-gray-300 leading-relaxed">
-                        Desarrollar un proceso post-venta para extender el valor de por vida de cada cliente utilizando marketing de email.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Calendly Section - SIN CONTENEDOR -->
-    <section id="calendly-section" class="w-full py-20 bg-gray-900">
-        <h3 class="text-2xl font-bold mb-6 text-center text-white">📅 Agenda tu Consulta Gratuita de 15 Minutos</h3>
-        <p class="text-gray-300 mb-8 text-center">Descubre exactamente cómo aplicar nuestro método a tu empresa</p>
-        
-        <!-- Calendly completamente libre -->
-        <div class="calendly-inline-widget shadow-2xl shadow-cyan-500/30 rounded-2xl overflow-hidden" 
-             data-url="https://calendly.com/scaleally/30min"
-             style="min-width: 1000px; width: 100%; height: 800px;">
-        </div>
-    </section>
-    
+
     <!-- Partners Section -->
-    <section class="w-full py-16 bg-white">
+    <section class="w-full py-16 bg-black bg-opacity-30">
         <div class="max-w-6xl mx-auto px-4">
             <!-- Header -->
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-900 uppercase tracking-wide">Partners</h2>
+                <h2 class="text-3xl font-bold text-white uppercase tracking-wide">Partners</h2>
             </div>
             
             <!-- Partners Logos -->
@@ -283,7 +210,125 @@
             </div>
         </div>
     </section>
-    
+
+    <!-- Sobre Mí Section -->
+    <section class="w-full py-20 bg-black bg-opacity-30">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Left: Logo Scaleally -->
+                <div class="flex justify-center">
+                    <div class="w-80 h-80 flex items-center justify-center">
+                        <img src="/logo2.png" alt="Scaleally Logo" class="w-full h-auto max-w-64 object-contain">
+                    </div>
+                </div>
+                
+                <!-- Right: Text Content -->
+                <div class="text-left">
+                    <h2 class="text-4xl font-bold text-white mb-6">SOBRE MÍ</h2>
+                    <p class="text-base text-gray-300 mb-4 leading-relaxed">
+                        Hola!, mi nombre es Miguel Rodriguez, Profesional en marketing y como tu growth partner quiero decirte que En un mercado lleno de ruido, las marcas que perduran son las que crean un impacto real. Más que marketing, nos dedicamos a construir legados.
+                    </p>
+                    <p class="text-base text-gray-300 mb-4 leading-relaxed">
+                        A través de una visión estratégica y creativa, elevamos tu proyecto para que resuene con tu audiencia a un nivel más profundo. Te ayudamos a pasar de ser una opción más a convertirte en la referencia principal en tu nicho, inspirando a una comunidad que cree en tu propósito.
+                    </p>
+                    <p class="text-base text-gray-300 mb-6 leading-relaxed">
+                        Hagamos que tu negocio crezca de forma sostenible y deje una huella de la que te sientas orgulloso.
+                    </p>
+                    <div class="mt-8">
+                        <button id="sobre-mi-cta" class="main-cta-button">
+                            Agenda tu Demo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Los 3 Pilares Section -->
+    <section class="w-full py-24 bg-black bg-opacity-40">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Header Section -->
+            <div class="text-center mb-20">
+                <h2 class="text-5xl md:text-6xl font-black text-white mb-8 leading-tight">
+                    ¿CÓMO LO HACEMOS?
+                </h2>
+            </div>
+            
+            <!-- 3 Tarjetas de Pilares -->
+            <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
+                <!-- Tarjeta 1: Atención Orgánica -->
+                <div class="bg-black bg-opacity-50 rounded-xl shadow-lg p-8 text-center border border-gray-600">
+                    <!-- Icono -->
+                    <div class="w-16 h-16 bg-purple-500 rounded-lg flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/>
+                        </svg>
+                    </div>
+                    
+                    <!-- Título -->
+                    <h3 class="text-xl font-bold text-white mb-4">1. Atención orgánica</h3>
+                    
+                    <!-- Descripción -->
+                    <p class="text-gray-300 leading-relaxed">
+                        Captar atención orgánica o con tráfico pagado, y mandar toda esta audiencia a un embudo de ventas apoyado en una oferta de contenido de alto valor.
+                    </p>
+                </div>
+                
+                <!-- Tarjeta 2: Oferta Ganadora -->
+                <div class="bg-black bg-opacity-50 rounded-xl shadow-lg p-8 text-center border border-gray-600">
+                    <!-- Icono -->
+                    <div class="w-16 h-16 bg-purple-500 rounded-lg flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    
+                    <!-- Título -->
+                    <h3 class="text-xl font-bold text-white mb-4">2. Oferta Ganadora</h3>
+                    
+                    <!-- Descripción -->
+                    <p class="text-gray-300 leading-relaxed">
+                        Liquidar esa atención y hacer que se convierta en venta apoyándonos en una oferta de adquisición ganadora.
+                    </p>
+                </div>
+                
+                <!-- Tarjeta 3: Proceso Post-Venta -->
+                <div class="bg-black bg-opacity-50 rounded-xl shadow-lg p-8 text-center border border-gray-600">
+                    <!-- Icono -->
+                    <div class="w-16 h-16 bg-purple-500 rounded-lg flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                        </svg>
+                    </div>
+                    
+                    <!-- Título -->
+                    <h3 class="text-xl font-bold text-white mb-4">3. Proceso Post-Venta</h3>
+                    
+                    <!-- Descripción -->
+                    <p class="text-gray-300 leading-relaxed">
+                        Desarrollar un proceso post-venta para extender el valor de por vida de cada cliente utilizando marketing de email.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendly Section -->
+    <section id="calendly-section" class="w-full py-20 bg-black bg-opacity-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <h3 class="text-3xl font-bold mb-6 text-center text-white">📅 Agenda tu Consulta Gratuita de 15 Minutos</h3>
+            <p class="text-gray-300 mb-8 text-center text-lg">Descubre exactamente cómo aplicar nuestro método a tu empresa</p>
+            
+            <!-- Calendly Widget -->
+            <div class="calendly-inline-widget rounded-2xl overflow-hidden" 
+                 data-url="https://calendly.com/scaleally/30min"
+                 style="min-width: 1000px; width: 100%; height: 800px;">
+            </div>
+        </div>
+    </section>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-black text-gray-400 py-12 text-center">
         <div class="max-w-2xl mx-auto">
@@ -296,4 +341,3 @@
     
 </body>
 </html>
-
