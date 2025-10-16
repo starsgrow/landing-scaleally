@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "astro": "^5.11.0",
+    "hls.js": "^1.6.13",
     "lucide-react": "^0.541.0"
   },
   "devDependencies": {

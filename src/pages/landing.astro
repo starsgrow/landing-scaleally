@@ -13,6 +13,9 @@
     <!-- Calendly -->
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
     
+    <!-- HLS.js para reproducción de video adaptativa -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    
     <!-- Import global styles -->
     <link rel="stylesheet" href="../styles/global.css">
     
@@ -28,6 +31,67 @@
             background-attachment: fixed;
             position: relative;
             min-height: 100vh;
+        }
+
+        /* Video en pantalla completa para móviles */
+        .mobile-video-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #000;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .mobile-video-overlay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-video-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .mobile-video-player {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .close-video-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .close-video-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Ocultar el contenido principal cuando el video está activo en móviles */
+        body.video-playing {
+            overflow: hidden;
         }
 
         /* Fondo de montañas */
@@ -122,6 +186,28 @@
     </style>
 </head>
 <body class="text-white antialiased">
+    <!-- Video Overlay para Móviles -->
+    <div id="mobile-video-overlay" class="mobile-video-overlay">
+        <div class="mobile-video-container">
+            <button id="close-video" class="close-video-button" aria-label="Cerrar video">✕</button>
+            <video 
+                id="mobile-video" 
+                class="mobile-video-player" 
+                playsinline 
+                autoplay 
+                muted
+                controls
+                preload="auto"
+                crossorigin="anonymous">
+                <!-- Bunny.net Stream - Calidad adaptativa HLS -->
+                <source src="https://vz-cddd003b-54d.b-cdn.net/f5d26bf5-6488-4795-912c-19a52723828b/playlist.m3u8" type="application/x-mpegURL">
+                <!-- Fallback MP4 para máxima compatibilidad -->
+                <source src="https://vz-cddd003b-54d.b-cdn.net/f5d26bf5-6488-4795-912c-19a52723828b/play_720p.mp4" type="video/mp4">
+                Tu navegador no soporta el video HTML5.
+            </video>
+        </div>
+    </div>
+
     <!-- Tira Superior -->
     <div class="top-strip">
         <div class="logo-text">Miguel Rodriguez</div>
@@ -338,6 +424,106 @@
             </p>
         </div>
     </footer>
+
+    <!-- Script para video en móviles -->
+    <script>
+        // Detectar si es un dispositivo móvil
+        function isMobileDevice() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+                || (window.innerWidth <= 768);
+        }
+
+        // Función para mostrar el video en pantalla completa
+        function showMobileVideo() {
+            const overlay = document.getElementById('mobile-video-overlay');
+            const video = document.getElementById('mobile-video') as HTMLVideoElement;
+            
+            if (overlay && video) {
+                overlay.classList.add('active');
+                document.body.classList.add('video-playing');
+                
+                // Configurar HLS.js si el navegador no soporta HLS nativamente
+                const videoSrc = 'https://vz-cddd003b-54d.b-cdn.net/f5d26bf5-6488-4795-912c-19a52723828b/playlist.m3u8';
+                
+                if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                    // Soporte nativo HLS (Safari, iOS)
+                    video.src = videoSrc;
+                } else if ((window as any).Hls && (window as any).Hls.isSupported()) {
+                    // Usar HLS.js para otros navegadores
+                    const hls = new (window as any).Hls({
+                        enableWorker: true,
+                        lowLatencyMode: false,
+                        backBufferLength: 90
+                    });
+                    hls.loadSource(videoSrc);
+                    hls.attachMedia(video);
+                    hls.on((window as any).Hls.Events.MANIFEST_PARSED, function() {
+                        // Reproducir cuando el manifest esté listo
+                        video.play().catch((error: any) => {
+                            console.log('Autoplay bloqueado:', error);
+                        });
+                    });
+                }
+                
+                // Intentar reproducir el video
+                const playPromise = video.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // Reproducción exitosa
+                        console.log('Video reproduciendo automáticamente');
+                    }).catch((error: any) => {
+                        // El autoplay fue bloqueado, pero el usuario puede darle play manualmente
+                        console.log('Autoplay bloqueado:', error);
+                    });
+                }
+            }
+        }
+
+        // Función para cerrar el video
+        function closeMobileVideo() {
+            const overlay = document.getElementById('mobile-video-overlay');
+            const video = document.getElementById('mobile-video') as HTMLVideoElement;
+            
+            if (overlay && video) {
+                overlay.classList.remove('active');
+                document.body.classList.remove('video-playing');
+                video.pause();
+                video.currentTime = 0;
+            }
+        }
+
+        // Ejecutar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Si es móvil, mostrar el video automáticamente
+            if (isMobileDevice()) {
+                // Esperar un momento para asegurar que todo esté cargado
+                setTimeout(showMobileVideo, 500);
+            }
+
+            // Agregar evento al botón de cerrar
+            const closeButton = document.getElementById('close-video');
+            if (closeButton) {
+                closeButton.addEventListener('click', closeMobileVideo);
+            }
+
+            // También permitir cerrar tocando fuera del video (opcional)
+            const overlay = document.getElementById('mobile-video-overlay');
+            if (overlay) {
+                overlay.addEventListener('click', function(e) {
+                    if (e.target === overlay) {
+                        closeMobileVideo();
+                    }
+                });
+            }
+
+            // Cuando el video termine, cerrar automáticamente
+            const video = document.getElementById('mobile-video');
+            if (video) {
+                video.addEventListener('ended', closeMobileVideo);
+            }
+        });
+    </script>
     
 </body>
 </html>
