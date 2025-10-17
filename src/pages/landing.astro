@@ -7,14 +7,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zero To MultiMillionaire - The Ultimate Business Success Formula</title>
-    <meta name="description" content="Descubre la fórmula definitiva para el éxito empresarial. De cero a multimillonario con el método probado.">
+    <title>Zero to Multimillonaire - Método Provado para Escalar Marcas 2025-2026</title>
+    <meta name="description" content="Descubre el método provado para escalar tu marca de zero a multimillonaire en 2025-2026. Sistema probado de crecimiento empresarial.">
     
     <!-- Calendly -->
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
     
-    <!-- HLS.js para reproducción de video adaptativa -->
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <!-- Google Fonts - Premium Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Import global styles -->
     <link rel="stylesheet" href="../styles/global.css">
@@ -89,6 +91,7 @@
             transform: scale(1.1);
         }
 
+
         /* Ocultar el contenido principal cuando el video está activo en móviles */
         body.video-playing {
             overflow: hidden;
@@ -129,9 +132,26 @@
 
         .logo-text {
             color: #ffd700;
-            font-family: 'Brush Script MT', cursive;
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            font-weight: 400;
+            letter-spacing: 0px;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 215, 0, 0.3);
+            transform: rotate(-2deg);
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-text {
+                font-size: 1.3rem;
+            }
         }
 
         .strip-text {
@@ -183,6 +203,23 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(147, 51, 234, 0.4);
         }
+
+        /* Calendly responsive */
+        .calendly-inline-widget {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        #calendly-section {
+            overflow-x: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .calendly-inline-widget {
+                height: 600px !important;
+                min-width: 100% !important;
+            }
+        }
     </style>
 </head>
 <body class="text-white antialiased">
@@ -190,21 +227,15 @@
     <div id="mobile-video-overlay" class="mobile-video-overlay">
         <div class="mobile-video-container">
             <button id="close-video" class="close-video-button" aria-label="Cerrar video">✕</button>
-            <video 
+            <iframe 
                 id="mobile-video" 
                 class="mobile-video-player" 
-                playsinline 
-                autoplay 
-                muted
-                controls
-                preload="auto"
-                crossorigin="anonymous">
-                <!-- Bunny.net Stream - Calidad adaptativa HLS -->
-                <source src="https://vz-cddd003b-54d.b-cdn.net/f5d26bf5-6488-4795-912c-19a52723828b/playlist.m3u8" type="application/x-mpegURL">
-                <!-- Fallback MP4 para máxima compatibilidad -->
-                <source src="https://vz-cddd003b-54d.b-cdn.net/f5d26bf5-6488-4795-912c-19a52723828b/play_720p.mp4" type="video/mp4">
-                Tu navegador no soporta el video HTML5.
-            </video>
+                src="https://iframe.mediadelivery.net/play/458976/55b607f1-f156-4fbd-8c7d-21d0ee24aa67?autoplay=true&muted=true"
+                loading="lazy"
+                style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
+                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                allowfullscreen="true">
+            </iframe>
         </div>
     </div>
 
@@ -222,8 +253,9 @@
         <div class="max-w-6xl mx-auto text-center mb-12">
             
             <!-- Main Headline -->
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-8 text-white">
-                Zero To MultiMillionaire: "The Ultimate Business Success Formula"
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-8 text-white" style="font-family: 'Oswald', sans-serif; letter-spacing: -1px;">
+                ZERO TO MULTIMILLONAIRE<br>
+                <span class="text-3xl md:text-4xl lg:text-5xl">por método provado para escalar marcas en este 2025-2026</span>
             </h1>
         </div>
         
@@ -231,15 +263,15 @@
         <div class="w-full max-w-4xl mx-auto mb-12">
             <div class="bg-white rounded-xl p-4 shadow-2xl">
                 <div class="relative">
-                    <!-- Video de YouTube -->
-                    <div class="relative w-full h-[400px] md:h-[450px] rounded-lg overflow-hidden">
+                    <!-- Video de Bunny.net -->
+                    <div class="relative w-full h-[400px] md:h-[450px] rounded-lg overflow-hidden bg-black">
                         <iframe 
-                            src="https://www.youtube.com/embed/Hedsn3D2LU4?rel=0&modestbranding=1&showinfo=0"
-                            title="Zero To MultiMillionaire - The Ultimate Business Success Formula"
-                            class="w-full h-full rounded-lg"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen>
+                            id="desktop-video" 
+                            src="https://iframe.mediadelivery.net/play/458976/55b607f1-f156-4fbd-8c7d-21d0ee24aa67"
+                            loading="lazy"
+                            style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
+                            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                            allowfullscreen="true">
                         </iframe>
                     </div>
                 </div>
@@ -409,7 +441,7 @@
             <!-- Calendly Widget -->
             <div class="calendly-inline-widget rounded-2xl overflow-hidden" 
                  data-url="https://calendly.com/scaleally/30min"
-                 style="min-width: 1000px; width: 100%; height: 800px;">
+                 style="min-width: 320px; width: 100%; height: 700px;">
             </div>
         </div>
     </section>
@@ -436,60 +468,30 @@
         // Función para mostrar el video en pantalla completa
         function showMobileVideo() {
             const overlay = document.getElementById('mobile-video-overlay');
-            const video = document.getElementById('mobile-video') as HTMLVideoElement;
             
-            if (overlay && video) {
+            if (overlay) {
                 overlay.classList.add('active');
                 document.body.classList.add('video-playing');
-                
-                // Configurar HLS.js si el navegador no soporta HLS nativamente
-                const videoSrc = 'https://vz-cddd003b-54d.b-cdn.net/f5d26bf5-6488-4795-912c-19a52723828b/playlist.m3u8';
-                
-                if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                    // Soporte nativo HLS (Safari, iOS)
-                    video.src = videoSrc;
-                } else if ((window as any).Hls && (window as any).Hls.isSupported()) {
-                    // Usar HLS.js para otros navegadores
-                    const hls = new (window as any).Hls({
-                        enableWorker: true,
-                        lowLatencyMode: false,
-                        backBufferLength: 90
-                    });
-                    hls.loadSource(videoSrc);
-                    hls.attachMedia(video);
-                    hls.on((window as any).Hls.Events.MANIFEST_PARSED, function() {
-                        // Reproducir cuando el manifest esté listo
-                        video.play().catch((error: any) => {
-                            console.log('Autoplay bloqueado:', error);
-                        });
-                    });
-                }
-                
-                // Intentar reproducir el video
-                const playPromise = video.play();
-                
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        // Reproducción exitosa
-                        console.log('Video reproduciendo automáticamente');
-                    }).catch((error: any) => {
-                        // El autoplay fue bloqueado, pero el usuario puede darle play manualmente
-                        console.log('Autoplay bloqueado:', error);
-                    });
-                }
             }
         }
 
         // Función para cerrar el video
         function closeMobileVideo() {
             const overlay = document.getElementById('mobile-video-overlay');
-            const video = document.getElementById('mobile-video') as HTMLVideoElement;
             
-            if (overlay && video) {
+            if (overlay) {
                 overlay.classList.remove('active');
                 document.body.classList.remove('video-playing');
-                video.pause();
-                video.currentTime = 0;
+                
+                // Recargar el iframe para detener el video
+                const iframe = document.getElementById('mobile-video') as HTMLIFrameElement;
+                if (iframe) {
+                    const src = iframe.src;
+                    iframe.src = '';
+                    setTimeout(() => {
+                        iframe.src = src;
+                    }, 100);
+                }
             }
         }
 
@@ -515,12 +517,6 @@
                         closeMobileVideo();
                     }
                 });
-            }
-
-            // Cuando el video termine, cerrar automáticamente
-            const video = document.getElementById('mobile-video');
-            if (video) {
-                video.addEventListener('ended', closeMobileVideo);
             }
         });
     </script>

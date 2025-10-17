@@ -6,6 +6,10 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   site: 'https://scaleally.co',
   integrations: [tailwind()],
+  server: {
+    host: true,
+    port: 4321
+  },
   // Add custom routes
   vite: {
     build: {
