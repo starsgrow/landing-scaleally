@@ -1,23 +1,9 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Button } from "./ui/button";
 import { Play, Pause } from "lucide-react";
 
 export function Hero() {
-  const [isPlaying, setIsPlaying] = useState(false);
   const [isImmersive, setIsImmersive] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  const toggleAudio = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.muted = true;
-        setIsPlaying(false);
-      } else {
-        videoRef.current.muted = false;
-        setIsPlaying(true);
-      }
-    }
-  };
 
   const toggleImmersive = () => {
     setIsImmersive(!isImmersive);
@@ -26,42 +12,17 @@ export function Hero() {
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background Video */}
-      <video
-        ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover z-0"
-        autoPlay
-        muted
-        loop
-        playsInline
-      >
-        <source
-          src="https://olympo.b-cdn.net/landing-video/WhatsApp%20Video%202025-08-22%20at%206.47.43%20PM.mp4"
-          type="video/mp4"
-        />
-        Your browser does not support the video tag.
-      </video>
+      <iframe
+        src="https://iframe.mediadelivery.net/play/458976/5638dad3-f6a8-4c2d-a770-833d338074ed"
+        className="absolute inset-0 w-full h-full z-0"
+        allow="autoplay; fullscreen"
+        style={{ border: 'none', objectFit: 'cover' }}
+      />
 
       {/* Overlay */}
       <div className={`absolute inset-0 transition-all duration-500 z-10 ${
         isImmersive ? 'bg-transparent' : 'bg-black/40'
       }`}></div>
-
-      {/* Play/Pause Button */}
-      <Button
-        onClick={toggleAudio}
-        size="lg"
-        variant="outline"
-        className="absolute top-8 right-8 z-30 bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 hover:text-white transition-all duration-300"
-      >
-        {isPlaying ? (
-          <Pause className="h-5 w-5" />
-        ) : (
-          <Play className="h-5 w-5" />
-        )}
-        <span className="ml-2">
-          {isPlaying ? "Silenciar" : "Activar sonido"}
-        </span>
-      </Button>
 
       {/* Content */}
       <div className={`relative z-20 text-center text-white max-w-4xl mx-auto px-6 transition-all duration-500 ${

@@ -7,8 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scaleally - El Método Wellness que Lleva a 7 Cifras</title>
-    <meta name="description" content="Descubre el método exclusivo que ha transformado empresas de salud y bienestar. Resultados probados y garantizados.">
+    <title>Protocolo de Dominio de Mercado: Método probado para escalar marcas de infoproductores y desarrollo personal en este 2025-2026</title>
+    <meta name="description" content="Protocolo de Dominio de Mercado: Método probado para escalar marcas de infoproductores y desarrollo personal en este 2025-2026">
     
 
     
@@ -26,90 +26,382 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            /* Color de fondo base y posicionamiento para el efecto de luz */
-            background-color: #ffffff; /* Fondo blanco */
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #0a0a0a 100%);
+            background-attachment: fixed;
             position: relative;
+            min-height: 100vh;
         }
 
-        /* Pseudo-elemento para crear el haz de luz sutil */
-        body::after {
+        /* Efecto de humo sutil */
+        body::before {
             content: '';
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100vh;
-            /* Gradiente lineal que forma el haz de luz sutil */
-            background: linear-gradient(
-                110deg,
-                transparent 40%,
-                rgba(59, 130, 246, 0.08), /* Azul muy sutil para el reflejo */
-                transparent 60%
-            );
-            /* Animación para mover el haz de luz */
-            animation: light-sweep 12s ease-in-out infinite;
-            z-index: 0; /* Asegura que esté detrás del contenido */
-            pointer-events: none; /* Permite que el contenido sea interactivo */
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(160, 82, 45, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(101, 67, 33, 0.06) 0%, transparent 50%);
+            z-index: -1;
+            pointer-events: none;
         }
 
-        /* Keyframes para la animación del barrido de luz */
-        @keyframes light-sweep {
-            0% {
-                transform: translateX(-100%);
+        /* Animaciones sutiles */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
-            100% {
-                transform: translateX(100%);
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        /* Keyframes para la animación de pulso del botón */
         @keyframes pulse {
             0%, 100% {
-                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+                box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4);
             }
             70% {
-                box-shadow: 0 0 0 15px rgba(59, 130, 246, 0);
+                box-shadow: 0 0 0 15px rgba(255, 215, 0, 0);
             }
         }
 
-        /* Clase para aplicar la animación de pulso */
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out;
+        }
+
         .cta-pulse {
             animation: pulse 2s infinite;
         }
+
+        /* Elementos de conversión visual */
+        .urgency-badge {
+            background: linear-gradient(45deg, #ff4444, #ff6666);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 68, 68, 0.3);
+            animation: urgencyPulse 2s infinite;
+        }
+
+        @keyframes urgencyPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .social-proof-bar {
+            background: linear-gradient(90deg, #1a1a1a, #2d2d2d, #1a1a1a);
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            margin: 20px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-proof-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 60px;
+            color: rgba(255, 215, 0, 0.3);
+            font-family: serif;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ffd700, #ffed4e, #ffd700);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #ccc;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .guarantee-badge {
+            background: linear-gradient(45deg, #00aa44, #00cc55);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 6px 20px rgba(0, 170, 68, 0.3);
+            margin: 20px 0;
+        }
+
+        .guarantee-badge::before {
+            content: '✓';
+            font-size: 20px;
+        }
+
+        /* Estilo para el video player */
+        .video-container {
+            position: relative;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-player {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Video poster/thumbnail */
+        .video-poster {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2d2d2d 100%);
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+            cursor: pointer;
+            border-radius: 12px;
+        }
+
+        .video-poster.hidden {
+            display: none;
+        }
+
+        /* Imagen de preview del video */
+        .video-preview {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #0a0a0a 100%);
+            background-image: 
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450"><rect width="800" height="450" fill="%231a1a1a"/><rect x="50" y="50" width="700" height="350" fill="%232d2d2d" rx="8"/><rect x="100" y="100" width="600" height="250" fill="%230a0a0a" rx="4"/><circle cx="400" cy="225" r="40" fill="%23ffd700" opacity="0.8"/><polygon points="385,210 385,240 415,225" fill="%23000"/><text x="400" y="320" text-anchor="middle" fill="%23ffd700" font-family="Arial" font-size="24" font-weight="bold">MÉTODO OCULTO</text><text x="400" y="350" text-anchor="middle" fill="%23fff" font-family="Arial" font-size="16">Salud y Bienestar 2025</text></svg>');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            border-radius: 12px;
+        }
+
+        /* Botón de play mejorado */
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 215, 0, 0.95);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 0 0 0 rgba(255, 215, 0, 0.7),
+                0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .play-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            background: rgba(255, 215, 0, 1);
+            box-shadow: 
+                0 0 0 10px rgba(255, 215, 0, 0.3),
+                0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .play-button:active {
+            transform: translate(-50%, -50%) scale(0.95);
+        }
+
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-left: 35px solid #000;
+            border-top: 25px solid transparent;
+            border-bottom: 25px solid transparent;
+            margin-left: 8px;
+        }
+
+        /* Texto del poster */
+        .poster-text {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px 20px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Overlay de firma */
+        .signature-overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: 'Brush Script MT', cursive;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            z-index: 10;
+        }
     </style>
 </head>
-<body class="text-gray-900 antialiased">
+<body class="text-white antialiased">
+    <!-- Barra de notificación flotante -->
+    <div class="fixed top-0 left-0 right-0 bg-gradient-to-r from-red-600 to-red-700 text-white text-center py-3 z-50 shadow-lg">
+        <div class="flex items-center justify-center gap-2">
+            <span class="animate-pulse">🔥</span>
+            <span class="font-bold">¡ÚLTIMAS 24 HORAS! Solo quedan 7 cupos disponibles</span>
+            <span class="animate-pulse">🔥</span>
+        </div>
+    </div>
+    
     <!-- VSL Hero Section -->
-    <section class="min-h-screen flex flex-col items-center justify-center px-4 py-20 relative z-10">
+    <section class="min-h-screen flex flex-col items-center justify-center px-4 pt-24 pb-20 relative z-10">
         <!-- Text Content Container (Wider) -->
         <div class="max-w-6xl mx-auto text-center mb-12">
             
             <!-- Main Headline -->
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-8">
-                El "método oculto" que Usan los Negocios de Salud y Bienestar para Escalar sus Ingresos a 
-                <span class="text-blue-600">7 Cifras en 3 Simples Pasos</span>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-8 fade-in-up">
+                Método Oculto Que Están Usando Las Marcas de Salud y Bienestar Para 
+                <br><span class="text-yellow-400">DOMINAR</span> Su Mercado En Este 
+                <br><span class="text-yellow-400">2025</span>
             </h1>
             
+            <!-- Badge de urgencia -->
+            <div class="mb-6 fade-in-up">
+                <span class="urgency-badge">🔥 OFERTA LIMITADA - SOLO 48 HORAS 🔥</span>
+            </div>
+            
             <!-- Sub-headline -->
-            <p class="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto">
+            <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto fade-in-up">
                 Incluso si piensas que ya lo has intentado todo y nada te ha funcionado.
             </p>
+            
+            <!-- Barra de prueba social -->
+            <div class="social-proof-bar fade-in-up">
+                <span class="text-yellow-400 font-bold">⚡ 127 empresarios ya se registraron en las últimas 24 horas</span>
+            </div>
         </div>
         
         <!-- Video Player Container (Full Width) -->
-        <div class="w-full max-w-7xl mx-auto mb-12">
-            <div class="bg-white rounded-2xl p-4 shadow-xl shadow-gray-400/20 border-0.5 border-gray-200">
+        <div class="w-full max-w-7xl mx-auto mb-12 fade-in-up">
+            <div class="video-container">
                 <div class="relative">
-                    <!-- Video de YouTube -->
-                    <div class="relative w-full h-[500px] md:h-[600px] lg:h-[800px] rounded-xl overflow-hidden">
-                        <iframe 
-                            src="https://www.youtube.com/embed/Hedsn3D2LU4?rel=0&modestbranding=1&showinfo=0"
-                            title="Presentación de Scaleally - Método Wellness"
-                            class="w-full h-full rounded-xl"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen>
-                        </iframe>
+                    <!-- Video HLS -->
+                    <div class="relative w-full h-[500px] md:h-[600px] lg:h-[800px]">
+                        <video 
+                            id="main-video"
+                            class="video-player"
+                            controls
+                            preload="none"
+                            style="display: none;">
+                            <source src="https://vz-cddd003b-54d.b-cdn.net/945e327c-2058-48e5-8ec2-138c14c13d55/playlist.m3u8" type="application/x-mpegURL">
+                            Tu navegador no soporta videos HLS.
+                        </video>
+                        
+                        <!-- Poster/Thumbnail con botón de play -->
+                        <div id="video-poster" class="video-poster" onclick="playVideo()">
+                            <div class="video-preview"></div>
+                            <div class="play-button">
+                                <div class="play-icon"></div>
+                            </div>
+                            <div class="poster-text">
+                                MÉTODO OCULTO QUE ESTÁN USANDO<br>
+                                <span style="color: #ffd700; font-size: 18px;">Las Marcas de Salud y Bienestar</span><br>
+                                <span style="color: #ffd700; font-size: 16px;">Para DOMINAR Su Mercado En 2025</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Overlay de firma -->
+                        <div class="signature-overlay">
+                            Miguel Rodriguez
+                        </div>
                     </div>
                 </div>
             </div>
@@ -118,56 +410,78 @@
         <!-- Content Container (Wider) -->
         <div class="max-w-6xl mx-auto text-center">
             
+            <!-- Estadísticas impresionantes -->
+            <div class="stats-container fade-in-up">
+                <div class="stat-card">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Empresas Transformadas</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">300%</span>
+                    <span class="stat-label">Aumento Promedio en Ventas</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">90</span>
+                    <span class="stat-label">Días para Ver Resultados</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">$2M+</span>
+                    <span class="stat-label">Generados para Clientes</span>
+                </div>
+            </div>
+            
             <!-- Primary CTA Button -->
-            <div class="mb-8">
-                <button id="primary-cta" class="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold text-xl md:text-2xl py-4 px-10 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:scale-105 cta-pulse">
-                    Agenda Llamada de Demo
+            <div class="mb-8 fade-in-up">
+                <button id="primary-cta" class="w-full md:w-auto bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black font-bold text-xl md:text-2xl py-4 px-10 rounded-full shadow-lg shadow-yellow-500/30 transition-all duration-300 transform hover:scale-105 cta-pulse">
+                    🔥 Agenda Llamada de Demo 🔥
                 </button>
+            </div>
+            
+            <!-- Badge de garantía -->
+            <div class="fade-in-up">
+                <div class="guarantee-badge">
+                    Garantía de 30 días - Si no ves resultados, te devolvemos el dinero
+                </div>
             </div>
             
 
             
             <!-- Final CTA -->
-            <div class="mt-16">
-                <button id="final-cta" class="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl md:text-3xl py-6 px-12 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:scale-105 cta-pulse">
-                    🚀 TRANSFORMA TU EMPRESA AHORA
+            <div class="mt-16 fade-in-up">
+                <button id="final-cta" class="w-full md:w-auto bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black font-bold text-2xl md:text-3xl py-6 px-12 rounded-full shadow-lg shadow-yellow-500/30 transition-all duration-300 transform hover:scale-105 cta-pulse">
+                    🚀 TRANSFORMA TU EMPRESA AHORA 🚀
                 </button>
-
-                
-
             </div>
             
         </div>
     </section>
     
     <!-- Sobre Mí Section -->
-    <section class="w-full py-20 bg-white">
+    <section class="w-full py-20 bg-gray-900">
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <!-- Left: Logo Scaleally -->
                 <div class="flex justify-center">
-                    <div class="w-80 h-80 flex items-center justify-center">
+                    <div class="w-80 h-80 flex items-center justify-center bg-white rounded-2xl p-8">
                         <img src="/logo.png" alt="Scaleally Logo" class="w-full h-auto max-w-64 object-contain">
                     </div>
                 </div>
                 
-
-                
                 <!-- Right: Text Content -->
                 <div class="text-left">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-6">SOBRE MÍ</h2>
-                    <p class="text-lg text-gray-700 mb-4">
+                    <h2 class="text-3xl font-bold text-white mb-6">SOBRE MÍ</h2>
+                    <p class="text-lg text-gray-300 mb-4">
                         Soy <strong>Miguel Ángel Rodríguez</strong>, profesional en mercadeo con amplia experiencia en el sector de la salud y el bienestar.
                     </p>
-                    <p class="text-base text-gray-600 mb-4">
+                    <p class="text-base text-gray-400 mb-4">
                         Mi propósito es impulsar proyectos que brinden soluciones de servicios de crecimiento personal, autocuidado, estética, salud y bienestar en general creando estrategias de alto impacto que generan conexiones reales con las personas.
                     </p>
-                    <p class="text-base text-gray-600 mb-6">
+                    <p class="text-base text-gray-400 mb-6">
                         Combino visión estratégica, creatividad y experiencia para que marcas y negocios no solo crezcan, sino que se conviertan en referentes, inspirando a su comunidad y dejando huella de manera sostenible y consciente.
                     </p>
                     <div class="mt-8">
-                        <button id="sobre-mi-cta" class="bg-black hover:bg-gray-800 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
-                            Agenda tu Demo
+                        <button id="sobre-mi-cta" class="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
+                            🚀 Agenda tu Demo 🚀
                         </button>
                     </div>
                 </div>
@@ -175,12 +489,85 @@
         </div>
     </section>
     
+    <!-- Testimonios Section -->
+    <section class="w-full py-20 bg-gray-800">
+        <div class="max-w-6xl mx-auto px-4">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-4">
+                    Lo Que Dicen Nuestros <span class="text-yellow-400">Clientes</span>
+                </h2>
+                <p class="text-gray-300 text-xl">Resultados reales de empresarios como tú</p>
+            </div>
+            
+            <!-- Testimonios Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonio 1 -->
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center text-black font-bold text-lg mr-4">
+                            M
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold">María González</h4>
+                            <p class="text-gray-400 text-sm">CEO, Wellness Center</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed">
+                        "En solo 3 meses aumentamos nuestras ventas 250%. El método de Miguel es increíble. Pasamos de $50K a $175K mensuales."
+                    </p>
+                    <div class="flex text-yellow-400 mt-3">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                </div>
+                
+                <!-- Testimonio 2 -->
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center text-black font-bold text-lg mr-4">
+                            C
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold">Carlos Ruiz</h4>
+                            <p class="text-gray-400 text-sm">Fundador, FitLife</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed">
+                        "Nunca pensé que podríamos escalar tan rápido. De 2 empleados a 15 en 6 meses. Los resultados hablan por sí solos."
+                    </p>
+                    <div class="flex text-yellow-400 mt-3">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                </div>
+                
+                <!-- Testimonio 3 -->
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center text-black font-bold text-lg mr-4">
+                            A
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold">Ana Martínez</h4>
+                            <p class="text-gray-400 text-sm">Directora, Spa Premium</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed">
+                        "El ROI fue inmediato. En 60 días recuperamos la inversión y ahora generamos $300K mensuales. ¡Increíble!"
+                    </p>
+                    <div class="flex text-yellow-400 mt-3">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- Los 3 Pilares Section -->
-    <section class="w-full py-24 bg-white">
+    <section class="w-full py-24 bg-gray-800">
         <div class="max-w-7xl mx-auto px-4">
             <!-- Header Section -->
             <div class="text-center mb-20">
-                <h2 class="text-5xl md:text-6xl font-black text-gray-900 mb-8 leading-tight">
+                <h2 class="text-5xl md:text-6xl font-black text-white mb-8 leading-tight">
                     ¿CÓMO LO HACEMOS?
                 </h2>
             </div>
@@ -188,56 +575,56 @@
             <!-- 3 Tarjetas de Pilares -->
             <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
                 <!-- Tarjeta 1: Atención Orgánica -->
-                <div class="bg-white rounded-xl shadow-lg p-8 text-center">
+                <div class="bg-gray-900 rounded-xl shadow-lg p-8 text-center border border-gray-700">
                     <!-- Icono -->
-                    <div class="w-16 h-16 bg-blue-600 rounded-lg flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <div class="w-16 h-16 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-lg flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/>
                         </svg>
                     </div>
                     
                     <!-- Título -->
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">1. Atención orgánica</h3>
+                    <h3 class="text-xl font-bold text-white mb-4">1. Atención orgánica</h3>
                     
                     <!-- Descripción -->
-                    <p class="text-gray-600 leading-relaxed">
+                    <p class="text-gray-300 leading-relaxed">
                         Captar atención orgánica o con tráfico pagado, y mandar toda esta audiencia a un embudo de ventas apoyado en una oferta de contenido de alto valor.
                     </p>
                 </div>
                 
                 <!-- Tarjeta 2: Oferta Ganadora -->
-                <div class="bg-white rounded-xl shadow-lg p-8 text-center">
+                <div class="bg-gray-900 rounded-xl shadow-lg p-8 text-center border border-gray-700">
                     <!-- Icono -->
-                    <div class="w-16 h-16 bg-blue-600 rounded-lg flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <div class="w-16 h-16 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-lg flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                     </div>
                     
                     <!-- Título -->
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">2. Oferta Ganadora</h3>
+                    <h3 class="text-xl font-bold text-white mb-4">2. Oferta Ganadora</h3>
                     
                     <!-- Descripción -->
-                    <p class="text-gray-600 leading-relaxed">
+                    <p class="text-gray-300 leading-relaxed">
                         Liquidar esa atención y hacer que se convierta en venta apoyándonos en una oferta de adquisición ganadora.
                     </p>
                 </div>
                 
                 <!-- Tarjeta 3: Proceso Post-Venta -->
-                <div class="bg-white rounded-xl shadow-lg p-8 text-center">
+                <div class="bg-gray-900 rounded-xl shadow-lg p-8 text-center border border-gray-700">
                     <!-- Icono -->
-                    <div class="w-16 h-16 bg-blue-600 rounded-lg flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <div class="w-16 h-16 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-lg flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
                         </svg>
                     </div>
                     
                     <!-- Título -->
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">3. Proceso Post-Venta</h3>
+                    <h3 class="text-xl font-bold text-white mb-4">3. Proceso Post-Venta</h3>
                     
                     <!-- Descripción -->
-                    <p class="text-gray-600 leading-relaxed">
+                    <p class="text-gray-300 leading-relaxed">
                         Desarrollar un proceso post-venta para extender el valor de por vida de cada cliente utilizando marketing de email.
                     </p>
                 </div>
@@ -246,9 +633,9 @@
     </section>
     
     <!-- Calendly Section - SIN CONTENEDOR -->
-    <section id="calendly-section" class="w-full py-20 bg-gray-50">
-        <h3 class="text-2xl font-bold mb-6 text-center text-gray-800">📅 Agenda tu Consulta Gratuita de 15 Minutos</h3>
-        <p class="text-gray-600 mb-8 text-center">Descubre exactamente cómo aplicar nuestro método a tu empresa</p>
+    <section id="calendly-section" class="w-full py-20 bg-gray-700">
+        <h3 class="text-2xl font-bold mb-6 text-center text-white">📅 Agenda tu Consulta Gratuita de 15 Minutos</h3>
+        <p class="text-gray-300 mb-8 text-center">Descubre exactamente cómo aplicar nuestro método a tu empresa</p>
         
         <!-- Calendly completamente libre -->
         <div class="calendly-inline-widget shadow-2xl shadow-gray-400/30 rounded-2xl overflow-hidden" 
@@ -258,37 +645,37 @@
     </section>
     
     <!-- Partners Section -->
-    <section class="w-full py-16 bg-white">
+    <section class="w-full py-16 bg-gray-900">
         <div class="max-w-6xl mx-auto px-4">
             <!-- Header -->
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-blue-900 uppercase tracking-wide">Partners</h2>
+                <h2 class="text-3xl font-bold text-yellow-500 uppercase tracking-wide">Partners</h2>
             </div>
             
             <!-- Partners Logos -->
             <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 lg:gap-16">
                 <!-- Klaviyo -->
-                <div class="opacity-70 hover:opacity-100 transition-opacity duration-300">
+                <div class="opacity-70 hover:opacity-100 transition-opacity duration-300 bg-white p-4 rounded-lg">
                     <img src="/logoklaviyo.png" alt="Klaviyo" class="h-12 md:h-16 object-contain">
                 </div>
                 
                 <!-- Slack -->
-                <div class="opacity-70 hover:opacity-100 transition-opacity duration-300">
+                <div class="opacity-70 hover:opacity-100 transition-opacity duration-300 bg-white p-4 rounded-lg">
                     <img src="/logoslack.png" alt="Slack" class="h-12 md:h-16 object-contain">
                 </div>
                 
                 <!-- N8N -->
-                <div class="opacity-70 hover:opacity-100 transition-opacity duration-300">
+                <div class="opacity-70 hover:opacity-100 transition-opacity duration-300 bg-white p-4 rounded-lg">
                     <img src="/logon8n.png" alt="N8N" class="h-12 md:h-16 object-contain">
                 </div>
                 
                 <!-- Meta -->
-                <div class="opacity-70 hover:opacity-100 transition-opacity duration-300">
+                <div class="opacity-70 hover:opacity-100 transition-opacity duration-300 bg-white p-4 rounded-lg">
                     <img src="/logometa.png" alt="Meta" class="h-12 md:h-16 object-contain">
                 </div>
                 
                 <!-- Google Ads -->
-                <div class="opacity-70 hover:opacity-100 transition-opacity duration-300">
+                <div class="opacity-70 hover:opacity-100 transition-opacity duration-300 bg-white p-4 rounded-lg">
                     <img src="/logogoogle.png" alt="Google Ads" class="h-12 md:h-16 object-contain">
                 </div>
             </div>
@@ -296,14 +683,96 @@
     </section>
     
     <!-- Footer -->
-    <footer class="bg-gray-100 text-gray-600 py-12 text-center">
+    <footer class="bg-gray-800 text-gray-300 py-12 text-center">
         <div class="max-w-2xl mx-auto">
-            <div class="text-3xl font-black text-blue-600 mb-4">Scaleally</div>
-            <p class="text-gray-700">
+            <div class="text-3xl font-black text-yellow-500 mb-4">Scaleally</div>
+            <p class="text-gray-400">
                 Escalamos empresas de salud y bienestar.
             </p>
         </div>
     </footer>
+    
+    <!-- HLS.js Script -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+        let hls = null;
+        let videoLoaded = false;
+        
+        function playVideo() {
+            const video = document.getElementById('main-video');
+            const poster = document.getElementById('video-poster');
+            
+            // Prevenir múltiples clicks
+            if (videoLoaded) return;
+            videoLoaded = true;
+            
+            // Mostrar el video
+            video.style.display = 'block';
+            poster.classList.add('hidden');
+            
+            // Inicializar HLS
+            if (Hls.isSupported()) {
+                hls = new Hls({
+                    debug: false,
+                    enableWorker: true,
+                    lowLatencyMode: true
+                });
+                
+                hls.loadSource('https://vz-cddd003b-54d.b-cdn.net/945e327c-2058-48e5-8ec2-138c14c13d55/playlist.m3u8');
+                hls.attachMedia(video);
+                
+                hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                    console.log('HLS manifest parsed, video ready to play');
+                    video.play().catch(e => {
+                        console.log('Autoplay prevented:', e);
+                        // Si el autoplay falla, mostrar controles
+                        video.controls = true;
+                    });
+                });
+                
+                hls.on(Hls.Events.ERROR, function(event, data) {
+                    console.error('HLS Error:', data);
+                    if (data.fatal) {
+                        switch(data.type) {
+                            case Hls.ErrorTypes.NETWORK_ERROR:
+                                console.log('Fatal network error, trying to recover...');
+                                hls.startLoad();
+                                break;
+                            case Hls.ErrorTypes.MEDIA_ERROR:
+                                console.log('Fatal media error, trying to recover...');
+                                hls.recoverMediaError();
+                                break;
+                            default:
+                                console.log('Fatal error, destroying HLS...');
+                                hls.destroy();
+                                break;
+                        }
+                    }
+                });
+                
+            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                // Safari nativo
+                video.src = 'https://vz-cddd003b-54d.b-cdn.net/945e327c-2058-48e5-8ec2-138c14c13d55/playlist.m3u8';
+                video.play().catch(e => {
+                    console.log('Autoplay prevented:', e);
+                    video.controls = true;
+                });
+            } else {
+                console.error('HLS not supported');
+                alert('Tu navegador no soporta este tipo de video. Por favor usa Chrome, Firefox o Safari.');
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Landing2 page loaded');
+            
+            // Agregar evento de click a toda la superficie del poster
+            const poster = document.getElementById('video-poster');
+            if (poster) {
+                poster.addEventListener('click', playVideo);
+            }
+        });
+    </script>
     
 </body>
 </html>

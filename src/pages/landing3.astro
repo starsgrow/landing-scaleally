@@ -29,10 +29,35 @@
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            background: #000000;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #0a0a0a 100%);
             background-attachment: fixed;
             position: relative;
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Partículas decorativas flotantes DORADAS */
+        body::after {
+            content: '';
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, rgba(255, 215, 0, 0.2), transparent),
+                radial-gradient(2px 2px at 60% 70%, rgba(253, 185, 49, 0.15), transparent),
+                radial-gradient(3px 3px at 50% 50%, rgba(197, 165, 114, 0.2), transparent),
+                radial-gradient(2px 2px at 80% 10%, rgba(255, 215, 0, 0.15), transparent);
+            background-size: 200% 200%;
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        @keyframes float {
+            0%, 100% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
         }
 
         /* Video en pantalla completa para móviles */
@@ -122,7 +147,7 @@
             overflow: hidden;
         }
 
-        /* Fondo de montañas */
+        /* Fondo de montañas NEGRAS CON DETALLES DORADOS */
         body::before {
             content: '';
             position: fixed;
@@ -130,10 +155,11 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect width="1200" height="800" fill="%23000000"/><path d="M0,500 Q150,350 300,400 T600,450 T900,420 T1200,480 L1200,800 L0,800 Z" fill="%231a1a1a" opacity="0.9"/><path d="M0,580 Q200,420 400,480 T800,520 T1200,500 L1200,800 L0,800 Z" fill="%23262626" opacity="0.7"/><path d="M0,650 Q300,550 600,600 T1200,620 L1200,800 L0,800 Z" fill="%23333333" opacity="0.5"/></svg>');
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23FFD700;stop-opacity:0.3" /><stop offset="100%" style="stop-color:%23B8860B;stop-opacity:0.2" /></linearGradient><linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:%23C5A572;stop-opacity:0.25" /><stop offset="100%" style="stop-color:%23333333;stop-opacity:0.4" /></linearGradient><linearGradient id="grad3" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:%231a1a1a;stop-opacity:0.5" /><stop offset="100%" style="stop-color:%23FDB931;stop-opacity:0.15" /></linearGradient></defs><path d="M0,500 Q150,350 300,400 T600,450 T900,420 T1200,480 L1200,800 L0,800 Z" fill="url(%23grad1)"/><path d="M0,580 Q200,420 400,480 T800,520 T1200,500 L1200,800 L0,800 Z" fill="url(%23grad2)"/><path d="M0,650 Q300,550 600,600 T1200,620 L1200,800 L0,800 Z" fill="url(%23grad3)"/></svg>');
             background-size: cover;
             background-position: center bottom;
-            z-index: -2;
+            z-index: 0;
+            opacity: 0.7;
         }
 
         /* Tira superior */
@@ -190,41 +216,142 @@
             position: relative;
             z-index: 10;
         }
+        
+        /* Animaciones de entrada */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        /* Título con gradiente DORADO y glow */
+        .hero-title {
+            background: linear-gradient(135deg, #FFD700 0%, #FDB931 50%, #C5A572 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.6));
+        }
+        
+        .hero-subtitle {
+            animation: fadeInUp 1.2s ease-out;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
 
-        /* Keyframes para la animación de pulso del botón */
+        /* Keyframes para la animación de pulso del botón DORADO */
         @keyframes pulse {
             0%, 100% {
-                box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.7);
+                box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.9),
+                            0 0 30px rgba(255, 215, 0, 0.5),
+                            inset 0 0 20px rgba(255, 215, 0, 0.1);
+                transform: scale(1);
             }
-            70% {
-                box-shadow: 0 0 0 15px rgba(147, 51, 234, 0);
+            50% {
+                box-shadow: 0 0 0 30px rgba(255, 215, 0, 0),
+                            0 0 60px rgba(255, 215, 0, 0.7),
+                            inset 0 0 20px rgba(255, 215, 0, 0.2);
+                transform: scale(1.05);
+            }
+        }
+        
+        @keyframes glow {
+            0%, 100% {
+                filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+            }
+            50% {
+                filter: drop-shadow(0 0 40px rgba(253, 185, 49, 0.8));
             }
         }
 
         /* Clase para aplicar la animación de pulso */
         .cta-pulse {
-            animation: pulse 2s infinite;
+            animation: pulse 2s infinite, glow 3s infinite;
         }
 
-        /* Estilo del botón principal */
+        /* Estilo del botón principal DORADO/NEGRO */
         .main-cta-button {
-            background: linear-gradient(135deg, #9333ea 0%, #7c3aed 100%);
-            color: white;
-            font-weight: bold;
-            font-size: 1.1rem;
-            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            background-size: 200% 200%;
+            color: #FFD700;
+            font-weight: 900;
+            font-size: 1.3rem;
+            padding: 1.5rem 3rem;
             border-radius: 50px;
-            border: none;
+            border: 3px solid #FFD700;
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3);
+            letter-spacing: 2px;
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.4),
+                        0 0 30px rgba(255, 215, 0, 0.3),
+                        inset 0 0 20px rgba(255, 215, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: scaleIn 1.5s ease-out;
+        }
+        
+        .main-cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .main-cta-button:hover::before {
+            left: 100%;
         }
 
         .main-cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.4);
+            transform: translateY(-5px) scale(1.05);
+            background: linear-gradient(135deg, #FFD700 0%, #FDB931 50%, #FFD700 100%);
+            color: #000000;
+            box-shadow: 0 15px 50px rgba(255, 215, 0, 0.7),
+                        0 0 50px rgba(255, 215, 0, 0.5),
+                        inset 0 0 30px rgba(0, 0, 0, 0.2);
+            border-color: #FFD700;
         }
 
         /* Calendly responsive */
@@ -254,6 +381,61 @@
             }
         }
         
+        /* Tarjetas de pilares con efecto 3D DORADO/NEGRO */
+        .pilar-card {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .pilar-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #FFD700, #FDB931, #C5A572);
+            border-radius: 0.75rem;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .pilar-card:hover::before {
+            opacity: 1;
+        }
+        
+        .pilar-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4),
+                        0 0 40px rgba(255, 215, 0, 0.3);
+        }
+        
+        .pilar-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+        
+        .pilar-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+        
+        .pilar-card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+        
+        .pilar-icon {
+            background: linear-gradient(135deg, #FFD700, #FDB931);
+            transition: all 0.3s ease;
+        }
+        
+        .pilar-card:hover .pilar-icon {
+            transform: scale(1.2) rotate(10deg);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+        }
 
         /* Overlay inicial de activación de sonido */
         .sound-activation-overlay {
@@ -297,36 +479,67 @@
         }
 
         .sound-activation-button {
-            background: linear-gradient(135deg, #9333ea 0%, #7c3aed 100%);
-            color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
-            padding: 1.5rem 3rem;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            background-size: 200% 200%;
+            color: #FFD700;
+            font-weight: 900;
+            font-size: 1.4rem;
+            padding: 2rem 4rem;
             border-radius: 50px;
-            border: none;
+            border: 3px solid #FFD700;
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 8px 25px rgba(147, 51, 234, 0.4);
-            margin-top: 1rem;
+            letter-spacing: 2px;
+            box-shadow: 0 15px 50px rgba(255, 215, 0, 0.5),
+                        0 0 60px rgba(255, 215, 0, 0.4),
+                        inset 0 0 30px rgba(255, 215, 0, 0.1);
+            margin-top: 2rem;
+            animation: pulse 2s infinite, glow 3s infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sound-activation-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .sound-activation-button:hover::before {
+            left: 100%;
         }
 
         .sound-activation-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(147, 51, 234, 0.6);
+            transform: translateY(-5px) scale(1.1);
+            background: linear-gradient(135deg, #FFD700 0%, #FDB931 50%, #FFD700 100%);
+            color: #000000;
+            box-shadow: 0 20px 70px rgba(255, 215, 0, 0.8),
+                        0 0 80px rgba(255, 215, 0, 0.6),
+                        inset 0 0 40px rgba(0, 0, 0, 0.2);
+            border-color: #FFD700;
         }
 
         .sound-activation-text {
-            color: white;
-            font-size: 1.5rem;
+            background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2rem;
             margin-bottom: 0.5rem;
             font-weight: bold;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
         }
 
         .sound-activation-subtext {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
@@ -375,15 +588,15 @@
         <div class="max-w-6xl mx-auto text-center mb-12">
             
             <!-- Main Headline -->
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-8 text-white" style="font-family: 'Oswald', sans-serif; letter-spacing: -1px;">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-8 hero-title" style="font-family: 'Oswald', sans-serif; letter-spacing: -1px;">
                 PROTOCOLO DE DOMINIO DE MERCADO<br>
-                <span class="text-3xl md:text-4xl lg:text-5xl">Método probado para escalar marcas de infoproductores y desarrollo personal en este 2025-2026</span>
+                <span class="text-3xl md:text-4xl lg:text-5xl hero-subtitle" style="background: linear-gradient(135deg, #ffffff 0%, #FFD700 50%, #C5A572 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Método probado para escalar marcas de infoproductores y desarrollo personal en este 2025-2026</span>
             </h1>
         </div>
         
         <!-- Video Player Container (Compact Size) -->
-        <div id="video-container" class="w-full max-w-4xl mx-auto mb-12">
-            <div class="bg-white rounded-xl p-4 shadow-2xl">
+        <div id="video-container" class="w-full max-w-4xl mx-auto mb-12" style="animation: scaleIn 1.2s ease-out;">
+            <div class="bg-white rounded-xl p-4 shadow-2xl" style="box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3), 0 0 40px rgba(255, 215, 0, 0.2);">
                 <div class="relative">
                     <!-- Video de Bunny.net -->
                     <div class="relative w-full rounded-lg overflow-hidden bg-black" style="height: 600px;">
@@ -406,7 +619,7 @@
             <!-- Primary CTA Button -->
             <div class="mb-8">
                 <button id="primary-cta" class="main-cta-button cta-pulse">
-                    AGENDA TU LLAMADA
+                    🔥 AGENDA TU LLAMADA GRATIS 🔥
                 </button>
             </div>
             
@@ -417,12 +630,12 @@
     <section class="w-full py-16 bg-black bg-opacity-30">
         <div class="max-w-6xl mx-auto px-4">
             <!-- Header -->
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-white uppercase tracking-wide">Partners</h2>
+            <div class="text-center mb-12" style="animation: fadeInUp 0.8s ease-out;">
+                <h2 class="text-3xl font-bold uppercase tracking-wide" style="background: linear-gradient(135deg, #FFD700 0%, #FDB931 50%, #C5A572 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.4));">Partners</h2>
             </div>
             
             <!-- Partners Logos con banda blanca -->
-            <div class="bg-white rounded-2xl py-8 px-6 shadow-lg">
+            <div class="bg-white rounded-2xl py-8 px-6" style="animation: scaleIn 1s ease-out; box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3), 0 0 40px rgba(255, 215, 0, 0.2);">
                 <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 lg:gap-16">
                 <!-- Klaviyo -->
                 <div class="opacity-70 hover:opacity-100 transition-opacity duration-300">
@@ -458,15 +671,15 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <!-- Left: Logo Scaleally con fondo blanco -->
-                <div class="flex justify-center">
-                    <div class="w-80 h-80 flex items-center justify-center bg-white rounded-2xl shadow-lg p-8">
+                <div class="flex justify-center" style="animation: fadeInLeft 1s ease-out;">
+                    <div class="w-80 h-80 flex items-center justify-center bg-white rounded-2xl p-8" style="box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3), 0 0 40px rgba(255, 215, 0, 0.2);">
                         <img src="/logo2.png" alt="Scaleally Logo" class="w-full h-auto max-w-64 object-contain">
                     </div>
                 </div>
                 
                 <!-- Right: Text Content -->
-                <div class="text-left">
-                    <h2 class="text-4xl font-bold text-white mb-6">SOBRE MÍ</h2>
+                <div class="text-left" style="animation: fadeInRight 1s ease-out;">
+                    <h2 class="text-4xl font-bold mb-6" style="background: linear-gradient(135deg, #FFD700 0%, #FDB931 50%, #C5A572 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.4));">SOBRE MÍ</h2>
                     <p class="text-base text-gray-300 mb-4 leading-relaxed">
                         Hola!, mi nombre es Miguel Rodriguez, Profesional en marketing y como tu growth partner quiero decirte que En un mercado lleno de ruido, las marcas que perduran son las que crean un impacto real, las que conectan y las que crecen.
                     </p>
@@ -477,8 +690,8 @@
                         Hagamos que tu negocio crezca de forma sostenible y deje una huella de la que te sientas orgulloso.
                     </p>
                     <div class="mt-8">
-                        <button id="sobre-mi-cta" class="main-cta-button">
-                            Agenda tu Demo
+                        <button id="sobre-mi-cta" class="main-cta-button cta-pulse">
+                            🚀 AGENDA TU DEMO GRATIS 🚀
                         </button>
                     </div>
                 </div>
@@ -490,8 +703,8 @@
     <section class="w-full py-24 bg-black bg-opacity-40">
         <div class="max-w-7xl mx-auto px-4">
             <!-- Header Section -->
-            <div class="text-center mb-20">
-                <h2 class="text-5xl md:text-6xl font-black text-white mb-8 leading-tight">
+            <div class="text-center mb-20" style="animation: fadeInUp 0.8s ease-out;">
+                <h2 class="text-5xl md:text-6xl font-black mb-8 leading-tight" style="background: linear-gradient(135deg, #FFD700 0%, #FDB931 50%, #C5A572 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.5));">
                     ¿CÓMO LO HACEMOS?
                 </h2>
             </div>
@@ -499,16 +712,16 @@
             <!-- 3 Tarjetas de Pilares -->
             <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
                 <!-- Tarjeta 1: Atención Orgánica -->
-                <div class="bg-black bg-opacity-50 rounded-xl shadow-lg p-8 text-center border border-gray-600">
+                <div class="pilar-card rounded-xl shadow-lg p-8 text-center">
                     <!-- Icono -->
-                    <div class="w-16 h-16 bg-purple-500 rounded-lg flex items-center justify-center mx-auto mb-6">
+                    <div class="pilar-icon w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6">
                         <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/>
                         </svg>
                     </div>
                     
                     <!-- Título -->
-                    <h3 class="text-xl font-bold text-white mb-4">1. Atención orgánica</h3>
+                    <h3 class="text-xl font-bold mb-4" style="background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">1. Atención orgánica</h3>
                     
                     <!-- Descripción -->
                     <p class="text-gray-300 leading-relaxed">
@@ -517,16 +730,16 @@
                 </div>
                 
                 <!-- Tarjeta 2: Oferta Ganadora -->
-                <div class="bg-black bg-opacity-50 rounded-xl shadow-lg p-8 text-center border border-gray-600">
+                <div class="pilar-card rounded-xl shadow-lg p-8 text-center">
                     <!-- Icono -->
-                    <div class="w-16 h-16 bg-purple-500 rounded-lg flex items-center justify-center mx-auto mb-6">
+                    <div class="pilar-icon w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6">
                         <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                     </div>
                     
                     <!-- Título -->
-                    <h3 class="text-xl font-bold text-white mb-4">2. Oferta Ganadora</h3>
+                    <h3 class="text-xl font-bold mb-4" style="background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">2. Oferta Ganadora</h3>
                     
                     <!-- Descripción -->
                     <p class="text-gray-300 leading-relaxed">
@@ -535,9 +748,9 @@
                 </div>
                 
                 <!-- Tarjeta 3: Proceso Post-Venta -->
-                <div class="bg-black bg-opacity-50 rounded-xl shadow-lg p-8 text-center border border-gray-600">
+                <div class="pilar-card rounded-xl shadow-lg p-8 text-center">
                     <!-- Icono -->
-                    <div class="w-16 h-16 bg-purple-500 rounded-lg flex items-center justify-center mx-auto mb-6">
+                    <div class="pilar-icon w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6">
                         <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
@@ -545,7 +758,7 @@
                     </div>
                     
                     <!-- Título -->
-                    <h3 class="text-xl font-bold text-white mb-4">3. Proceso Post-Venta</h3>
+                    <h3 class="text-xl font-bold mb-4" style="background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">3. Proceso Post-Venta</h3>
                     
                     <!-- Descripción -->
                     <p class="text-gray-300 leading-relaxed">
@@ -558,9 +771,9 @@
 
     <!-- Calendly Section -->
     <section id="calendly-section" class="w-full py-20 bg-black bg-opacity-50">
-        <div class="max-w-6xl mx-auto px-4">
-            <h3 class="text-3xl font-bold mb-6 text-center text-white">📅 Agenda tu Consulta Gratuita de 15 Minutos</h3>
-            <p class="text-gray-300 mb-8 text-center text-lg">Descubre exactamente cómo aplicar nuestro método a tu empresa</p>
+        <div class="max-w-6xl mx-auto px-4" style="animation: fadeInUp 0.8s ease-out;">
+            <h3 class="text-3xl font-bold mb-6 text-center" style="background: linear-gradient(135deg, #FFD700 0%, #FDB931 50%, #C5A572 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.4));">📅 Agenda tu Consulta Gratuita de 15 Minutos</h3>
+            <p class="text-gray-300 mb-8 text-center text-lg" style="text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);">Descubre exactamente cómo aplicar nuestro método a tu empresa</p>
             
             <!-- Calendly Widget -->
             <div class="calendly-inline-widget rounded-2xl overflow-hidden" 
@@ -574,8 +787,8 @@
     <!-- Footer -->
     <footer class="bg-black text-gray-400 py-12 text-center">
         <div class="max-w-2xl mx-auto">
-            <div class="text-3xl font-black text-cyan-400 mb-4">Scaleally</div>
-            <p class="text-gray-500">
+            <div class="text-3xl font-black mb-4" style="background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));">Scaleally</div>
+            <p class="text-gray-400">
                 Escalamos empresas de salud y bienestar.
             </p>
         </div>
@@ -758,3 +971,4 @@
     
 </body>
 </html>
+
