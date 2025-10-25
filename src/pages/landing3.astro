@@ -547,11 +547,11 @@
     <!-- Overlay de Activación de Sonido -->
     <div id="sound-activation-overlay" class="sound-activation-overlay">
         <div class="sound-activation-content">
-            <div class="sound-activation-icon">🔊</div>
-            <div class="sound-activation-text">Bienvenido</div>
-            <div class="sound-activation-subtext">Toca para activar el sonido y comenzar</div>
+            <div class="sound-activation-icon">📱</div>
+            <div class="sound-activation-text">¡Mejor Experiencia!</div>
+            <div class="sound-activation-subtext">Para una experiencia óptima, pon el video en pantalla completa y gira tu celular</div>
             <button id="activate-sound-btn" class="sound-activation-button">
-                Activar Sonido y Reproducir
+                Ver Video en Pantalla Completa
             </button>
         </div>
     </div>
@@ -869,6 +869,17 @@
                 overlay.classList.add('active');
                 document.body.classList.add('video-playing');
                 
+                // Solicitar pantalla completa
+                if (overlay.requestFullscreen) {
+                    overlay.requestFullscreen().catch(err => {
+                        console.log('Error al solicitar pantalla completa:', err);
+                    });
+                } else if (overlay.webkitRequestFullscreen) {
+                    overlay.webkitRequestFullscreen();
+                } else if (overlay.msRequestFullscreen) {
+                    overlay.msRequestFullscreen();
+                }
+                
                 // Inicializar HLS para el video móvil CON SONIDO
                 if (mobileVideo && !mobileVideo.src) {
                     initHLS(mobileVideo, true, true); // true para sonido, true para móvil
@@ -884,6 +895,17 @@
             if (overlay) {
                 overlay.classList.remove('active');
                 document.body.classList.remove('video-playing');
+                
+                // Salir de pantalla completa
+                if (document.exitFullscreen) {
+                    document.exitFullscreen().catch(err => {
+                        console.log('Error al salir de pantalla completa:', err);
+                    });
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
                 
                 // Pausar el video móvil
                 if (mobileVideo) {
