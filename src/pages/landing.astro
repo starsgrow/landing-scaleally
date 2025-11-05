@@ -13,10 +13,8 @@
     <!-- Calendly -->
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
     
-    <!-- Google Fonts - Premium Typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Import global styles -->
     <link rel="stylesheet" href="../styles/global.css">
@@ -25,12 +23,53 @@
     <script src="../scripts/landing.js"></script>
     
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #6366f1;
+            --accent-hover: #4f46e5;
+            --accent-light: #818cf8;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --bg: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-dark: #0f172a;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --text-white: #ffffff;
+            --border: #e2e8f0;
+            --border-light: #f1f5f9;
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            --gradient-secondary: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            --gradient-accent: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
+            --gradient-button: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            background: #000000;
-            background-attachment: fixed;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-weight: 400;
+            margin: 0;
+            padding: 0;
             position: relative;
             min-height: 100vh;
         }
@@ -122,71 +161,130 @@
             overflow: hidden;
         }
 
-        /* Fondo de montañas */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect width="1200" height="800" fill="%23000000"/><path d="M0,500 Q150,350 300,400 T600,450 T900,420 T1200,480 L1200,800 L0,800 Z" fill="%231a1a1a" opacity="0.9"/><path d="M0,580 Q200,420 400,480 T800,520 T1200,500 L1200,800 L0,800 Z" fill="%23262626" opacity="0.7"/><path d="M0,650 Q300,550 600,600 T1200,620 L1200,800 L0,800 Z" fill="%23333333" opacity="0.5"/></svg>');
-            background-size: cover;
-            background-position: center bottom;
-            z-index: -2;
-        }
-
-        /* Tira superior */
-        .top-strip {
-            background-color: rgba(26, 26, 26, 0.8);
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 2rem;
+        /* Header */
+        .header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
             z-index: 1000;
-            border-bottom: 2px solid #ffd700;
-            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
 
-        .logo-text {
-            color: #ffd700;
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.5rem;
-            font-weight: 400;
-            letter-spacing: 0px;
-            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 215, 0, 0.3);
-            transform: rotate(-2deg);
-            display: inline-block;
-            white-space: nowrap;
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-lg);
         }
 
-        @media (max-width: 768px) {
-            .logo-text {
-                font-size: 1.5rem;
-            }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
         }
 
-        @media (max-width: 480px) {
-            .logo-text {
-                font-size: 1.3rem;
-            }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 800;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
         }
 
-        .strip-text {
-            color: #ffd700;
-            font-size: 0.9rem;
-            font-weight: bold;
-            letter-spacing: 1px;
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        .cta-button {
+            background: var(--gradient-primary);
+            color: var(--text-white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
         }
 
         /* Contenido principal */
         .main-content {
-            margin-top: 60px;
+            margin-top: 80px;
             position: relative;
             z-index: 10;
         }
@@ -194,10 +292,10 @@
         /* Keyframes para la animación de pulso del botón */
         @keyframes pulse {
             0%, 100% {
-                box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.7);
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
             }
             70% {
-                box-shadow: 0 0 0 15px rgba(147, 51, 234, 0);
+                box-shadow: 0 0 0 15px rgba(99, 102, 241, 0);
             }
         }
 
@@ -208,23 +306,39 @@
 
         /* Estilo del botón principal */
         .main-cta-button {
-            background: linear-gradient(135deg, #9333ea 0%, #7c3aed 100%);
-            color: white;
-            font-weight: bold;
+            background: var(--gradient-primary);
+            color: var(--text-white);
+            font-weight: 600;
             font-size: 1.1rem;
             padding: 1rem 2rem;
-            border-radius: 50px;
+            border-radius: 12px;
             border: none;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3);
+            letter-spacing: 0.5px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
         }
 
         .main-cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.4);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .main-cta-button:hover::before {
+            left: 100%;
         }
 
         /* Calendly responsive */
@@ -237,9 +351,17 @@
             overflow-x: hidden;
         }
 
+        /* Calendly horizontal en PC */
+        @media (min-width: 769px) {
+            .calendly-inline-widget {
+                height: 630px !important;
+                min-width: 100% !important;
+            }
+        }
+
         @media (max-width: 768px) {
             .calendly-inline-widget {
-                height: 600px !important;
+                height: 1000px !important;
                 min-width: 100% !important;
             }
             
@@ -255,94 +377,379 @@
         }
         
 
-        /* Overlay inicial de activación de sonido */
-        .sound-activation-overlay {
-            position: fixed;
+        /* Hero Section */
+        .hero {
+            min-height: auto;
+            padding: 1rem 0;
+            background: var(--gradient-hero);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -10%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--text-white);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content h1 span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .hero-content h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
             width: 100%;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.95);
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .hero-content p {
+            font-size: 1.35rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 0;
+            margin-top: 1.5rem;
+            line-height: 1.6;
+            font-weight: 500;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 1rem;
+            background: var(--gradient-secondary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--bg);
+            padding: 2.5rem;
+            border-radius: 24px;
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* Partners Section */
+        .partners-section {
+            padding: 6rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .partners-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .partners-card {
+            background: var(--bg);
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-light);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 6rem 0;
+            background: var(--bg);
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        /* Pillars Section */
+        .pillars-section {
+            padding: 6rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .pillars-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .pillar-card {
+            background: var(--bg);
+            padding: 3rem;
+            border-radius: 24px;
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pillar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .pillar-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .pillar-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 10001;
-            backdrop-filter: blur(10px);
+            margin: 0 auto 2rem;
+            box-shadow: var(--shadow-lg);
+            transition: transform 0.3s ease;
         }
 
-        .sound-activation-overlay.hidden {
-            display: none;
+        .pillar-card:hover .pillar-icon {
+            transform: scale(1.1) rotate(5deg);
         }
 
-        .sound-activation-content {
+        .pillar-icon svg {
+            width: 40px;
+            height: 40px;
+            color: var(--text-white);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 0;
+            background: var(--gradient-secondary);
+            color: var(--text-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
             text-align: center;
-            padding: 2rem;
+            position: relative;
+            z-index: 2;
         }
 
-        .sound-activation-icon {
-            font-size: 80px;
+        .cta-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-description {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-dark);
+            color: var(--text-white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .footer-section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
             margin-bottom: 1rem;
-            animation: pulse-icon 2s infinite;
+            color: var(--accent);
         }
 
-        @keyframes pulse-icon {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(1.1);
-                opacity: 0.8;
-            }
-        }
-
-        .sound-activation-button {
-            background: linear-gradient(135deg, #9333ea 0%, #7c3aed 100%);
-            color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
-            padding: 1.5rem 3rem;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 8px 25px rgba(147, 51, 234, 0.4);
-            margin-top: 1rem;
-        }
-
-        .sound-activation-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(147, 51, 234, 0.6);
-        }
-
-        .sound-activation-text {
-            color: white;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-
-        .sound-activation-subtext {
+        .footer-section p,
+        .footer-section a {
             color: rgba(255, 255, 255, 0.7);
-            font-size: 1rem;
+            text-decoration: none;
+            line-height: 1.6;
+            transition: color 0.3s ease;
         }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 3rem;
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 1.75rem !important;
+            }
+
+            .hero-content p {
+                font-size: 1.15rem !important;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .hero-content p {
+                font-size: 1rem !important;
+            }
+        }
+
     </style>
 </head>
 <body class="text-white antialiased">
-    <!-- Overlay de Activación de Sonido -->
-    <div id="sound-activation-overlay" class="sound-activation-overlay">
-        <div class="sound-activation-content">
-            <div class="sound-activation-icon">🔊</div>
-            <div class="sound-activation-text">Bienvenido</div>
-            <div class="sound-activation-subtext">Toca para activar el sonido y comenzar</div>
-            <button id="activate-sound-btn" class="sound-activation-button">
-                Activar Sonido y Reproducir
-            </button>
-        </div>
-    </div>
-
     <!-- Video Overlay para Móviles -->
     <div id="mobile-video-overlay" class="mobile-video-overlay">
         <div class="mobile-video-container">
@@ -361,92 +768,90 @@
         </div>
     </div>
 
-    <!-- Tira Superior -->
-    <div class="top-strip">
-        <div class="logo-text">Miguel Rodriguez</div>
-        <div class="strip-text">GROWTH PARTNER</div>
-    </div>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav-container">
+            <a href="/" class="logo">
+                <img src="/logo.png" alt="Scaleally Logo" />
+                Scaleally
+            </a>
+            <ul class="nav-menu" style="display: none;">
+            </ul>
+            <a href="#calendly-section" class="cta-button">Agendar Consulta</a>
+        </nav>
+    </header>
 
     <!-- Contenido Principal -->
     <div class="main-content">
         <!-- VSL Hero Section -->
-        <section class="min-h-screen flex flex-col items-center justify-center px-4 py-20 relative z-10">
-        <!-- Text Content Container (Wider) -->
-        <div class="max-w-6xl mx-auto text-center mb-12">
-            
+        <section class="hero" style="padding-top: 80px; padding-bottom: 1rem;">
+            <div class="hero-container" style="grid-template-columns: 1fr;">
+                <!-- Text Content Container -->
+                <div class="hero-content" style="text-align: center; max-width: 900px; margin: 0 auto;">
             <!-- Main Headline -->
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-8 text-white" style="font-family: 'Oswald', sans-serif; letter-spacing: -1px;">
-                PROTOCOLO DE DOMINIO DE MERCADO<br>
-                <span class="text-3xl md:text-4xl lg:text-5xl">Método probado para escalar marcas de infoproductores y desarrollo personal en este 2025-2026</span>
+                    <h1 style="font-size: 2.5rem; font-weight: 900; color: var(--text-white); margin-bottom: 0; line-height: 1.2; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">
+                        <span style="background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                            Método probado para escalar marcas de salud y bienestar en este 2025-2026
+                        </span>
             </h1>
+                    <p style="font-size: 1.35rem; color: rgba(255, 255, 255, 0.95); margin-top: 1.5rem; margin-bottom: 0; line-height: 1.6; font-weight: 500; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">
+                        Descubre la estrategia que ha transformado cientos de empresas y multiplicado sus resultados exponencialmente
+                    </p>
         </div>
+            </div>
+        </section>
         
-        <!-- Video Player Container (Compact Size) -->
-        <div id="video-container" class="w-full max-w-4xl mx-auto mb-12">
-            <div class="bg-white rounded-xl p-4 shadow-2xl">
-                <div class="relative">
-                    <!-- Video de Bunny.net -->
-                    <div class="relative w-full rounded-lg overflow-hidden bg-black" style="height: 600px;">
+        <section style="background: var(--bg); padding: 4rem 0;">
+            <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+                <!-- Video Player Container -->
+                <div id="video-container" style="max-width: 900px; margin: 0 auto 3rem;">
+                    <div class="card" style="padding: 1.5rem;">
+                        <div style="position: relative;">
+                            <div style="position: relative; width: 100%; border-radius: 12px; overflow: hidden; background: #000; height: 600px;">
                         <video 
                             id="desktop-video" 
                             controls
                             loop
                             playsinline
-                            class="video-player"
                             style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; object-fit: contain;">
                         </video>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <!-- Content Container (Wider) -->
-        <div class="max-w-6xl mx-auto text-center">
             
             <!-- Primary CTA Button -->
-            <div class="mb-8">
+                <div style="text-align: center; margin-bottom: 4rem;">
                 <button id="primary-cta" class="main-cta-button cta-pulse">
-                    AGENDA TU LLAMADA
+                        Agenda tu Llamada
                 </button>
             </div>
-            
         </div>
     </section>
 
     <!-- Partners Section -->
-    <section class="w-full py-16 bg-black bg-opacity-30">
-        <div class="max-w-6xl mx-auto px-4">
-            <!-- Header -->
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-white uppercase tracking-wide">Partners</h2>
+    <section class="partners-section">
+        <div class="partners-container">
+            <div class="section-header">
+                <h2 class="section-title">Partners</h2>
             </div>
             
-            <!-- Partners Logos con banda blanca -->
-            <div class="bg-white rounded-2xl py-8 px-6 shadow-lg">
-                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 lg:gap-16">
-                <!-- Klaviyo -->
-                <div class="opacity-70 hover:opacity-100 transition-opacity duration-300">
-                    <img src="/logoklaviyo.png" alt="Klaviyo" class="h-12 md:h-16 object-contain">
+            <div class="partners-card">
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 3rem; padding: 1rem;">
+                    <div style="opacity: 0.7; transition: opacity 0.3s;">
+                        <img src="/logoklaviyo.png" alt="Klaviyo" style="height: 60px; object-fit: contain;">
                 </div>
-                
-                <!-- Slack -->
-                <div class="opacity-70 hover:opacity-100 transition-opacity duration-300">
-                    <img src="/logoslack.png" alt="Slack" class="h-12 md:h-16 object-contain">
+                    <div style="opacity: 0.7; transition: opacity 0.3s;">
+                        <img src="/logoslack.png" alt="Slack" style="height: 60px; object-fit: contain;">
                 </div>
-                
-                <!-- N8N -->
-                <div class="opacity-70 hover:opacity-100 transition-opacity duration-300">
-                    <img src="/logon8n.png" alt="N8N" class="h-12 md:h-16 object-contain">
+                    <div style="opacity: 0.7; transition: opacity 0.3s;">
+                        <img src="/logon8n.png" alt="N8N" style="height: 60px; object-fit: contain;">
                 </div>
-                
-                <!-- Meta -->
-                <div class="opacity-70 hover:opacity-100 transition-opacity duration-300">
-                    <img src="/logometa.png" alt="Meta" class="h-12 md:h-16 object-contain">
+                    <div style="opacity: 0.7; transition: opacity 0.3s;">
+                        <img src="/logometa.png" alt="Meta" style="height: 60px; object-fit: contain;">
                 </div>
-                
-                <!-- Google Ads -->
-                <div class="opacity-70 hover:opacity-100 transition-opacity duration-300">
-                    <img src="/logogoogle.png" alt="Google Ads" class="h-12 md:h-16 object-contain">
+                    <div style="opacity: 0.7; transition: opacity 0.3s;">
+                        <img src="/logogoogle.png" alt="Google Ads" style="height: 60px; object-fit: contain;">
                 </div>
                 </div>
             </div>
@@ -454,101 +859,81 @@
     </section>
 
     <!-- Sobre Mí Section -->
-    <section class="w-full py-20 bg-black bg-opacity-30">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <!-- Left: Logo Scaleally con fondo blanco -->
-                <div class="flex justify-center">
-                    <div class="w-80 h-80 flex items-center justify-center bg-white rounded-2xl shadow-lg p-8">
-                        <img src="/logo2.png" alt="Scaleally Logo" class="w-full h-auto max-w-64 object-contain">
+    <section class="about-section" id="sobre-mi">
+        <div class="about-container">
+            <!-- Left: Logo Scaleally -->
+            <div style="display: flex; justify-content: center;">
+                <div class="card" style="width: 320px; height: 320px; display: flex; align-items: center; justify-content: center; padding: 2rem;">
+                    <img src="/logo2.png" alt="Scaleally Logo" style="width: 100%; height: auto; max-width: 256px; object-fit: contain;">
                     </div>
                 </div>
                 
                 <!-- Right: Text Content -->
-                <div class="text-left">
-                    <h2 class="text-4xl font-bold text-white mb-6">SOBRE MÍ</h2>
-                    <p class="text-base text-gray-300 mb-4 leading-relaxed">
+            <div>
+                <h2 class="section-title" style="text-align: left; margin-bottom: 1.5rem;">Sobre Mí</h2>
+                <p style="color: var(--text-light); margin-bottom: 1rem; line-height: 1.8;">
                         Hola!, mi nombre es Miguel Rodriguez, Profesional en marketing y como tu growth partner quiero decirte que En un mercado lleno de ruido, las marcas que perduran son las que crean un impacto real, las que conectan y las que crecen.
                     </p>
-                    <p class="text-base text-gray-300 mb-4 leading-relaxed">
+                <p style="color: var(--text-light); margin-bottom: 1rem; line-height: 1.8;">
                         A través de una visión estratégica y creativa, elevamos tu proyecto para que resuene con tu audiencia a un nivel más profundo. Te ayudamos a pasar de ser una opción más a convertirte en una referencia en tu nicho, inspirando a una comunidad que cree en tu propósito.
                     </p>
-                    <p class="text-base text-gray-300 mb-6 leading-relaxed">
+                <p style="color: var(--text-light); margin-bottom: 2rem; line-height: 1.8;">
                         Hagamos que tu negocio crezca de forma sostenible y deje una huella de la que te sientas orgulloso.
                     </p>
-                    <div class="mt-8">
                         <button id="sobre-mi-cta" class="main-cta-button">
                             Agenda tu Demo
                         </button>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
     <!-- Los 3 Pilares Section -->
-    <section class="w-full py-24 bg-black bg-opacity-40">
-        <div class="max-w-7xl mx-auto px-4">
+    <section class="pillars-section" id="pilares">
+        <div class="pillars-container">
             <!-- Header Section -->
-            <div class="text-center mb-20">
-                <h2 class="text-5xl md:text-6xl font-black text-white mb-8 leading-tight">
-                    ¿CÓMO LO HACEMOS?
-                </h2>
+            <div class="section-header">
+                <h2 class="section-title">¿Cómo lo Hacemos?</h2>
+                <p class="section-subtitle">Nuestro método probado para escalar tu negocio</p>
             </div>
             
             <!-- 3 Tarjetas de Pilares -->
-            <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
                 <!-- Tarjeta 1: Atención Orgánica -->
-                <div class="bg-black bg-opacity-50 rounded-xl shadow-lg p-8 text-center border border-gray-600">
-                    <!-- Icono -->
-                    <div class="w-16 h-16 bg-purple-500 rounded-lg flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
                             <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/>
                         </svg>
                     </div>
-                    
-                    <!-- Título -->
-                    <h3 class="text-xl font-bold text-white mb-4">1. Atención orgánica</h3>
-                    
-                    <!-- Descripción -->
-                    <p class="text-gray-300 leading-relaxed">
+                    <h3 style="font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: 1rem;">1. Atención Orgánica</h3>
+                    <p style="color: var(--text-light); line-height: 1.8;">
                         Captar atención orgánica o con tráfico pagado, y mandar toda esta audiencia a un embudo de ventas apoyado en una oferta de contenido de alto valor.
                     </p>
                 </div>
                 
                 <!-- Tarjeta 2: Oferta Ganadora -->
-                <div class="bg-black bg-opacity-50 rounded-xl shadow-lg p-8 text-center border border-gray-600">
-                    <!-- Icono -->
-                    <div class="w-16 h-16 bg-purple-500 rounded-lg flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
                             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                     </div>
-                    
-                    <!-- Título -->
-                    <h3 class="text-xl font-bold text-white mb-4">2. Oferta Ganadora</h3>
-                    
-                    <!-- Descripción -->
-                    <p class="text-gray-300 leading-relaxed">
+                    <h3 style="font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: 1rem;">2. Oferta Ganadora</h3>
+                    <p style="color: var(--text-light); line-height: 1.8;">
                         Liquidar esa atención y hacer que se convierta en venta apoyándonos en una oferta de adquisición ganadora.
                     </p>
                 </div>
                 
                 <!-- Tarjeta 3: Proceso Post-Venta -->
-                <div class="bg-black bg-opacity-50 rounded-xl shadow-lg p-8 text-center border border-gray-600">
-                    <!-- Icono -->
-                    <div class="w-16 h-16 bg-purple-500 rounded-lg flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
                             <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
                         </svg>
                     </div>
-                    
-                    <!-- Título -->
-                    <h3 class="text-xl font-bold text-white mb-4">3. Proceso Post-Venta</h3>
-                    
-                    <!-- Descripción -->
-                    <p class="text-gray-300 leading-relaxed">
+                    <h3 style="font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: 1rem;">3. Proceso Post-Venta</h3>
+                    <p style="color: var(--text-light); line-height: 1.8;">
                         Desarrollar un proceso post-venta para extender el valor de por vida de cada cliente utilizando marketing de email.
                     </p>
                 </div>
@@ -557,27 +942,32 @@
     </section>
 
     <!-- Calendly Section -->
-    <section id="calendly-section" class="w-full py-20 bg-black bg-opacity-50">
-        <div class="max-w-6xl mx-auto px-4">
-            <h3 class="text-3xl font-bold mb-6 text-center text-white">📅 Agenda tu Consulta Gratuita de 15 Minutos</h3>
-            <p class="text-gray-300 mb-8 text-center text-lg">Descubre exactamente cómo aplicar nuestro método a tu empresa</p>
+    <section id="calendly-section" class="cta-section">
+        <div class="cta-container">
+            <h2 class="cta-title">📅 Agenda tu Consulta Gratuita de 15 Minutos</h2>
+            <p class="cta-description">Descubre exactamente cómo aplicar nuestro método a tu empresa</p>
             
             <!-- Calendly Widget -->
-            <div class="calendly-inline-widget rounded-2xl overflow-hidden" 
+            <div class="calendly-inline-widget" 
                  data-url="https://calendly.com/scaleally/30min"
-                 style="min-width: 320px; width: 100%; height: 700px;">
+                 style="min-width: 320px; width: 100%; border-radius: 12px; overflow: hidden;">
             </div>
         </div>
     </section>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-black text-gray-400 py-12 text-center">
-        <div class="max-w-2xl mx-auto">
-            <div class="text-3xl font-black text-cyan-400 mb-4">Scaleally</div>
-            <p class="text-gray-500">
-                Escalamos empresas de salud y bienestar.
-            </p>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Scaleally</h3>
+                <p>Escalamos empresas de salud y bienestar.</p>
+                <p style="margin-top: 1rem;"><a href="/contacto">Contacto</a></p>
+                <p><a href="/politica-de-privacidad">Política de Privacidad</a></p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; {new Date().getFullYear()} Scaleally. Todos los derechos reservados.</p>
+            </div>
         </div>
     </footer>
 
@@ -596,12 +986,14 @@
         }
 
         // Inicializar video HLS
-        function initHLS(videoElement, withSound = false, isMobile = false) {
+        function initHLS(videoElement: HTMLVideoElement | null, withSound = false, isMobile = false) {
             if (!videoElement) return;
             
             const videoUrl = isMobile ? mobileVideoUrl : desktopVideoUrl;
 
-            if (Hls.isSupported()) {
+            // @ts-ignore - HLS.js is loaded from CDN
+            if (typeof Hls !== 'undefined' && Hls.isSupported()) {
+                // @ts-ignore
                 const hls = new Hls({
                     enableWorker: true,
                     lowLatencyMode: true,
@@ -609,21 +1001,22 @@
                 });
                 hls.loadSource(videoUrl);
                 hls.attachMedia(videoElement);
+                // @ts-ignore
                 hls.on(Hls.Events.MANIFEST_PARSED, function() {
                     // Intentar reproducir con sonido si es móvil
                     if (withSound) {
                         videoElement.muted = false;
-                        videoElement.play().catch(e => {
+                        videoElement.play().catch((e: Error) => {
                             console.log('Autoplay con sonido bloqueado, intentando sin sonido');
                             // Si falla, intentar sin sonido
                             videoElement.muted = true;
-                            videoElement.play().catch(err => console.log('Autoplay prevented:', err));
+                            videoElement.play().catch((err: Error) => console.log('Autoplay prevented:', err));
                             // Actualizar el botón
                             const toggleBtn = document.getElementById('toggle-audio');
                             if (toggleBtn) toggleBtn.textContent = '🔇';
                         });
                     } else {
-                        videoElement.play().catch(e => console.log('Autoplay prevented:', e));
+                        videoElement.play().catch((e: Error) => console.log('Autoplay prevented:', e));
                     }
                 });
             } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
@@ -633,15 +1026,15 @@
                 videoElement.addEventListener('loadedmetadata', function() {
                     if (withSound) {
                         videoElement.muted = false;
-                        videoElement.play().catch(e => {
+                        videoElement.play().catch((e: Error) => {
                             console.log('Autoplay con sonido bloqueado, intentando sin sonido');
                             videoElement.muted = true;
-                            videoElement.play().catch(err => console.log('Autoplay prevented:', err));
+                            videoElement.play().catch((err: Error) => console.log('Autoplay prevented:', err));
                             const toggleBtn = document.getElementById('toggle-audio');
                             if (toggleBtn) toggleBtn.textContent = '🔇';
                         });
                     } else {
-                        videoElement.play().catch(e => console.log('Autoplay prevented:', e));
+                        videoElement.play().catch((e: Error) => console.log('Autoplay prevented:', e));
                     }
                 });
             }
@@ -650,7 +1043,7 @@
         // Función para mostrar el video en pantalla completa
         function showMobileVideo() {
             const overlay = document.getElementById('mobile-video-overlay');
-            const mobileVideo = document.getElementById('mobile-video');
+            const mobileVideo = document.getElementById('mobile-video') as HTMLVideoElement | null;
             
             if (overlay) {
                 overlay.classList.add('active');
@@ -666,7 +1059,7 @@
         // Función para cerrar el video
         function closeMobileVideo() {
             const overlay = document.getElementById('mobile-video-overlay');
-            const mobileVideo = document.getElementById('mobile-video');
+            const mobileVideo = document.getElementById('mobile-video') as HTMLVideoElement | null;
             
             if (overlay) {
                 overlay.classList.remove('active');
@@ -678,7 +1071,7 @@
                 }
                 
                 // Inicializar el video de la página principal si no está inicializado
-                const desktopVideo = document.getElementById('desktop-video');
+                const desktopVideo = document.getElementById('desktop-video') as HTMLVideoElement | null;
                 if (desktopVideo && !desktopVideo.src && !desktopVideo.dataset.initialized) {
                     desktopVideo.dataset.initialized = 'true';
                     // Usar el video móvil vertical para mantener consistencia
@@ -689,30 +1082,12 @@
 
         // Ejecutar cuando el DOM esté listo
         document.addEventListener('DOMContentLoaded', function() {
-            const soundActivationOverlay = document.getElementById('sound-activation-overlay');
-            const activateSoundBtn = document.getElementById('activate-sound-btn');
-            
-            // Evento del botón de activación inicial
-            if (activateSoundBtn) {
-                activateSoundBtn.addEventListener('click', function() {
-                    // Ocultar el overlay de activación
-                    if (soundActivationOverlay) {
-                        soundActivationOverlay.classList.add('hidden');
-                    }
-                    
-                    // Si es móvil, mostrar el video con sonido
-                    if (isMobileDevice()) {
-                        setTimeout(showMobileVideo, 100);
-                    } else {
-                        // Si es escritorio, inicializar el video
-                        const desktopVideo = document.getElementById('desktop-video');
-                        if (desktopVideo) {
-                            initHLS(desktopVideo, false, false); // sin sonido automático, desktop
-                        }
-                    }
-                });
+            // Inicializar el video de escritorio automáticamente
+            const desktopVideo = document.getElementById('desktop-video') as HTMLVideoElement | null;
+            if (desktopVideo && !isMobileDevice()) {
+                initHLS(desktopVideo, false, false); // sin sonido automático, desktop
             }
-
+            
             // Agregar evento al botón de cerrar
             const closeButton = document.getElementById('close-video');
             if (closeButton) {
@@ -721,10 +1096,10 @@
 
             // Agregar evento al botón de audio
             const toggleAudioButton = document.getElementById('toggle-audio');
-            const mobileVideo = document.getElementById('mobile-video');
+            const mobileVideo = document.getElementById('mobile-video') as HTMLVideoElement | null;
             
             if (toggleAudioButton && mobileVideo) {
-                toggleAudioButton.addEventListener('click', function(e) {
+                toggleAudioButton.addEventListener('click', function(e: MouseEvent) {
                     e.stopPropagation(); // Evitar que se cierre el overlay
                     if (mobileVideo.muted) {
                         mobileVideo.muted = false;
@@ -739,7 +1114,7 @@
                 mobileVideo.addEventListener('click', function() {
                     if (mobileVideo.muted) {
                         mobileVideo.muted = false;
-                        toggleAudioButton.textContent = '🔊';
+                        if (toggleAudioButton) toggleAudioButton.textContent = '🔊';
                     }
                 });
             }
@@ -747,10 +1122,54 @@
             // También permitir cerrar tocando fuera del video (opcional)
             const overlay = document.getElementById('mobile-video-overlay');
             if (overlay) {
-                overlay.addEventListener('click', function(e) {
+                overlay.addEventListener('click', function(e: MouseEvent) {
                     if (e.target === overlay) {
                         closeMobileVideo();
                     }
+                });
+            }
+
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                const header = document.getElementById('header');
+                if (header && window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else if (header) {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', (e: Event) => {
+                    e.preventDefault();
+                    const href = anchor.getAttribute('href');
+                    if (href) {
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // CTA buttons scroll to calendly
+            const primaryCta = document.getElementById('primary-cta');
+            const sobreMiCta = document.getElementById('sobre-mi-cta');
+            const calendlySection = document.getElementById('calendly-section');
+
+            if (primaryCta && calendlySection) {
+                primaryCta.addEventListener('click', () => {
+                    calendlySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            }
+
+            if (sobreMiCta && calendlySection) {
+                sobreMiCta.addEventListener('click', () => {
+                    calendlySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 });
             }
         });

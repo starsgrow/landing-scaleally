@@ -1,0 +1,1273 @@
+---
+import ChatWidget from '../components/ChatWidget.astro';
+---
+
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href="/logo.png" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Valoración Integral - Scaleally</title>
+		<meta name="description" content="Completa este formulario para recibir una evaluación personalizada de tu negocio y recomendaciones específicas de crecimiento" />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+		<style>
+			:root {
+				--primary-color: #6366f1;
+				--primary-dark: #4f46e5;
+				--accent-color: #818cf8;
+				--accent-hover: #6366f1;
+				--success: #10b981;
+				--error: #ef4444;
+				--bg: #ffffff;
+				--bg-secondary: #f8fafc;
+				--text: #1e293b;
+				--text-light: #64748b;
+				--border: #e2e8f0;
+				--shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+				--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+				--shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+				--shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+				background: #ffffff;
+				color: var(--text);
+				line-height: 1.6;
+				min-height: 100vh;
+				position: relative;
+				overflow-x: hidden;
+			}
+
+			.container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 2rem;
+			}
+
+			.back-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				color: var(--primary-color);
+				text-decoration: none;
+				font-weight: 600;
+				margin-bottom: 1rem;
+				transition: gap 0.3s ease;
+			}
+
+			.back-link:hover {
+				gap: 12px;
+			}
+
+			.form-container {
+				max-width: 900px;
+				margin: 0 auto;
+				padding: 3rem;
+				background: white;
+				border-radius: 20px;
+				box-shadow: 0 10px 40px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+				position: relative;
+				overflow: hidden;
+				animation: formContainerFadeIn 0.8s ease-out;
+			}
+
+			@keyframes formContainerFadeIn {
+				from {
+					opacity: 0;
+					transform: translateY(30px) scale(0.95);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0) scale(1);
+				}
+			}
+
+			.form-container::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 4px;
+				background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--primary-color));
+				background-size: 200% 100%;
+				animation: gradientMove 3s ease infinite;
+			}
+
+			@keyframes gradientMove {
+				0%, 100% { background-position: 0% 50%; }
+				50% { background-position: 100% 50%; }
+			}
+
+			.form-header {
+				text-align: center;
+				margin-bottom: 3rem;
+				padding: 2rem 0;
+			}
+
+			.form-header h1 {
+				background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				margin-bottom: 1rem;
+				font-size: 2.5rem;
+				font-weight: 900;
+				letter-spacing: -0.5px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 15px;
+			}
+
+			.form-header p {
+				color: var(--text-light);
+				font-size: 1.1rem;
+				line-height: 1.6;
+				max-width: 600px;
+				margin: 0 auto;
+			}
+
+			.step-indicator {
+				display: flex;
+				justify-content: space-between;
+				margin-bottom: 3rem;
+				position: relative;
+				padding: 0 30px;
+			}
+
+			.step-indicator::before {
+				content: '';
+				position: absolute;
+				top: 24px;
+				left: 0;
+				right: 0;
+				height: 3px;
+				background: var(--border);
+				z-index: 0;
+				border-radius: 3px;
+			}
+
+			.step-item {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				position: relative;
+				flex: 1;
+				z-index: 1;
+			}
+
+			.step-number {
+				width: 48px;
+				height: 48px;
+				border-radius: 50%;
+				background: white;
+				color: var(--text-light);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-weight: 800;
+				margin-bottom: 10px;
+				transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+				border: 3px solid var(--border);
+				box-shadow: var(--shadow-md);
+			}
+
+			.step-item.active .step-number {
+				background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+				color: white;
+				transform: scale(1.15);
+				border-color: transparent;
+				box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+			}
+
+			.step-item.completed .step-number {
+				background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+				color: white;
+				border-color: transparent;
+			}
+
+			.step-item.completed .step-number::after {
+				content: '\f00c';
+				font-family: 'Font Awesome 6 Free';
+				font-weight: 900;
+			}
+
+			.step-label {
+				font-size: 0.8rem;
+				color: var(--text-light);
+				text-align: center;
+				font-weight: 600;
+				max-width: 100px;
+			}
+
+			.step-item.active .step-label {
+				color: var(--primary-color);
+				font-weight: 700;
+			}
+
+			.progress-bar {
+				width: 100%;
+				height: 10px;
+				background: var(--border);
+				border-radius: 20px;
+				margin-bottom: 2rem;
+				overflow: hidden;
+			}
+
+			.progress-fill {
+				height: 100%;
+				background: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-color) 50%, var(--primary-color) 100%);
+				background-size: 200% 100%;
+				width: 0%;
+				transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+				border-radius: 20px;
+			}
+
+			.form-section {
+				display: none;
+				margin-bottom: 0;
+				padding: 2.5rem;
+				border-radius: 16px;
+				background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+				box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+				transition: all 0.3s ease;
+			}
+
+			.form-section.active {
+				display: block;
+				animation: fadeInSlide 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+			}
+
+			@keyframes fadeInSlide {
+				from {
+					opacity: 0;
+					transform: translateX(30px) scale(0.98);
+				}
+				to {
+					opacity: 1;
+					transform: translateX(0) scale(1);
+				}
+			}
+
+			.form-section h3 {
+				color: var(--primary-color);
+				margin-bottom: 2rem;
+				font-size: 1.75rem;
+				display: flex;
+				align-items: center;
+				gap: 12px;
+				font-weight: 700;
+			}
+
+			.form-group {
+				margin-bottom: 1.5rem;
+			}
+
+			.form-group label {
+				display: block;
+				margin-bottom: 0.75rem;
+				font-weight: 600;
+				color: var(--text);
+				font-size: 0.95rem;
+			}
+
+			.form-group input,
+			.form-group select,
+			.form-group textarea {
+				width: 100%;
+				padding: 14px 16px;
+				border: 2px solid var(--border);
+				border-radius: 10px;
+				font-size: 16px;
+				transition: all 0.3s ease;
+				background: white;
+				font-family: 'Inter', sans-serif;
+			}
+
+			.form-group input:focus,
+			.form-group select:focus,
+			.form-group textarea:focus {
+				outline: none;
+				border-color: var(--primary-color);
+				box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+			}
+
+			.form-group.required label::after {
+				content: " *";
+				color: var(--error);
+			}
+
+			.form-navigation {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-top: 3rem;
+				padding-top: 2rem;
+				border-top: 2px solid var(--border);
+				gap: 1rem;
+			}
+
+			.btn-nav {
+				padding: 14px 32px;
+				border: none;
+				border-radius: 12px;
+				font-size: 16px;
+				font-weight: 700;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				display: inline-flex;
+				align-items: center;
+				gap: 10px;
+			}
+
+			.btn-prev {
+				background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+				color: white;
+			}
+
+			.btn-prev:hover:not(:disabled) {
+				transform: translateY(-2px);
+				box-shadow: var(--shadow-lg);
+			}
+
+			.btn-next {
+				background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+				color: white;
+			}
+
+			.btn-next:hover:not(:disabled) {
+				transform: translateY(-2px);
+				box-shadow: var(--shadow-lg);
+			}
+
+			.btn-nav:disabled {
+				opacity: 0.4;
+				cursor: not-allowed;
+			}
+
+			.step-counter {
+				color: var(--text-light);
+				font-weight: 700;
+				font-size: 0.95rem;
+				padding: 8px 16px;
+				background: var(--bg-secondary);
+				border-radius: 20px;
+			}
+
+			.step-counter .current-step {
+				color: var(--primary-color);
+				font-size: 1.1rem;
+			}
+
+			.btn-submit {
+				background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+				color: white;
+				padding: 16px 48px;
+				border: none;
+				border-radius: 12px;
+				font-size: 18px;
+				font-weight: 700;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				display: inline-flex;
+				align-items: center;
+				gap: 12px;
+				box-shadow: var(--shadow-lg);
+			}
+
+			.btn-submit:hover:not(:disabled) {
+				transform: translateY(-3px);
+				box-shadow: var(--shadow-xl);
+			}
+
+			.btn-submit:disabled {
+				opacity: 0.6;
+				cursor: not-allowed;
+			}
+
+			.alert {
+				padding: 1.25rem 1.5rem;
+				border-radius: 12px;
+				margin-bottom: 1.5rem;
+				display: none;
+				align-items: center;
+				gap: 12px;
+				font-weight: 500;
+			}
+
+			.alert.show {
+				display: flex;
+			}
+
+			.alert-success {
+				background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+				color: #155724;
+				border: 2px solid var(--success);
+			}
+
+			.alert-error {
+				background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+				color: #721c24;
+				border: 2px solid var(--error);
+			}
+
+			.loading {
+				display: none;
+				text-align: center;
+				margin: 1rem 0;
+			}
+
+			.spinner {
+				border: 4px solid rgba(99, 102, 241, 0.1);
+				border-top: 4px solid var(--primary-color);
+				border-radius: 50%;
+				width: 40px;
+				height: 40px;
+				animation: spin 0.8s linear infinite;
+				margin: 0 auto;
+			}
+
+			@keyframes spin {
+				0% { transform: rotate(0deg); }
+				100% { transform: rotate(360deg); }
+			}
+
+			.slider-container {
+				margin-top: 1.5rem;
+				padding: 1.5rem;
+				background: var(--bg-secondary);
+				border-radius: 12px;
+				border: 2px solid var(--border);
+			}
+
+			.slider-container input[type="range"] {
+				width: 100%;
+				height: 8px;
+				border-radius: 10px;
+				background: var(--border);
+				outline: none;
+				appearance: none;
+				-webkit-appearance: none;
+				margin-bottom: 1rem;
+				cursor: pointer;
+			}
+
+			.slider-container input[type="range"]::-webkit-slider-thumb {
+				-webkit-appearance: none;
+				appearance: none;
+				width: 24px;
+				height: 24px;
+				border-radius: 50%;
+				background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+				cursor: grab;
+				border: 3px solid white;
+				box-shadow: var(--shadow-md);
+			}
+
+			.slider-container input[type="range"]::-moz-range-thumb {
+				width: 24px;
+				height: 24px;
+				border-radius: 50%;
+				background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+				cursor: grab;
+				border: 3px solid white;
+				box-shadow: var(--shadow-md);
+			}
+
+			.slider-labels {
+				display: flex;
+				justify-content: space-between;
+				margin-bottom: 1rem;
+				font-size: 0.85rem;
+				color: var(--text-light);
+			}
+
+			.slider-description {
+				text-align: center;
+				color: var(--text-light);
+				font-style: italic;
+				font-size: 0.9rem;
+			}
+
+			.checkbox-label {
+				display: flex;
+				align-items: flex-start;
+				gap: 12px;
+				cursor: pointer;
+				font-weight: 500;
+				color: var(--text);
+				line-height: 1.6;
+				padding: 12px;
+				border-radius: 10px;
+				transition: all 0.3s ease;
+			}
+
+			.checkbox-label:hover {
+				background: rgba(99, 102, 241, 0.05);
+			}
+
+			.checkbox-label input[type="checkbox"] {
+				width: 20px;
+				height: 20px;
+				margin-top: 2px;
+				cursor: pointer;
+				flex-shrink: 0;
+				accent-color: var(--primary-color);
+			}
+
+			.checkmark {
+				display: none;
+			}
+
+			@media (max-width: 768px) {
+				.form-container {
+					padding: 1.5rem;
+					margin: 1rem;
+				}
+
+				.form-header h1 {
+					font-size: 1.75rem;
+				}
+
+				.form-navigation {
+					flex-direction: column;
+				}
+
+				.btn-nav {
+					width: 100%;
+				}
+
+				.step-indicator {
+					padding: 0 15px;
+				}
+
+				.step-number {
+					width: 40px;
+					height: 40px;
+				}
+
+				.step-label {
+					font-size: 0.7rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<a href="/" class="back-link">
+				<i class="fas fa-arrow-left"></i>
+				Volver al inicio
+			</a>
+
+			<div class="form-container">
+				<div class="form-header">
+					<h1><i class="fas fa-clipboard-list"></i> Valoración Integral y Estilo de Vida</h1>
+					<p>Completa este formulario para recibir una evaluación personalizada de tu estilo de vida y recomendaciones específicas</p>
+				</div>
+
+				<!-- Step Indicator -->
+				<div class="step-indicator" id="stepIndicator">
+					<div class="step-item active" data-step="1">
+						<div class="step-number">1</div>
+						<div class="step-label">Datos Básicos</div>
+					</div>
+					<div class="step-item" data-step="2">
+						<div class="step-number">2</div>
+						<div class="step-label">Nutrición</div>
+					</div>
+					<div class="step-item" data-step="3">
+						<div class="step-number">3</div>
+						<div class="step-label">Sueño</div>
+					</div>
+					<div class="step-item" data-step="4">
+						<div class="step-number">4</div>
+						<div class="step-label">Actividad Física</div>
+					</div>
+					<div class="step-item" data-step="5">
+						<div class="step-number">5</div>
+						<div class="step-label">Estrés</div>
+					</div>
+					<div class="step-item" data-step="6">
+						<div class="step-number">6</div>
+						<div class="step-label">Bienestar</div>
+					</div>
+					<div class="step-item" data-step="7">
+						<div class="step-number">7</div>
+						<div class="step-label">Política</div>
+					</div>
+				</div>
+
+				<div class="progress-bar">
+					<div class="progress-fill" id="progressFill"></div>
+				</div>
+
+				<div class="alert alert-success" id="successAlert">
+					<i class="fas fa-check-circle"></i>
+					<span>Te enviamos tu evaluación personalizada a tu correo, dale un vistazo</span>
+				</div>
+
+				<div class="alert alert-error" id="errorAlert">
+					<i class="fas fa-exclamation-circle"></i>
+					<span id="errorMessage">Ha ocurrido un error. Por favor, intenta nuevamente.</span>
+				</div>
+
+				<form id="assessmentForm">
+					<!-- Datos básicos -->
+					<div class="form-section active" data-step="1">
+						<h3><i class="fas fa-user"></i> Datos Básicos</h3>
+
+						<div class="form-group required">
+							<label for="nombre">Nombre completo</label>
+							<input type="text" id="nombre" name="nombre" required>
+						</div>
+
+						<div class="form-group required">
+							<label for="edad">Edad</label>
+							<input type="number" id="edad" name="edad" min="1" max="120" required>
+						</div>
+
+						<div class="form-group required">
+							<label for="sexo">Sexo</label>
+							<select id="sexo" name="sexo" required>
+								<option value="">Selecciona una opción</option>
+								<option value="Masculino">Masculino</option>
+								<option value="Femenino">Femenino</option>
+								<option value="Otro">Otro</option>
+							</select>
+						</div>
+
+						<div class="form-group required">
+							<label for="objetivo_principal">Objetivo principal</label>
+							<select id="objetivo_principal" name="objetivo_principal" required>
+								<option value="">Selecciona tu objetivo principal</option>
+								<option value="Ganar masa muscular">Ganar masa muscular</option>
+								<option value="Perder grasa">Perder grasa</option>
+								<option value="Mejorar salud">Mejorar salud</option>
+								<option value="Mantener estado físico">Mantener estado físico</option>
+								<option value="Más energía">Más energía</option>
+								<option value="Menos estrés">Menos estrés</option>
+								<option value="Salud mental">Salud mental</option>
+								<option value="Mejorar autoestima">Mejorar autoestima</option>
+							</select>
+						</div>
+
+						<div class="form-navigation">
+							<button type="button" class="btn-nav btn-prev" disabled>
+								<i class="fas fa-arrow-left"></i> Anterior
+							</button>
+							<span class="step-counter">Paso <span class="current-step">1</span> de <span class="total-steps">7</span></span>
+							<button type="button" class="btn-nav btn-next">
+								Siguiente <i class="fas fa-arrow-right"></i>
+							</button>
+						</div>
+					</div>
+
+					<!-- Nutrición -->
+					<div class="form-section" data-step="2">
+						<h3><i class="fas fa-apple-alt"></i> Nutrición</h3>
+
+						<div class="form-group required">
+							<label for="comidas_dia">¿Cuántas comidas principales haces al día?</label>
+							<select id="comidas_dia" name="comidas_dia" required>
+								<option value="">Selecciona una opción</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4 o más">4 o más</option>
+							</select>
+						</div>
+
+						<div class="form-group required">
+							<label for="proteina_cada_comida">¿Incluyes fuentes de proteína en cada comida principal?</label>
+							<select id="proteina_cada_comida" name="proteina_cada_comida" required>
+								<option value="">Selecciona una opción</option>
+								<option value="Sí">Sí</option>
+								<option value="No">No</option>
+								<option value="A veces">A veces</option>
+							</select>
+						</div>
+
+						<div class="form-group required">
+							<label for="grasas_saludables">¿Incluyes grasas saludables en tu alimentación semanal?<br><small>(Ejemplos: aguacate, aceite de oliva, nueces, pescado graso)</small></label>
+							<select id="grasas_saludables" name="grasas_saludables" required>
+								<option value="">Selecciona una opción</option>
+								<option value="Sí">Sí</option>
+								<option value="No">No</option>
+								<option value="A veces">A veces</option>
+							</select>
+						</div>
+
+						<div class="form-group required">
+							<label for="frutas_verduras">¿Comes frutas y verduras todos los días?</label>
+							<select id="frutas_verduras" name="frutas_verduras" required>
+								<option value="">Selecciona una opción</option>
+								<option value="Sí">Sí</option>
+								<option value="No">No</option>
+								<option value="A veces">A veces</option>
+							</select>
+						</div>
+
+						<div class="form-group required">
+							<label for="agua_diaria">¿Cuántos litros de agua tomas al día en promedio?</label>
+							<select id="agua_diaria" name="agua_diaria" required>
+								<option value="">Selecciona una opción</option>
+								<option value="Menos de 1 litro">Menos de 1 litro</option>
+								<option value="De 1 a 2 litros">De 1 a 2 litros</option>
+								<option value="Más de 2 litros">Más de 2 litros</option>
+							</select>
+						</div>
+
+						<div class="form-group required">
+							<label for="ultraprocesados_dia">¿Cuántos alimentos ultraprocesados consumes diariamente?<br><small>(Ejemplos: gaseosas, snacks, galletas, dulces, embutidos, comidas rápidas)</small></label>
+							<select id="ultraprocesados_dia" name="ultraprocesados_dia" required>
+								<option value="">Selecciona una opción</option>
+								<option value="Ninguno">Ninguno</option>
+								<option value="Menos de 3">Menos de 3</option>
+								<option value="Más de 3">Más de 3</option>
+							</select>
+						</div>
+
+						<div class="form-group required">
+							<label for="azucar_diaria">¿Consumes azúcar todos los días?</label>
+							<select id="azucar_diaria" name="azucar_diaria" required>
+								<option value="">Selecciona una opción</option>
+								<option value="Sí">Sí</option>
+								<option value="No">No</option>
+							</select>
+						</div>
+
+						<div class="form-group required">
+							<label for="alcohol">¿Con qué frecuencia tomas bebidas alcohólicas?</label>
+							<select id="alcohol" name="alcohol" required>
+								<option value="">Selecciona una opción</option>
+								<option value="Nunca">Nunca</option>
+								<option value="1 o más veces por semana">1 o más veces por semana</option>
+								<option value="En ocasiones especiales">En ocasiones especiales</option>
+							</select>
+						</div>
+
+						<div class="form-group required">
+							<label for="fuma_tabaco_o_vaper">¿Fumas cigarrillo, consumes tabaco o usas vapeadores (con o sin nicotina)?</label>
+							<select id="fuma_tabaco_o_vaper" name="fuma_tabaco_o_vaper" required>
+								<option value="">Selecciona una opción</option>
+								<option value="Nunca">Nunca</option>
+								<option value="Ocasionalmente">Ocasionalmente</option>
+								<option value="A diario">A diario</option>
+							</select>
+						</div>
+
+						<div class="form-group required">
+							<label for="otras_sustancias">¿Consumes alguna otra sustancia psicoactiva?</label>
+							<select id="otras_sustancias" name="otras_sustancias" required>
+								<option value="">Selecciona una opción</option>
+								<option value="Nunca">Nunca</option>
+								<option value="Ocasionalmente">Ocasionalmente</option>
+								<option value="A diario">A diario</option>
+								<option value="Prefiero no responder">Prefiero no responder</option>
+							</select>
+						</div>
+
+						<div class="form-navigation">
+							<button type="button" class="btn-nav btn-prev">
+								<i class="fas fa-arrow-left"></i> Anterior
+							</button>
+							<span class="step-counter">Paso <span class="current-step">2</span> de <span class="total-steps">7</span></span>
+							<button type="button" class="btn-nav btn-next">
+								Siguiente <i class="fas fa-arrow-right"></i>
+							</button>
+						</div>
+					</div>
+
+					<!-- Sueño y descanso -->
+					<div class="form-section" data-step="3">
+						<h3><i class="fas fa-bed"></i> Sueño y Descanso</h3>
+
+						<div class="form-group required">
+							<label for="horas_sueno">¿Cuántas horas duermes en promedio por noche?</label>
+							<select id="horas_sueno" name="horas_sueno" required>
+								<option value="">Selecciona una opción</option>
+								<option value="Menos de 5">Menos de 5</option>
+								<option value="5 a 6">5 a 6</option>
+								<option value="6 a 7">6 a 7</option>
+								<option value="Más de 7">Más de 7</option>
+							</select>
+						</div>
+
+						<div class="form-group required">
+							<label for="descansado_amanecer">¿Te sientes descansado al despertar?</label>
+							<select id="descansado_amanecer" name="descansado_amanecer" required>
+								<option value="">Selecciona una opción</option>
+								<option value="Siempre">Siempre</option>
+								<option value="A veces">A veces</option>
+								<option value="Nunca">Nunca</option>
+							</select>
+						</div>
+
+						<div class="form-group required">
+							<label for="dificultad_dormir">¿Tienes dificultades para dormir o permanecer dormido?</label>
+							<select id="dificultad_dormir" name="dificultad_dormir" required>
+								<option value="">Selecciona una opción</option>
+								<option value="Sí">Sí</option>
+								<option value="No">No</option>
+								<option value="A veces">A veces</option>
+							</select>
+						</div>
+
+						<div class="form-navigation">
+							<button type="button" class="btn-nav btn-prev">
+								<i class="fas fa-arrow-left"></i> Anterior
+							</button>
+							<span class="step-counter">Paso <span class="current-step">3</span> de <span class="total-steps">7</span></span>
+							<button type="button" class="btn-nav btn-next">
+								Siguiente <i class="fas fa-arrow-right"></i>
+							</button>
+						</div>
+					</div>
+
+					<!-- Actividad física -->
+					<div class="form-section" data-step="4">
+						<h3><i class="fas fa-dumbbell"></i> Actividad Física</h3>
+
+						<div class="form-group required">
+							<label for="dias_gimnasio">¿Cuántos días a la semana vas al gimnasio o realizas ejercicio estructurado?</label>
+							<select id="dias_gimnasio" name="dias_gimnasio" required>
+								<option value="">Selecciona una opción</option>
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5 o más">5 o más</option>
+							</select>
+						</div>
+
+						<div class="form-group required">
+							<label for="caminar_diario">¿Cuánto tiempo caminas al día en promedio?</label>
+							<select id="caminar_diario" name="caminar_diario" required>
+								<option value="">Selecciona una opción</option>
+								<option value="Menos de 15 minutos">Menos de 15 minutos</option>
+								<option value="15 a 30 minutos">15 a 30 minutos</option>
+								<option value="30 a 60 minutos">30 a 60 minutos</option>
+								<option value="Más de 60 minutos">Más de 60 minutos</option>
+							</select>
+						</div>
+
+						<div class="form-group required">
+							<label for="actividad_vigorosa_fuera">¿Con qué frecuencia realizas actividad física vigorosa fuera del gimnasio?<br><small>(correr, deportes intensos, HIIT, natación, fútbol, etc.)</small></label>
+							<select id="actividad_vigorosa_fuera" name="actividad_vigorosa_fuera" required>
+								<option value="">Selecciona una opción</option>
+								<option value="Nunca">Nunca</option>
+								<option value="1 vez por semana">1 vez por semana</option>
+								<option value="2 a 3 veces por semana">2 a 3 veces por semana</option>
+								<option value="Más de 3 veces por semana">Más de 3 veces por semana</option>
+							</select>
+						</div>
+
+						<div class="form-navigation">
+							<button type="button" class="btn-nav btn-prev">
+								<i class="fas fa-arrow-left"></i> Anterior
+							</button>
+							<span class="step-counter">Paso <span class="current-step">4</span> de <span class="total-steps">7</span></span>
+							<button type="button" class="btn-nav btn-next">
+								Siguiente <i class="fas fa-arrow-right"></i>
+							</button>
+						</div>
+					</div>
+
+					<!-- Gestión del estrés -->
+					<div class="form-section" data-step="5">
+						<h3><i class="fas fa-brain"></i> Gestión del Estrés</h3>
+
+						<div class="form-group required">
+							<label for="estres_1_10">¿En una escala de 1 a 10, qué tan estresado(a) te consideras actualmente?</label>
+							<div class="slider-container">
+								<input type="range" id="estres_1_10" name="estres_1_10" min="1" max="10" value="5" required>
+								<div class="slider-labels">
+									<span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+									<span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+								</div>
+								<div class="slider-description">
+									<small>1 = nada de estrés | 10 = estrés máximo</small>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-navigation">
+							<button type="button" class="btn-nav btn-prev">
+								<i class="fas fa-arrow-left"></i> Anterior
+							</button>
+							<span class="step-counter">Paso <span class="current-step">5</span> de <span class="total-steps">7</span></span>
+							<button type="button" class="btn-nav btn-next">
+								Siguiente <i class="fas fa-arrow-right"></i>
+							</button>
+						</div>
+					</div>
+
+					<!-- Bienestar, hábitos, emociones -->
+					<div class="form-section" data-step="6">
+						<h3><i class="fas fa-heart"></i> Bienestar, Hábitos y Emociones</h3>
+
+						<div class="form-group required">
+							<label for="motivacion_1_10">¿Qué tan motivado(a) te sientes actualmente para alcanzar tus objetivos de salud y bienestar?</label>
+							<div class="slider-container">
+								<input type="range" id="motivacion_1_10" name="motivacion_1_10" min="1" max="10" value="5" required>
+								<div class="slider-labels">
+									<span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+									<span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+								</div>
+								<div class="slider-description">
+									<small>1 = nada motivado | 10 = totalmente motivado</small>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group required">
+							<label for="cumple_rutina">¿Con qué frecuencia cumples tus rutinas diarias (alimentación, ejercicio, descanso, etc.)?</label>
+							<select id="cumple_rutina" name="cumple_rutina" required>
+								<option value="">Selecciona una opción</option>
+								<option value="Siempre">Siempre</option>
+								<option value="Casi siempre">Casi siempre</option>
+								<option value="A veces">A veces</option>
+								<option value="Casi nunca">Casi nunca</option>
+								<option value="Nunca">Nunca</option>
+							</select>
+						</div>
+
+						<div class="form-group required">
+							<label for="bienestar_emocional">¿En general, cómo describirías tu bienestar emocional actual?</label>
+							<select id="bienestar_emocional" name="bienestar_emocional" required>
+								<option value="">Selecciona una opción</option>
+								<option value="Muy bueno">Muy bueno</option>
+								<option value="Bueno">Bueno</option>
+								<option value="Regular">Regular</option>
+								<option value="Malo">Malo</option>
+								<option value="Muy malo">Muy malo</option>
+							</select>
+						</div>
+
+						<div class="form-group required">
+							<label for="pantalla_ocio">¿Cuánto tiempo al día pasas frente a pantallas para actividades de ocio?</label>
+							<div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border: 2px solid #2196f3; border-radius: 12px; padding: 1.25rem 1.5rem; margin: 1rem 0;">
+								<p style="margin: 0.5rem 0; color: #0d47a1; font-weight: 500;"><strong>Tip: Para saber tu tiempo en pantalla con tu celular, revisa:</strong></p>
+								<ul style="margin: 0.75rem 0; padding-left: 1.5rem;">
+									<li style="margin: 0.5rem 0; color: #1565c0; font-weight: 500;"><strong>Android:</strong> Ajustes → Bienestar digital</li>
+									<li style="margin: 0.5rem 0; color: #1565c0; font-weight: 500;"><strong>iPhone:</strong> Configuración → Tiempo en pantalla</li>
+								</ul>
+								<p style="margin: 0.5rem 0; color: #1976d2;"><small>(Incluye celular, TV, computador, tablet para redes sociales, videos, videojuegos, etc.)</small></p>
+							</div>
+							<select id="pantalla_ocio" name="pantalla_ocio" required>
+								<option value="">Selecciona una opción</option>
+								<option value="Menos de 1 hora">Menos de 1 hora</option>
+								<option value="1 a 3 horas">1 a 3 horas</option>
+								<option value="3 a 6 horas">3 a 6 horas</option>
+								<option value="Más de 6 horas">Más de 6 horas</option>
+								<option value="No estoy seguro(a)">No estoy seguro(a)</option>
+							</select>
+						</div>
+
+						<div class="form-navigation">
+							<button type="button" class="btn-nav btn-prev">
+								<i class="fas fa-arrow-left"></i> Anterior
+							</button>
+							<span class="step-counter">Paso <span class="current-step">6</span> de <span class="total-steps">7</span></span>
+							<button type="button" class="btn-nav btn-next">
+								Siguiente <i class="fas fa-arrow-right"></i>
+							</button>
+						</div>
+					</div>
+
+					<!-- Política de Datos Personales -->
+					<div class="form-section" data-step="7">
+						<h3><i class="fas fa-shield-alt"></i> Política de Tratamiento de Datos Personales</h3>
+						<div style="margin-bottom: 1.5rem; padding: 1rem; background: white; border-radius: 10px; border-left: 4px solid var(--primary-color);">
+							<p style="margin-bottom: 0.85rem; color: var(--text); line-height: 1.7;">
+								La información suministrada no será guardada y solo será usada con fines de la elaboración de tu informe de evaluación de estilo de vida saludable con ayuda de agentes de inteligencia artificial.
+							</p>
+							<p style="margin-bottom: 0.85rem; color: var(--text); line-height: 1.7; font-weight: 600;">
+								<strong>Importante:</strong> Las recomendaciones proporcionadas en este informe no constituyen consejo médico profesional ni diagnóstico. Estas son sugerencias generales basadas en la información proporcionada y no garantizan resultados específicos. Antes de realizar cualquier cambio significativo en tu dieta, ejercicio o estilo de vida, es fundamental que consultes con un médico o profesional de la salud calificado. Nos deslindamos de cualquier responsabilidad derivada del uso de estas recomendaciones sin la supervisión médica adecuada.
+							</p>
+							<p style="margin-bottom: 0; color: var(--text-light); font-size: 0.9rem; line-height: 1.6;">
+								Al aceptar estarás suscrito a mi lista de email para recibir información, consejos y actualizaciones. Entiendo que puedo cancelar mi suscripción en cualquier momento.
+							</p>
+						</div>
+
+						<div class="form-group required">
+							<label for="email">Correo electrónico</label>
+							<input type="email" id="email" name="email" placeholder="tu@email.com" required>
+							<small style="display: block; margin-top: 0.5rem; color: var(--text-light);">Necesitamos tu correo para enviarte el informe de evaluación</small>
+						</div>
+
+						<div class="form-group required">
+							<label class="checkbox-label">
+								<input type="checkbox" id="acepto_politica" name="acepto_politica" required>
+								<span>Autorizo el uso de mi información para los fines descritos.</span>
+							</label>
+						</div>
+
+						<div class="form-navigation">
+							<button type="button" class="btn-nav btn-prev">
+								<i class="fas fa-arrow-left"></i> Anterior
+							</button>
+							<span class="step-counter">Paso <span class="current-step">7</span> de <span class="total-steps">7</span></span>
+							<div style="position: relative;">
+								<div class="loading" id="loading" style="position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 200px;">
+									<div class="spinner"></div>
+									<p style="font-size: 14px; margin-top: 8px; color: var(--primary-color); font-weight: 600;">Enviando...</p>
+								</div>
+								<button type="submit" class="btn-submit" id="submitBtn" disabled>
+									<i class="fas fa-paper-plane"></i>
+									Enviar Valoración
+								</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<ChatWidget />
+
+		<script>
+			// Webhook URL - Actualiza esto con tu webhook de n8n
+			const WEBHOOK_URL = 'https://olympo-n8n.bsnk1a.easypanel.host/webhook/estiloscale';
+
+			// Form handling
+			const form = document.getElementById('assessmentForm');
+			const loading = document.getElementById('loading');
+			const successAlert = document.getElementById('successAlert');
+			const errorAlert = document.getElementById('errorAlert');
+			const errorMessage = document.getElementById('errorMessage');
+			const progressFill = document.getElementById('progressFill');
+			const submitBtn = document.getElementById('submitBtn');
+
+			// Step Wizard Logic
+			let currentStep = 1;
+			const totalSteps = 7;
+			const formSections = document.querySelectorAll('.form-section');
+			const stepItems = document.querySelectorAll('.step-item');
+
+			// Update step display
+			function updateStepDisplay() {
+				formSections.forEach((section) => {
+					section.classList.remove('active');
+					if (parseInt(section.dataset.step) === currentStep) {
+						section.classList.add('active');
+					}
+				});
+
+				stepItems.forEach((item) => {
+					const stepNumber = parseInt(item.dataset.step);
+					item.classList.remove('active', 'completed');
+					
+					if (stepNumber === currentStep) {
+						item.classList.add('active');
+					} else if (stepNumber < currentStep) {
+						item.classList.add('completed');
+					}
+				});
+
+				document.querySelectorAll('.current-step').forEach(el => {
+					el.textContent = currentStep;
+				});
+
+				updateProgress();
+			}
+
+			// Validate current step
+			function validateCurrentStep() {
+				const currentSection = document.querySelector(`.form-section[data-step="${currentStep}"]`);
+				if (!currentSection) return true;
+
+				const requiredFields = currentSection.querySelectorAll('[required]');
+				let isValid = true;
+
+				requiredFields.forEach(field => {
+					if (field.type === 'checkbox') {
+						if (!field.checked) {
+							isValid = false;
+							field.parentElement.style.border = '2px solid var(--error)';
+							setTimeout(() => {
+								field.parentElement.style.border = '';
+							}, 2000);
+						}
+					} else {
+						if (!field.value.trim()) {
+							isValid = false;
+							field.style.borderColor = 'var(--error)';
+							setTimeout(() => {
+								field.style.borderColor = '';
+							}, 2000);
+						}
+					}
+				});
+
+				if (!isValid) {
+					const tempAlert = document.createElement('div');
+					tempAlert.className = 'alert alert-error show';
+					tempAlert.innerHTML = '<i class="fas fa-exclamation-circle"></i> Por favor, completa todos los campos requeridos antes de continuar.';
+					currentSection.insertBefore(tempAlert, currentSection.firstChild);
+					
+					setTimeout(() => {
+						tempAlert.remove();
+					}, 3000);
+				}
+
+				return isValid;
+			}
+
+			// Handle next button clicks
+			document.querySelectorAll('.btn-next').forEach(btn => {
+				btn.addEventListener('click', () => {
+					if (validateCurrentStep() && currentStep < totalSteps) {
+						currentStep++;
+						updateStepDisplay();
+						window.scrollTo({ top: 0, behavior: 'smooth' });
+					}
+				});
+			});
+
+			// Handle prev button clicks
+			document.querySelectorAll('.btn-prev').forEach(btn => {
+				btn.addEventListener('click', () => {
+					if (currentStep > 1) {
+						currentStep--;
+						updateStepDisplay();
+						window.scrollTo({ top: 0, behavior: 'smooth' });
+					}
+				});
+			});
+
+			// Update progress bar
+			function updateProgress() {
+				const requiredFields = form.querySelectorAll('[required]');
+				let filledCount = 0;
+				
+				requiredFields.forEach(field => {
+					if (field.type === 'checkbox') {
+						if (field.checked) filledCount++;
+					} else {
+						if (field.value.trim() !== '') filledCount++;
+					}
+				});
+				
+				const progress = (filledCount / requiredFields.length) * 100;
+				progressFill.style.width = progress + '%';
+			}
+
+			// Add event listeners to all form fields
+			form.querySelectorAll('input, select, textarea').forEach(field => {
+				field.addEventListener('input', updateProgress);
+				field.addEventListener('change', updateProgress);
+			});
+
+			// Habilitar/deshabilitar el botón de enviar según la política
+			const politicaCheckbox = document.getElementById('acepto_politica');
+			if (politicaCheckbox && submitBtn) {
+				politicaCheckbox.addEventListener('change', function() {
+					submitBtn.disabled = !this.checked;
+				});
+				submitBtn.disabled = !politicaCheckbox.checked;
+			}
+
+			// Form submission
+			form.addEventListener('submit', async (e) => {
+				e.preventDefault();
+
+				// Validate all steps
+				let allValid = true;
+				for (let step = 1; step <= totalSteps; step++) {
+					const section = document.querySelector(`.form-section[data-step="${step}"]`);
+					const requiredFields = section.querySelectorAll('[required]');
+					
+					requiredFields.forEach(field => {
+						if (field.type === 'checkbox') {
+							if (!field.checked) allValid = false;
+						} else {
+							if (!field.value.trim()) allValid = false;
+						}
+					});
+				}
+
+				if (!allValid) {
+					errorMessage.textContent = 'Por favor, completa todos los campos requeridos en todos los pasos.';
+					errorAlert.classList.add('show');
+					window.scrollTo({ top: 0, behavior: 'smooth' });
+					return;
+				}
+
+				// Hide previous alerts
+				successAlert.classList.remove('show');
+				errorAlert.classList.remove('show');
+
+				// Show loading
+				submitBtn.disabled = true;
+				loading.style.display = 'block';
+
+				try {
+					// Collect form data
+					const formData = new FormData(form);
+					const jsonData = {};
+
+					// Convert FormData to JSON object
+					for (let [key, value] of formData.entries()) {
+						// Convert checkboxes to boolean values
+						if (key === 'acepto_politica') {
+							jsonData[key] = value === 'on' || value === 'true';
+						} else {
+							jsonData[key] = value;
+						}
+					}
+
+					// Ensure checkbox is boolean (even if not checked)
+					jsonData.acepto_politica = document.getElementById('acepto_politica').checked;
+
+					// Send to webhook
+					const response = await fetch(WEBHOOK_URL, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify(jsonData)
+					});
+
+					if (response.ok) {
+						// Success
+						successAlert.classList.add('show');
+						form.reset();
+						progressFill.style.width = '0%';
+						currentStep = 1;
+						updateStepDisplay();
+						window.scrollTo({ top: 0, behavior: 'smooth' });
+					} else {
+						throw new Error(`HTTP error! status: ${response.status}`);
+					}
+
+				} catch (error) {
+					console.error('Error:', error);
+					errorMessage.textContent = 'Ha ocurrido un error al enviar el formulario. Por favor, intenta nuevamente o contáctanos directamente.';
+					errorAlert.classList.add('show');
+					window.scrollTo({ top: 0, behavior: 'smooth' });
+				} finally {
+					// Hide loading
+					submitBtn.disabled = !politicaCheckbox.checked;
+					loading.style.display = 'none';
+				}
+			});
+
+			// Initialize
+			updateStepDisplay();
+			updateProgress();
+		</script>
+	</body>
+</html>
+
